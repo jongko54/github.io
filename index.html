@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전종호 | Backend Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --border-color: #30363d;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --accent-blue: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-purple: #bc8cff;
+            --accent-orange: #ffa657;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* Header */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding: 24px 0;
+            margin-bottom: 40px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            border: 2px solid var(--border-color);
+        }
+
+        .profile-info h1 {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .profile-info .subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--bg-tertiary);
+            border-color: var(--text-secondary);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-green);
+            border-color: var(--accent-green);
+            color: var(--bg-primary);
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            background-color: #2ea043;
+            border-color: #2ea043;
+        }
+
+        /* Main Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Cards */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--text-secondary);
+        }
+
+        /* Pinned Project Card */
+        .pinned-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+        }
+
+        .pinned-card:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 1px var(--accent-blue);
+        }
+
+        .pinned-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .pinned-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 4px;
+        }
+
+        .pinned-description {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .pinned-footer {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .pinned-footer span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .language-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .java { background-color: #b07219; }
+        .javascript { background-color: #f1e05a; }
+        .react { background-color: #61dafb; }
+
+        /* Experience Card */
+        .experience-card {
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 8px;
+            bottom: -16px;
+            width: 2px;
+            background-color: var(--border-color);
+        }
+
+        .experience-card:last-child::before {
+            display: none;
+        }
+
+        .experience-dot {
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--accent-blue);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .company-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .period {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .position-badge {
+            display: inline-block;
+            background-color: rgba(88, 166, 255, 0.1);
+            color: var(--accent-blue);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .project-title {
+            font-size: 14px;
+            color: var(--text-primary);
+            margin: 8px 0 4px 0;
+        }
+
+        .experience-description {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: rgba(88, 166, 255, 0.15);
+            color: var(--accent-blue);
+            border-radius: 12px;
+            font-size: 11px;
+            border: 1px solid rgba(88, 166, 255, 0.3);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 24px;
+            height: fit-content;
+        }
+
+        .sidebar-section {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .sidebar-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .skill-category {
+            margin-bottom: 16px;
+        }
+
+        .skill-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .skill-category-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-item {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* Stats */
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .stat-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Contributions Graph (Simplified) */
+        .contributions {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(12px, 1fr));
+            gap: 3px;
+            margin-top: 12px;
+        }
+
+        .contribution-day {
+            aspect-ratio: 1;
+            background-color: var(--bg-tertiary);
+            border-radius: 2px;
+        }
+
+        .contribution-day.level-1 { background-color: rgba(63, 185, 80, 0.3); }
+        .contribution-day.level-2 { background-color: rgba(63, 185, 80, 0.6); }
+        .contribution-day.level-3 { background-color: rgba(63, 185, 80, 0.9); }
+
+        /* Achievement Badge */
+        .achievement {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background-color: var(--bg-tertiary);
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .achievement-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .achievement-info {
+            flex: 1;
+        }
+
+        .achievement-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .achievement-description {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 32px 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card, .pinned-card, .experience-card {
+            animation: fadeIn 0.3s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="profile-section">
+                    <div class="avatar">전</div>
+                    <div class="profile-info">
+                        <h1>전종호 (Jong-ho Jeon)</h1>
+                        <p class="subtitle">Backend Developer · 6+ years experience</p>
+                    </div>
+                </div>
+                <div class="header-links">
+                    <a href="mailto:jongko54@naver.com" class="btn btn-primary">
+                        📧 Contact
+                    </a>
+                    <a href="tel:010-8606-9454" class="btn">
+                        📱 010-8606-9454
+                    </a>
+                    <a href="https://github.com/jongko54" class="btn" target="_blank">
+                        💻 GitHub
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <!-- Main Content -->
+            <main>
+                <!-- About -->
+                <section>
+                    <div class="card">
+                        <h2 class="section-title">👨‍💻 About</h2>
+                        <p style="color: var(--text-secondary); line-height: 1.7;">
+                            6년 3개월의 경력을 가진 백엔드 개발자입니다. 금융, 제조, 물류 등 다양한 도메인에서
+                            Java/Spring 기반의 시스템을 개발하고 운영해왔습니다. 특히 레거시 시스템의 차세대 전환
+                            프로젝트와 대용량 데이터 처리에 강점을 가지고 있으며, 현재 한진정보통신에서
+                            EDI 시스템 유지보수를 담당하고 있습니다.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Pinned Projects -->
+                <section>
+                    <h2 class="section-title">📌 Pinned Projects</h2>
+
+                    <div class="pinned-card">
+                        <div class="pinned-header">
+                            <div>
+                                <div class="pinned-title">한진택배 EDI 시스템</div>
+                                <div style="font-size: 11px; color: var(--text-secondary);">현재 진행중</div>
+                            </div>
+                            <span style="font-size: 20px;">🚚</span>
+                        </div>
+                        <p class="pinned-description">
+                            Apache Kafka를 활용한 대용량 주문/배송 데이터 실시간 처리 시스템.
+                            AWS 클라우드 환경에서 Docker 기반 마이크로서비스 운영 및 관리.
+                        </p>
+                        <div class="pinned-footer">
+                            <span><span class="language-dot java"></span> Java</span>
+                            <span>⭐ Spring Boot</span>
+                            <span>🔥 Kafka</span>
+                        </div>
+                    </div>
+
+                    <div class="pinned-card">
+                        <div class="pinned-header">
+                            <div>
+                                <div class="pinned-title">넥센타이어 MES 차세대</div>
+                                <div style="font-size: 11px; color: var(--text-secondary);">2024.08 - 2025.02</div>
+                            </div>
+                            <span style="font-size: 20px;">🏭</span>
+                        </div>
+                        <p class="pinned-description">
+                            C# 기반 레거시 MES 시스템을 Java Spring Boot로 전환.
+                            3,000개 이상의 Stored Procedure를 Java 로직으로 재구현. 글로벌 시스템 통합.
+                        </p>
+                        <div class="pinned-footer">
+                            <span><span class="language-dot java"></span> Java</span>
+                            <span>⭐ Spring Boot</span>
+                            <span>💾 Oracle</span>
+                        </div>
+                    </div>
+
+                    <div class="pinned-card">
+                        <div class="pinned-header">
+                            <div>
+                                <div class="pinned-title">마이데이터 서비스</div>
+                                <div style="font-size: 11px; color: var(--text-secondary);">2023.06 - 2024.04</div>
+                            </div>
+                            <span style="font-size: 20px;">💰</span>
+                        </div>
+                        <p class="pinned-description">
+                            금융권 마이데이터 백엔드 API 개발. QueryDSL을 활용한 쿼리 최적화로
+                            조회 성능 40% 개선. 구글 플레이스토어 정식 앱 런칭.
+                        </p>
+                        <div class="pinned-footer">
+                            <span><span class="language-dot java"></span> Java</span>
+                            <span>⭐ JPA</span>
+                            <span>☁️ NCP</span>
+                        </div>
+                    </div>
+
+                    <div class="pinned-card">
+                        <div class="pinned-header">
+                            <div>
+                                <div class="pinned-title">대출중개 플랫폼</div>
+                                <div style="font-size: 11px; color: var(--text-secondary);">2021.12 - 2023.01</div>
+                            </div>
+                            <span style="font-size: 20px;">💳</span>
+                        </div>
+                        <p class="pinned-description">
+                            React.js + Node.js 풀스택 개발. 금융사 API 연동 및
+                            서비스 기획부터 앱 런칭까지 전 과정 참여. 사용자 친화적 대출 신청 프로세스 구현.
+                        </p>
+                        <div class="pinned-footer">
+                            <span><span class="language-dot react"></span> React</span>
+                            <span><span class="language-dot javascript"></span> Node.js</span>
+                            <span>⭐ Spring Boot</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Experience -->
+                <section>
+                    <h2 class="section-title">💼 Experience</h2>
+
+                    <div class="experience-card">
+                        <div class="experience-dot"></div>
+                        <div class="experience-header">
+                            <div>
+                                <div class="company-name">한진정보통신</div>
+                                <span class="position-badge">대리</span>
+                            </div>
+                            <div class="period">2025.02 - Present</div>
+                        </div>
+                        <div class="project-title">한진택배 EDI 시스템 유지보수</div>
+                        <p class="experience-description">
+                            EDI(주문, 배송) 파트 유지보수. Kafka를 활용한 대용량 데이터 실시간 처리 및
+                            AWS 클라우드 환경에서 Docker 기반 마이크로서비스 관리.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">Spring Boot</span>
+                            <span class="tag">Kafka</span>
+                            <span class="tag">Docker</span>
+                            <span class="tag">AWS</span>
+                        </div>
+                    </div>
+
+                    <div class="experience-card">
+                        <div class="experience-dot"></div>
+                        <div class="experience-header">
+                            <div>
+                                <div class="company-name">하이텍앤솔</div>
+                                <span class="position-badge">선임</span>
+                            </div>
+                            <div class="period">2024.08 - 2025.02</div>
+                        </div>
+                        <div class="project-title">넥센타이어 MES 글로벌 차세대 프로젝트</div>
+                        <p class="experience-description">
+                            C# 기반 MES를 Java Spring Boot로 전환. 경남 양산, 중국 칭다오 글로벌 시스템 구축.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">Spring Boot</span>
+                            <span class="tag">Oracle</span>
+                            <span class="tag">Exbuilder</span>
+                        </div>
+                    </div>
+
+                    <div class="experience-card">
+                        <div class="experience-dot"></div>
+                        <div class="experience-header">
+                            <div>
+                                <div class="company-name">㈜뱅큐</div>
+                                <span class="position-badge">대리</span>
+                            </div>
+                            <div class="period">2023.06 - 2024.04</div>
+                        </div>
+                        <div class="project-title">마이데이터 서비스 / 신한은행 UI BANK 3.0</div>
+                        <p class="experience-description">
+                            마이데이터 백엔드 API 개발. QueryDSL 쿼리 최적화 (성능 40% 개선). NCP 클라우드 환경 구축.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Spring Boot</span>
+                            <span class="tag">JPA</span>
+                            <span class="tag">QueryDSL</span>
+                            <span class="tag">NCP</span>
+                        </div>
+                    </div>
+
+                    <div class="experience-card">
+                        <div class="experience-dot"></div>
+                        <div class="experience-header">
+                            <div>
+                                <div class="company-name">HN핀코어</div>
+                                <span class="position-badge">대리</span>
+                            </div>
+                            <div class="period">2021.12 - 2023.01</div>
+                        </div>
+                        <div class="project-title">신용대출 중개 플랫폼</div>
+                        <p class="experience-description">
+                            React + Node.js 풀스택 개발. 금융사 API 연동 및 앱 런칭 전 과정 참여.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">React.js</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Spring Boot</span>
+                            <span class="tag">JPA</span>
+                        </div>
+                    </div>
+
+                    <div class="experience-card">
+                        <div class="experience-dot"></div>
+                        <div class="experience-header">
+                            <div>
+                                <div class="company-name">솔리테오시스템즈</div>
+                                <span class="position-badge">사원</span>
+                            </div>
+                            <div class="period">2020.07 - 2021.01</div>
+                        </div>
+                        <div class="project-title">식약처 수입식품시스템 고도화</div>
+                        <p class="experience-description">
+                            Vaadin 프레임워크를 전자정부프레임워크로 전환. Java → JavaScript 마이그레이션.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">전자정부프레임워크</span>
+                            <span class="tag">Websquare</span>
+                            <span class="tag">MyBatis</span>
+                        </div>
+                    </div>
+
+                    <div class="experience-card">
+                        <div class="experience-dot"></div>
+                        <div class="experience-header">
+                            <div>
+                                <div class="company-name">고려정보기술</div>
+                                <span class="position-badge">사원</span>
+                            </div>
+                            <div class="period">2019.11 - 2020.06</div>
+                        </div>
+                        <div class="project-title">행정안전부 지방교부세 개발</div>
+                        <p class="experience-description">
+                            엑셀 기반 업무를 웹 시스템으로 전환. 엑셀 함수 및 계산식 웹 구현.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">전자정부프레임워크</span>
+                            <span class="tag">jQuery</span>
+                            <span class="tag">Tibero</span>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Stats -->
+                <div class="sidebar-section">
+                    <h3>📊 Stats</h3>
+                    <div class="stat-item">
+                        <span class="stat-label">총 경력</span>
+                        <span class="stat-value">6년 3개월</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">프로젝트</span>
+                        <span class="stat-value">8+ 프로젝트</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">도메인</span>
+                        <span class="stat-value">금융/제조/물류</span>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="sidebar-section">
+                    <h3>🛠 Tech Stack</h3>
+
+                    <div class="skill-category">
+                        <div class="skill-category-title">Backend</div>
+                        <div class="skill-list">
+                            <span class="skill-item">Java</span>
+                            <span class="skill-item">Spring Boot</span>
+                            <span class="skill-item">JPA</span>
+                            <span class="skill-item">MyBatis</span>
+                            <span class="skill-item">QueryDSL</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-title">Frontend</div>
+                        <div class="skill-list">
+                            <span class="skill-item">React.js</span>
+                            <span class="skill-item">JavaScript</span>
+                            <span class="skill-item">jQuery</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-title">Database</div>
+                        <div class="skill-list">
+                            <span class="skill-item">Oracle</span>
+                            <span class="skill-item">MySQL</span>
+                            <span class="skill-item">Tibero</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <div class="skill-category-title">DevOps</div>
+                        <div class="skill-list">
+                            <span class="skill-item">AWS</span>
+                            <span class="skill-item">Docker</span>
+                            <span class="skill-item">Kafka</span>
+                            <span class="skill-item">Kubernetes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements -->
+                <div class="sidebar-section">
+                    <h3>🏆 Highlights</h3>
+
+                    <div class="achievement">
+                        <div class="achievement-icon">🚀</div>
+                        <div class="achievement-info">
+                            <div class="achievement-title">차세대 전환</div>
+                            <div class="achievement-description">2건의 대규모 레거시 전환</div>
+                        </div>
+                    </div>
+
+                    <div class="achievement">
+                        <div class="achievement-icon">💰</div>
+                        <div class="achievement-info">
+                            <div class="achievement-title">금융 전문</div>
+                            <div class="achievement-description">마이데이터/대출/보험</div>
+                        </div>
+                    </div>
+
+                    <div class="achievement">
+                        <div class="achievement-icon">📈</div>
+                        <div class="achievement-info">
+                            <div class="achievement-title">성능 개선</div>
+                            <div class="achievement-description">쿼리 최적화 40% 향상</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer>
+            <p>© 2025 전종호 (Jong-ho Jeon). Built with passion for clean code.</p>
+            <p style="margin-top: 8px;">Last updated: January 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
