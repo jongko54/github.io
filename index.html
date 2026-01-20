@@ -10,7 +10,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         :root {
             --bg-primary: #0d1117;
             --bg-secondary: #161b22;
@@ -23,27 +23,27 @@
             --accent-purple: #bc8cff;
             --accent-orange: #ffa657;
         }
-
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: var(--text-primary);
             background-color: var(--bg-primary);
         }
-
+        
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 16px;
         }
-
+        
         /* Header */
         header {
             border-bottom: 1px solid var(--border-color);
             padding: 24px 0;
             margin-bottom: 40px;
         }
-
+        
         .header-content {
             display: flex;
             align-items: center;
@@ -51,13 +51,13 @@
             flex-wrap: wrap;
             gap: 20px;
         }
-
+        
         .profile-section {
             display: flex;
             align-items: center;
             gap: 24px;
         }
-
+        
         .avatar {
             width: 80px;
             height: 80px;
@@ -70,24 +70,24 @@
             font-weight: bold;
             border: 2px solid var(--border-color);
         }
-
+        
         .profile-info h1 {
             font-size: 26px;
             font-weight: 600;
             margin-bottom: 4px;
         }
-
+        
         .profile-info .subtitle {
             color: var(--text-secondary);
             font-size: 16px;
         }
-
+        
         .header-links {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
         }
-
+        
         .btn {
             display: inline-flex;
             align-items: center;
@@ -101,24 +101,24 @@
             font-size: 14px;
             transition: all 0.2s;
         }
-
+        
         .btn:hover {
             background-color: var(--bg-tertiary);
             border-color: var(--text-secondary);
         }
-
+        
         .btn-primary {
             background-color: var(--accent-green);
             border-color: var(--accent-green);
             color: var(--bg-primary);
             font-weight: 500;
         }
-
+        
         .btn-primary:hover {
             background-color: #2ea043;
             border-color: #2ea043;
         }
-
+        
         /* Main Layout */
         .main-layout {
             display: grid;
@@ -126,12 +126,12 @@
             gap: 24px;
             margin-bottom: 40px;
         }
-
+        
         /* Sections */
         section {
             margin-bottom: 32px;
         }
-
+        
         .section-title {
             display: flex;
             align-items: center;
@@ -142,7 +142,7 @@
             padding-bottom: 8px;
             border-bottom: 1px solid var(--border-color);
         }
-
+        
         /* Cards */
         .card {
             background-color: var(--bg-secondary);
@@ -152,11 +152,11 @@
             margin-bottom: 16px;
             transition: border-color 0.2s;
         }
-
+        
         .card:hover {
             border-color: var(--text-secondary);
         }
-
+        
         /* Pinned Project Card */
         .pinned-card {
             background-color: var(--bg-secondary);
@@ -166,33 +166,33 @@
             margin-bottom: 12px;
             transition: all 0.2s;
         }
-
+        
         .pinned-card:hover {
             border-color: var(--accent-blue);
             box-shadow: 0 0 0 1px var(--accent-blue);
         }
-
+        
         .pinned-header {
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
             margin-bottom: 12px;
         }
-
+        
         .pinned-title {
             font-size: 14px;
             font-weight: 600;
             color: var(--accent-blue);
             margin-bottom: 4px;
         }
-
+        
         .pinned-description {
             font-size: 12px;
             color: var(--text-secondary);
             margin-bottom: 12px;
             line-height: 1.5;
         }
-
+        
         .pinned-footer {
             display: flex;
             align-items: center;
@@ -200,30 +200,30 @@
             font-size: 12px;
             color: var(--text-secondary);
         }
-
+        
         .pinned-footer span {
             display: flex;
             align-items: center;
             gap: 4px;
         }
-
+        
         .language-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
             display: inline-block;
         }
-
+        
         .java { background-color: #b07219; }
         .javascript { background-color: #f1e05a; }
         .react { background-color: #61dafb; }
-
+        
         /* Experience Card */
         .experience-card {
             position: relative;
             padding-left: 32px;
         }
-
+        
         .experience-card::before {
             content: '';
             position: absolute;
@@ -233,11 +233,11 @@
             width: 2px;
             background-color: var(--border-color);
         }
-
+        
         .experience-card:last-child::before {
             display: none;
         }
-
+        
         .experience-dot {
             position: absolute;
             left: 0;
@@ -248,25 +248,25 @@
             background-color: var(--bg-secondary);
             border: 2px solid var(--accent-blue);
         }
-
+        
         .experience-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 8px;
         }
-
+        
         .company-name {
             font-size: 16px;
             font-weight: 600;
             color: var(--text-primary);
         }
-
+        
         .period {
             font-size: 13px;
             color: var(--text-secondary);
         }
-
+        
         .position-badge {
             display: inline-block;
             background-color: rgba(88, 166, 255, 0.1);
@@ -276,20 +276,20 @@
             font-size: 12px;
             margin-top: 4px;
         }
-
+        
         .project-title {
             font-size: 14px;
             color: var(--text-primary);
             margin: 8px 0 4px 0;
         }
-
+        
         .experience-description {
             font-size: 13px;
             color: var(--text-secondary);
             line-height: 1.6;
             margin-bottom: 8px;
         }
-
+        
         /* Tags */
         .tags {
             display: flex;
@@ -297,7 +297,7 @@
             gap: 6px;
             margin-top: 8px;
         }
-
+        
         .tag {
             display: inline-block;
             padding: 3px 8px;
@@ -307,14 +307,14 @@
             font-size: 11px;
             border: 1px solid rgba(88, 166, 255, 0.3);
         }
-
+        
         /* Sidebar */
         .sidebar {
             position: sticky;
             top: 24px;
             height: fit-content;
         }
-
+        
         .sidebar-section {
             background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
@@ -322,22 +322,22 @@
             padding: 16px;
             margin-bottom: 16px;
         }
-
+        
         .sidebar-section h3 {
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 12px;
             color: var(--text-primary);
         }
-
+        
         .skill-category {
             margin-bottom: 16px;
         }
-
+        
         .skill-category:last-child {
             margin-bottom: 0;
         }
-
+        
         .skill-category-title {
             font-size: 12px;
             font-weight: 600;
@@ -346,13 +346,13 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-
+        
         .skill-list {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
         }
-
+        
         .skill-item {
             display: inline-block;
             padding: 4px 10px;
@@ -362,7 +362,7 @@
             font-size: 12px;
             color: var(--text-secondary);
         }
-
+        
         /* Stats */
         .stat-item {
             display: flex;
@@ -370,22 +370,22 @@
             padding: 8px 0;
             border-bottom: 1px solid var(--border-color);
         }
-
+        
         .stat-item:last-child {
             border-bottom: none;
         }
-
+        
         .stat-label {
             font-size: 13px;
             color: var(--text-secondary);
         }
-
+        
         .stat-value {
             font-size: 13px;
             font-weight: 600;
             color: var(--text-primary);
         }
-
+        
         /* Contributions Graph (Simplified) */
         .contributions {
             display: grid;
@@ -393,17 +393,17 @@
             gap: 3px;
             margin-top: 12px;
         }
-
+        
         .contribution-day {
             aspect-ratio: 1;
             background-color: var(--bg-tertiary);
             border-radius: 2px;
         }
-
+        
         .contribution-day.level-1 { background-color: rgba(63, 185, 80, 0.3); }
         .contribution-day.level-2 { background-color: rgba(63, 185, 80, 0.6); }
         .contribution-day.level-3 { background-color: rgba(63, 185, 80, 0.9); }
-
+        
         /* Achievement Badge */
         .achievement {
             display: flex;
@@ -414,7 +414,7 @@
             border-radius: 6px;
             margin-bottom: 8px;
         }
-
+        
         .achievement-icon {
             width: 40px;
             height: 40px;
@@ -425,22 +425,22 @@
             justify-content: center;
             font-size: 20px;
         }
-
+        
         .achievement-info {
             flex: 1;
         }
-
+        
         .achievement-title {
             font-size: 13px;
             font-weight: 600;
             color: var(--text-primary);
         }
-
+        
         .achievement-description {
             font-size: 11px;
             color: var(--text-secondary);
         }
-
+        
         /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
@@ -449,28 +449,28 @@
             color: var(--text-secondary);
             font-size: 13px;
         }
-
+        
         /* Responsive */
         @media (max-width: 768px) {
             .main-layout {
                 grid-template-columns: 1fr;
             }
-
+            
             .sidebar {
                 position: static;
             }
-
+            
             .header-content {
                 flex-direction: column;
                 align-items: flex-start;
             }
-
+            
             .profile-section {
                 flex-direction: column;
                 align-items: flex-start;
             }
         }
-
+        
         /* Animations */
         @keyframes fadeIn {
             from {
@@ -482,7 +482,7 @@
                 transform: translateY(0);
             }
         }
-
+        
         .card, .pinned-card, .experience-card {
             animation: fadeIn 0.3s ease-out;
         }
@@ -521,9 +521,9 @@
                     <div class="card">
                         <h2 class="section-title">👨‍💻 About</h2>
                         <p style="color: var(--text-secondary); line-height: 1.7;">
-                            6년 3개월의 경력을 가진 백엔드 개발자입니다. 금융, 제조, 물류 등 다양한 도메인에서
-                            Java/Spring 기반의 시스템을 개발하고 운영해왔습니다. 특히 레거시 시스템의 차세대 전환
-                            프로젝트와 대용량 데이터 처리에 강점을 가지고 있으며, 현재 한진정보통신에서
+                            6년 3개월의 경력을 가진 백엔드 개발자입니다. 금융, 제조, 물류 등 다양한 도메인에서 
+                            Java/Spring 기반의 시스템을 개발하고 운영해왔습니다. 특히 레거시 시스템의 차세대 전환 
+                            프로젝트와 대용량 데이터 처리에 강점을 가지고 있으며, 현재 한진정보통신에서 
                             EDI 시스템 유지보수를 담당하고 있습니다.
                         </p>
                     </div>
@@ -532,7 +532,7 @@
                 <!-- Pinned Projects -->
                 <section>
                     <h2 class="section-title">📌 Pinned Projects</h2>
-
+                    
                     <div class="pinned-card">
                         <div class="pinned-header">
                             <div>
@@ -542,7 +542,7 @@
                             <span style="font-size: 20px;">🚚</span>
                         </div>
                         <p class="pinned-description">
-                            Apache Kafka를 활용한 대용량 주문/배송 데이터 실시간 처리 시스템.
+                            Apache Kafka를 활용한 대용량 주문/배송 데이터 실시간 처리 시스템. 
                             AWS 클라우드 환경에서 Docker 기반 마이크로서비스 운영 및 관리.
                         </p>
                         <div class="pinned-footer">
@@ -561,7 +561,7 @@
                             <span style="font-size: 20px;">🏭</span>
                         </div>
                         <p class="pinned-description">
-                            C# 기반 레거시 MES 시스템을 Java Spring Boot로 전환.
+                            C# 기반 레거시 MES 시스템을 Java Spring Boot로 전환. 
                             3,000개 이상의 Stored Procedure를 Java 로직으로 재구현. 글로벌 시스템 통합.
                         </p>
                         <div class="pinned-footer">
@@ -574,14 +574,14 @@
                     <div class="pinned-card">
                         <div class="pinned-header">
                             <div>
-                                <div class="pinned-title">마이데이터 서비스</div>
+                                <div class="pinned-title">마이데이터 서비스 / 신한은행 UI BANK 3.0</div>
                                 <div style="font-size: 11px; color: var(--text-secondary);">2023.06 - 2024.04</div>
                             </div>
                             <span style="font-size: 20px;">💰</span>
                         </div>
                         <p class="pinned-description">
-                            금융권 마이데이터 백엔드 API 개발. QueryDSL을 활용한 쿼리 최적화로
-                            조회 성능 40% 개선. 구글 플레이스토어 정식 앱 런칭.
+                            금융권 마이데이터 백엔드 API 개발. QueryDSL을 활용한 쿼리 최적화로 
+                            조회 성능 40% 개선. 신한은행 일본 UI BANK 3.0 고도화 프로젝트(2023.11~2024.02)에서 EKYC 로직 검증 및 QA 담당. 구글 플레이스토어 정식 앱 런칭.
                         </p>
                         <div class="pinned-footer">
                             <span><span class="language-dot java"></span> Java</span>
@@ -599,7 +599,7 @@
                             <span style="font-size: 20px;">💳</span>
                         </div>
                         <p class="pinned-description">
-                            React.js + Node.js 풀스택 개발. 금융사 API 연동 및
+                            React.js + Node.js 풀스택 개발. 금융사 API 연동 및 
                             서비스 기획부터 앱 런칭까지 전 과정 참여. 사용자 친화적 대출 신청 프로세스 구현.
                         </p>
                         <div class="pinned-footer">
@@ -613,7 +613,7 @@
                 <!-- Experience -->
                 <section>
                     <h2 class="section-title">💼 Experience</h2>
-
+                    
                     <div class="experience-card">
                         <div class="experience-dot"></div>
                         <div class="experience-header">
@@ -625,7 +625,7 @@
                         </div>
                         <div class="project-title">한진택배 EDI 시스템 유지보수</div>
                         <p class="experience-description">
-                            EDI(주문, 배송) 파트 유지보수. Kafka를 활용한 대용량 데이터 실시간 처리 및
+                            EDI(주문, 배송) 파트 유지보수. Kafka를 활용한 대용량 데이터 실시간 처리 및 
                             AWS 클라우드 환경에서 Docker 기반 마이크로서비스 관리.
                         </p>
                         <div class="tags">
@@ -670,12 +670,33 @@
                         <div class="project-title">마이데이터 서비스 / 신한은행 UI BANK 3.0</div>
                         <p class="experience-description">
                             마이데이터 백엔드 API 개발. QueryDSL 쿼리 최적화 (성능 40% 개선). NCP 클라우드 환경 구축.
+                            신한은행 일본 UI BANK 3.0 고도화 프로젝트(2023.11~2024.02) 참여: EKYC 로직 검증, Open API 테스트 및 문서화.
                         </p>
                         <div class="tags">
                             <span class="tag">Spring Boot</span>
                             <span class="tag">JPA</span>
                             <span class="tag">QueryDSL</span>
                             <span class="tag">NCP</span>
+                        </div>
+                    </div>
+
+                    <div class="experience-card">
+                        <div class="experience-dot"></div>
+                        <div class="experience-header">
+                            <div>
+                                <div class="company-name">㈜인슈로보</div>
+                                <span class="position-badge">대리</span>
+                            </div>
+                            <div class="period">2023.02 - 2023.07</div>
+                        </div>
+                        <div class="project-title">보험 GA 손해보험 간편가입시스템</div>
+                        <p class="experience-description">
+                            주소 기반 화재보험 및 법인/소상공인 보험 간편가입 시스템 유지보수. 약 2만명 회원 정보 관리.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">Spring</span>
+                            <span class="tag">MySQL</span>
                         </div>
                     </div>
 
@@ -731,7 +752,8 @@
                         </div>
                         <div class="project-title">행정안전부 지방교부세 개발 / 식약처 수입식품시스템 고도화</div>
                         <p class="experience-description">
-                            엑셀 기반 업무를 웹 시스템으로 전환. Vaadin 프레임워크를 전자정부프레임워크로 전환.
+                            [행안부 지방교부세] 엑셀 기반 업무를 웹 시스템으로 전환. 엑셀 함수를 jQuery로 구현.
+                            [식약처 시스템] Vaadin 프레임워크를 전자정부프레임워크로 전환. Websquare UI 활용, MyBatis SQL 최적화.
                         </p>
                         <div class="tags">
                             <span class="tag">전자정부프레임워크</span>
@@ -739,6 +761,7 @@
                             <span class="tag">MyBatis</span>
                             <span class="tag">jQuery</span>
                             <span class="tag">Tibero</span>
+                            <span class="tag">Oracle</span>
                         </div>
                     </div>
                 </section>
@@ -766,7 +789,7 @@
                 <!-- Skills -->
                 <div class="sidebar-section">
                     <h3>🛠 Tech Stack</h3>
-
+                    
                     <div class="skill-category">
                         <div class="skill-category-title">Backend</div>
                         <div class="skill-list">
@@ -777,7 +800,7 @@
                             <span class="skill-item">QueryDSL</span>
                         </div>
                     </div>
-
+                    
                     <div class="skill-category">
                         <div class="skill-category-title">Frontend</div>
                         <div class="skill-list">
@@ -786,7 +809,7 @@
                             <span class="skill-item">jQuery</span>
                         </div>
                     </div>
-
+                    
                     <div class="skill-category">
                         <div class="skill-category-title">Database</div>
                         <div class="skill-list">
@@ -796,7 +819,7 @@
                             <span class="skill-item">Redis</span>
                         </div>
                     </div>
-
+                    
                     <div class="skill-category">
                         <div class="skill-category-title">DevOps</div>
                         <div class="skill-list">
@@ -806,7 +829,7 @@
                             <span class="skill-item">Kubernetes</span>
                         </div>
                     </div>
-
+                    
                     <div class="skill-category">
                         <div class="skill-category-title">Tools & AI</div>
                         <div class="skill-list">
@@ -814,7 +837,7 @@
                             <span class="skill-item">DBeaver</span>
                             <span class="skill-item">Eclipse</span>
                             <span class="skill-item">Toad</span>
-                            <span class="skill-item">Claude Pro</span>
+                            <span class="skill-item">Claude</span>
                             <span class="skill-item">Gemini</span>
                             <span class="skill-item">Antigravity</span>
                         </div>
@@ -824,7 +847,7 @@
                 <!-- Achievements -->
                 <div class="sidebar-section">
                     <h3>🏆 Highlights</h3>
-
+                    
                     <div class="achievement">
                         <div class="achievement-icon">🚀</div>
                         <div class="achievement-info">
@@ -832,21 +855,31 @@
                             <div class="achievement-description">2건의 대규모 레거시 전환</div>
                         </div>
                     </div>
-
+                    
                     <div class="achievement">
                         <div class="achievement-icon">💰</div>
                         <div class="achievement-info">
-                            <div class="achievement-title">금융 전문</div>
-                            <div class="achievement-description">마이데이터/대출/보험</div>
+                            <div class="achievement-title">핀테크, 금융</div>
+                            <div class="achievement-description">마이데이터/대출/보험/은행</div>
                         </div>
                     </div>
-
+                    
                     <div class="achievement">
                         <div class="achievement-icon">📈</div>
                         <div class="achievement-info">
                             <div class="achievement-title">성능 개선</div>
-                            <div class="achievement-description">쿼리 최적화</div>
+                            <div class="achievement-description">쿼리 최적화 40% 향상</div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="sidebar-section">
+                    <h3>🎓 Education</h3>
+                    <div style="margin-bottom: 12px;">
+                        <div style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">단국대학교(천안)</div>
+                        <div style="font-size: 12px; color: var(--text-secondary);">중동학과 (복수: 경영학과)</div>
+                        <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">2015 - 2019</div>
                     </div>
                 </div>
             </aside>
@@ -855,5 +888,3 @@
         <footer>
             <p>© 2025 전종호 (Jong-ho Jeon). Built with passion for clean code.</p>
             <p style="margin-top: 8px;">Last updated: January 2025</p>
-        </footer>
-    </div>
