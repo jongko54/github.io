@@ -10,7 +10,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
             --bg-primary: #0d1117;
             --bg-secondary: #161b22;
@@ -23,27 +23,27 @@
             --accent-purple: #bc8cff;
             --accent-orange: #ffa657;
         }
-        
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
             line-height: 1.6;
             color: var(--text-primary);
             background-color: var(--bg-primary);
         }
-        
+
         .container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 16px;
         }
-        
+
         /* Header */
         header {
             border-bottom: 1px solid var(--border-color);
             padding: 24px 0;
             margin-bottom: 40px;
         }
-        
+
         .header-content {
             display: flex;
             align-items: center;
@@ -51,13 +51,13 @@
             flex-wrap: wrap;
             gap: 20px;
         }
-        
+
         .profile-section {
             display: flex;
             align-items: center;
             gap: 24px;
         }
-        
+
         .avatar {
             width: 80px;
             height: 80px;
@@ -70,24 +70,24 @@
             font-weight: bold;
             border: 2px solid var(--border-color);
         }
-        
+
         .profile-info h1 {
             font-size: 26px;
             font-weight: 600;
             margin-bottom: 4px;
         }
-        
+
         .profile-info .subtitle {
             color: var(--text-secondary);
             font-size: 16px;
         }
-        
+
         .header-links {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
         }
-        
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -101,24 +101,24 @@
             font-size: 14px;
             transition: all 0.2s;
         }
-        
+
         .btn:hover {
             background-color: var(--bg-tertiary);
             border-color: var(--text-secondary);
         }
-        
+
         .btn-primary {
             background-color: var(--accent-green);
             border-color: var(--accent-green);
             color: var(--bg-primary);
             font-weight: 500;
         }
-        
+
         .btn-primary:hover {
             background-color: #2ea043;
             border-color: #2ea043;
         }
-        
+
         /* Main Layout */
         .main-layout {
             display: grid;
@@ -126,12 +126,12 @@
             gap: 24px;
             margin-bottom: 40px;
         }
-        
+
         /* Sections */
         section {
             margin-bottom: 32px;
         }
-        
+
         .section-title {
             display: flex;
             align-items: center;
@@ -142,7 +142,7 @@
             padding-bottom: 8px;
             border-bottom: 1px solid var(--border-color);
         }
-        
+
         /* Cards */
         .card {
             background-color: var(--bg-secondary);
@@ -152,11 +152,11 @@
             margin-bottom: 16px;
             transition: border-color 0.2s;
         }
-        
+
         .card:hover {
             border-color: var(--text-secondary);
         }
-        
+
         /* Pinned Project Card */
         .pinned-card {
             background-color: var(--bg-secondary);
@@ -166,33 +166,33 @@
             margin-bottom: 12px;
             transition: all 0.2s;
         }
-        
+
         .pinned-card:hover {
             border-color: var(--accent-blue);
             box-shadow: 0 0 0 1px var(--accent-blue);
         }
-        
+
         .pinned-header {
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
             margin-bottom: 12px;
         }
-        
+
         .pinned-title {
             font-size: 14px;
             font-weight: 600;
             color: var(--accent-blue);
             margin-bottom: 4px;
         }
-        
+
         .pinned-description {
             font-size: 12px;
             color: var(--text-secondary);
             margin-bottom: 12px;
             line-height: 1.5;
         }
-        
+
         .pinned-footer {
             display: flex;
             align-items: center;
@@ -200,30 +200,68 @@
             font-size: 12px;
             color: var(--text-secondary);
         }
-        
+
         .pinned-footer span {
             display: flex;
             align-items: center;
             gap: 4px;
         }
-        
+
         .language-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
             display: inline-block;
         }
-        
+
         .java { background-color: #b07219; }
         .javascript { background-color: #f1e05a; }
         .react { background-color: #61dafb; }
-        
+        .ai { background-color: var(--accent-purple); }
+
+        /* AI Work */
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .ai-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 16px;
+            transition: all 0.2s;
+        }
+
+        .ai-card:hover {
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 0 1px rgba(188, 140, 255, 0.35);
+        }
+
+        .ai-card-title {
+            color: var(--accent-purple);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .ai-card-description {
+            color: var(--text-secondary);
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .ai-card .tags {
+            margin-top: 12px;
+        }
+
         /* Experience Card */
         .experience-card {
             position: relative;
             padding-left: 32px;
         }
-        
+
         .experience-card::before {
             content: '';
             position: absolute;
@@ -233,11 +271,11 @@
             width: 2px;
             background-color: var(--border-color);
         }
-        
+
         .experience-card:last-child::before {
             display: none;
         }
-        
+
         .experience-dot {
             position: absolute;
             left: 0;
@@ -248,25 +286,25 @@
             background-color: var(--bg-secondary);
             border: 2px solid var(--accent-blue);
         }
-        
+
         .experience-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 8px;
         }
-        
+
         .company-name {
             font-size: 16px;
             font-weight: 600;
             color: var(--text-primary);
         }
-        
+
         .period {
             font-size: 13px;
             color: var(--text-secondary);
         }
-        
+
         .position-badge {
             display: inline-block;
             background-color: rgba(88, 166, 255, 0.1);
@@ -276,20 +314,20 @@
             font-size: 12px;
             margin-top: 4px;
         }
-        
+
         .project-title {
             font-size: 14px;
             color: var(--text-primary);
             margin: 8px 0 4px 0;
         }
-        
+
         .experience-description {
             font-size: 13px;
             color: var(--text-secondary);
             line-height: 1.6;
             margin-bottom: 8px;
         }
-        
+
         /* Tags */
         .tags {
             display: flex;
@@ -297,7 +335,7 @@
             gap: 6px;
             margin-top: 8px;
         }
-        
+
         .tag {
             display: inline-block;
             padding: 3px 8px;
@@ -307,14 +345,14 @@
             font-size: 11px;
             border: 1px solid rgba(88, 166, 255, 0.3);
         }
-        
+
         /* Sidebar */
         .sidebar {
             position: sticky;
             top: 24px;
             height: fit-content;
         }
-        
+
         .sidebar-section {
             background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
@@ -322,22 +360,22 @@
             padding: 16px;
             margin-bottom: 16px;
         }
-        
+
         .sidebar-section h3 {
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 12px;
             color: var(--text-primary);
         }
-        
+
         .skill-category {
             margin-bottom: 16px;
         }
-        
+
         .skill-category:last-child {
             margin-bottom: 0;
         }
-        
+
         .skill-category-title {
             font-size: 12px;
             font-weight: 600;
@@ -346,13 +384,13 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        
+
         .skill-list {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
         }
-        
+
         .skill-item {
             display: inline-block;
             padding: 4px 10px;
@@ -362,7 +400,7 @@
             font-size: 12px;
             color: var(--text-secondary);
         }
-        
+
         /* Stats */
         .stat-item {
             display: flex;
@@ -370,22 +408,22 @@
             padding: 8px 0;
             border-bottom: 1px solid var(--border-color);
         }
-        
+
         .stat-item:last-child {
             border-bottom: none;
         }
-        
+
         .stat-label {
             font-size: 13px;
             color: var(--text-secondary);
         }
-        
+
         .stat-value {
             font-size: 13px;
             font-weight: 600;
             color: var(--text-primary);
         }
-        
+
         /* Contributions Graph (Simplified) */
         .contributions {
             display: grid;
@@ -393,17 +431,17 @@
             gap: 3px;
             margin-top: 12px;
         }
-        
+
         .contribution-day {
             aspect-ratio: 1;
             background-color: var(--bg-tertiary);
             border-radius: 2px;
         }
-        
+
         .contribution-day.level-1 { background-color: rgba(63, 185, 80, 0.3); }
         .contribution-day.level-2 { background-color: rgba(63, 185, 80, 0.6); }
         .contribution-day.level-3 { background-color: rgba(63, 185, 80, 0.9); }
-        
+
         /* Achievement Badge */
         .achievement {
             display: flex;
@@ -414,7 +452,7 @@
             border-radius: 6px;
             margin-bottom: 8px;
         }
-        
+
         .achievement-icon {
             width: 40px;
             height: 40px;
@@ -425,22 +463,22 @@
             justify-content: center;
             font-size: 20px;
         }
-        
+
         .achievement-info {
             flex: 1;
         }
-        
+
         .achievement-title {
             font-size: 13px;
             font-weight: 600;
             color: var(--text-primary);
         }
-        
+
         .achievement-description {
             font-size: 11px;
             color: var(--text-secondary);
         }
-        
+
         /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
@@ -449,28 +487,32 @@
             color: var(--text-secondary);
             font-size: 13px;
         }
-        
+
         /* Responsive */
         @media (max-width: 768px) {
             .main-layout {
                 grid-template-columns: 1fr;
             }
-            
+
             .sidebar {
                 position: static;
             }
-            
+
             .header-content {
                 flex-direction: column;
                 align-items: flex-start;
             }
-            
+
             .profile-section {
                 flex-direction: column;
                 align-items: flex-start;
             }
+
+            .ai-grid {
+                grid-template-columns: 1fr;
+            }
         }
-        
+
         /* Animations */
         @keyframes fadeIn {
             from {
@@ -482,7 +524,7 @@
                 transform: translateY(0);
             }
         }
-        
+
         .card, .pinned-card, .experience-card {
             animation: fadeIn 0.3s ease-out;
         }
@@ -521,11 +563,12 @@
                     <div class="card">
                         <h2 class="section-title">👨‍💻 About</h2>
                         <p style="color: var(--text-secondary); line-height: 1.7;">
-                            6년 3개월의 경력을 가진 백엔드 개발자입니다. 금융, 제조, 물류 등 다양한 도메인에서 
-                            Java/Spring 기반의 시스템을 개발하고 운영해왔습니다. 특히 레거시 시스템의 차세대 전환 
-                            프로젝트와 대용량 데이터 처리에 강점을 가지고 있으며, 현재 한진정보통신에서 
-                            EDI 시스템 유지보수를 담담했습니다. 현재 claude, codex 등 AI를 활용하여 AI디자인을 위한 프롬프트 
-                            WEB 사이트 개설, 코인 지갑(IOS, android)을 개발하고, ERP서비스에 들어갈 AI구축 진행 중입니다.
+                            6년 3개월의 경력을 가진 백엔드 개발자입니다. 금융, 제조, 물류 등 다양한 도메인에서
+                            Java/Spring 기반의 시스템을 개발하고 운영해왔습니다. 특히 레거시 시스템의 차세대 전환
+                            프로젝트와 대용량 데이터 처리에 강점을 가지고 있으며, 한진정보통신에서 EDI 시스템과
+                            화물추적 검색 흐름을 운영했습니다. 최근에는 Claude, Codex 기반 개발 자동화, 로컬 LLM 설치,
+                            LangChain/RAG 기반 LLM benchmark, MCP/Playwright 도구 연동, AI 디자인 프롬프트 웹 서비스와
+                            ERP AI 기능 구축 실험을 진행하고 있습니다.
                         </p>
                     </div>
                 </section>
@@ -533,7 +576,28 @@
                 <!-- Pinned Projects -->
                 <section>
                     <h2 class="section-title">📌 Pinned Projects</h2>
-                    
+
+                    <div class="pinned-card">
+                        <div class="pinned-header">
+                            <div>
+                                <div class="pinned-title">
+                                    <a href="https://github.com/jongko54/webEmbedding" target="_blank" style="color: inherit; text-decoration: none;">webEmbedding</a>
+                                </div>
+                                <div style="font-size: 11px; color: var(--text-secondary);">AI Agent 웹페이지 디자인 재구성 자동화</div>
+                            </div>
+                            <span style="font-size: 20px;">🤖</span>
+                        </div>
+                        <p class="pinned-description">
+                            Claude, Codex 같은 AI 코딩 에이전트가 URL 기반 웹페이지 구조와 스타일 증거를 수집하고,
+                            재사용 가능한 프론트엔드 산출물을 만들 수 있도록 Skill, MCP 서버, Playwright 검증 흐름으로 구성한 라이브러리.
+                        </p>
+                        <div class="pinned-footer">
+                            <span><span class="language-dot ai"></span> AI Agent</span>
+                            <span>🧩 MCP</span>
+                            <span>🎭 Playwright</span>
+                        </div>
+                    </div>
+
                     <div class="pinned-card">
                         <div class="pinned-header">
                             <div>
@@ -543,7 +607,7 @@
                             <span style="font-size: 20px;">🚚</span>
                         </div>
                         <p class="pinned-description">
-                            Apache Kafka를 활용한 대용량 주문/배송 데이터 실시간 처리 시스템. 
+                            Apache Kafka를 활용한 대용량 주문/배송 데이터 실시간 처리 시스템.
                             AWS 클라우드 환경에서 k8s, Docker 기반 마이크로서비스 운영 및 관리.
                         </p>
                         <div class="pinned-footer">
@@ -562,7 +626,7 @@
                             <span style="font-size: 20px;">🏭</span>
                         </div>
                         <p class="pinned-description">
-                            C# 기반 레거시 MES 시스템을 Java Spring Boot로 전환. 
+                            C# 기반 레거시 MES 시스템을 Java Spring Boot로 전환.
                             3,000개 이상의 Stored Procedure를 Java 로직으로 재구현. 글로벌 시스템 통합.
                         </p>
                         <div class="pinned-footer">
@@ -581,7 +645,7 @@
                             <span style="font-size: 20px;">💰</span>
                         </div>
                         <p class="pinned-description">
-                            서비스 기획부터 앱 런칭까지 전 과정 참여. 금융권 마이데이터 React.js + Spring boot 백엔드 API 개발. QueryDSL을 활용한 쿼리 최적화로 
+                            서비스 기획부터 앱 런칭까지 전 과정 참여. 금융권 마이데이터 React.js + Spring boot 백엔드 API 개발. QueryDSL을 활용한 쿼리 최적화로
                             조회 성능 개선. 신한은행 일본 UI BANK 3.0 고도화 프로젝트(2023.11~2024.02)에서 EKYC 로직 검증 및 QA 담당.
                         </p>
                         <div class="pinned-footer">
@@ -600,7 +664,7 @@
                             <span style="font-size: 20px;">💳</span>
                         </div>
                         <p class="pinned-description">
-                            React.js + Node.js 풀스택 개발. 금융사 API 연동 및 
+                            React.js + Node.js 풀스택 개발. 금융사 API 연동 및
                             서비스 기획부터 앱 런칭까지 전 과정 참여. 사용자 친화적 대출 신청 프로세스 구현.
                         </p>
                         <div class="pinned-footer">
@@ -611,10 +675,70 @@
                     </div>
                 </section>
 
+                <!-- AI Development -->
+                <section>
+                    <h2 class="section-title">🤖 AI Development</h2>
+                    <div class="ai-grid">
+                        <div class="ai-card">
+                            <div class="ai-card-title">Local LLM / LangChain RAG Benchmark</div>
+                            <p class="ai-card-description">
+                                로컬 환경에 LLM을 설치하고 모델별 응답 품질과 속도를 비교하는 benchmark 환경을 구성했습니다.
+                                LangChain 기반 RAG 흐름으로 문서 검색, 컨텍스트 구성, 응답 생성 과정을 연결하며 검색 품질과 응답 안정성을 실험했습니다.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">Local LLM</span>
+                                <span class="tag">LangChain</span>
+                                <span class="tag">RAG</span>
+                                <span class="tag">Benchmark</span>
+                            </div>
+                        </div>
+
+                        <div class="ai-card">
+                            <div class="ai-card-title">Claude / Codex 기반 개발 자동화</div>
+                            <p class="ai-card-description">
+                                Claude와 Codex를 요구사항 정리, 코드 구조 파악, 리팩토링 방향 검토, 문서 초안 작성에 활용했습니다.
+                                MCP와 Playwright를 연결해 AI Agent가 외부 도구를 호출하고 결과를 검증하는 워크플로우도 구성했습니다.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">Claude</span>
+                                <span class="tag">Codex</span>
+                                <span class="tag">MCP</span>
+                                <span class="tag">Playwright</span>
+                            </div>
+                        </div>
+
+                        <div class="ai-card">
+                            <div class="ai-card-title">AI 디자인 프롬프트 웹 서비스</div>
+                            <p class="ai-card-description">
+                                AI 디자인 작업에 필요한 프롬프트를 구조화하고 재사용할 수 있는 웹 서비스를 구축했습니다.
+                                결과물 품질을 높이기 위해 목적, 스타일, 레이아웃, 제약 조건을 분리해 입력하는 흐름을 설계했습니다.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">Prompt Engineering</span>
+                                <span class="tag">Web Service</span>
+                                <span class="tag">AI Design</span>
+                            </div>
+                        </div>
+
+                        <div class="ai-card">
+                            <div class="ai-card-title">ERP AI 기능 구축 실험</div>
+                            <p class="ai-card-description">
+                                ERP 서비스에 적용할 수 있는 AI 기능을 실험하며 업무 데이터 검색, 요약, 질의응답, 자동화 시나리오를 검토했습니다.
+                                기존 업무 시스템 경험을 바탕으로 AI 기능을 실제 운영 흐름에 붙이는 방향을 탐색했습니다.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">ERP AI</span>
+                                <span class="tag">Workflow</span>
+                                <span class="tag">Automation</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- Experience -->
                 <section>
                     <h2 class="section-title">💼 Experience</h2>
-                    
+
                     <div class="experience-card">
                         <div class="experience-dot"></div>
                         <div class="experience-header">
@@ -622,17 +746,20 @@
                                 <div class="company-name">한진정보통신</div>
                                 <span class="position-badge">대리</span>
                             </div>
-                            <div class="period">2025.02 - Present</div>
+                            <div class="period">2025.02 - 2026.02</div>
                         </div>
-                        <div class="project-title">한진택배 EDI 시스템 유지보수</div>
+                        <div class="project-title">한진택배 EDI 시스템 유지보수 / 화물추적 검색 운영</div>
                         <p class="experience-description">
-                            EDI(주문, 배송) 파트 유지보수. Kafka를 활용한 대용량 데이터 실시간 처리 및 
-                            AWS 클라우드 환경에서 k8S, Docker 기반 마이크로서비스 관리.
+                            EDI(주문, 배송) 파트 유지보수. Kafka를 활용한 대용량 데이터 실시간 처리 및
+                            AWS 클라우드 환경에서 k8S, Docker 기반 마이크로서비스 관리. Elasticsearch 기반 화물추적 검색 흐름과
+                            Query Plan 기반 SQL 튜닝으로 조회 성능 개선 업무를 수행.
                         </p>
                         <div class="tags">
                             <span class="tag">Java</span>
                             <span class="tag">Spring Boot</span>
                             <span class="tag">Kafka</span>
+                            <span class="tag">Elasticsearch</span>
+                            <span class="tag">Query Plan</span>
                             <span class="tag">Docker</span>
                             <span class="tag">AWS</span>
                         </div>
@@ -733,10 +860,11 @@
                         </div>
                         <div class="project-title">실시간 채팅 시스템</div>
                         <p class="experience-description">
-                            실시간 채팅 기능 구현 및 관리자 페이지 개발.
+                            WebSocket 기반 실시간 메시징 기능과 관리자 페이지 개발.
                         </p>
                         <div class="tags">
                             <span class="tag">Java</span>
+                            <span class="tag">WebSocket</span>
                             <span class="tag">React.js</span>
                             <span class="tag">Node.js</span>
                         </div>
@@ -790,7 +918,7 @@
                 <!-- Skills -->
                 <div class="sidebar-section">
                     <h3>🛠 Tech Stack</h3>
-                    
+
                     <div class="skill-category">
                         <div class="skill-category-title">Backend</div>
                         <div class="skill-list">
@@ -801,7 +929,7 @@
                             <span class="skill-item">QueryDSL</span>
                         </div>
                     </div>
-                    
+
                     <div class="skill-category">
                         <div class="skill-category-title">Frontend</div>
                         <div class="skill-list">
@@ -810,7 +938,7 @@
                             <span class="skill-item">jQuery</span>
                         </div>
                     </div>
-                    
+
                     <div class="skill-category">
                         <div class="skill-category-title">Database</div>
                         <div class="skill-list">
@@ -818,9 +946,10 @@
                             <span class="skill-item">MySQL</span>
                             <span class="skill-item">Tibero</span>
                             <span class="skill-item">Redis</span>
+                            <span class="skill-item">Elasticsearch</span>
                         </div>
                     </div>
-                    
+
                     <div class="skill-category">
                         <div class="skill-category-title">DevOps</div>
                         <div class="skill-list">
@@ -830,17 +959,29 @@
                             <span class="skill-item">Kubernetes</span>
                         </div>
                     </div>
-                    
+
+                    <div class="skill-category">
+                        <div class="skill-category-title">Realtime & Data</div>
+                        <div class="skill-list">
+                            <span class="skill-item">WebSocket</span>
+                            <span class="skill-item">Kafka</span>
+                            <span class="skill-item">Query Plan</span>
+                            <span class="skill-item">RAG</span>
+                        </div>
+                    </div>
+
                     <div class="skill-category">
                         <div class="skill-category-title">Tools & AI</div>
                         <div class="skill-list">
                             <span class="skill-item">IntelliJ IDEA</span>
                             <span class="skill-item">DBeaver</span>
-                            <span class="skill-item">Eclipse</span>
-                            <span class="skill-item">Toad</span>
                             <span class="skill-item">Claude</span>
+                            <span class="skill-item">Codex</span>
                             <span class="skill-item">Gemini</span>
-                            <span class="skill-item">Antigravity</span>
+                            <span class="skill-item">LangChain</span>
+                            <span class="skill-item">Local LLM</span>
+                            <span class="skill-item">MCP</span>
+                            <span class="skill-item">Playwright</span>
                         </div>
                     </div>
                 </div>
@@ -848,7 +989,7 @@
                 <!-- Achievements -->
                 <div class="sidebar-section">
                     <h3>🏆 Highlights</h3>
-                    
+
                     <div class="achievement">
                         <div class="achievement-icon">🚀</div>
                         <div class="achievement-info">
@@ -856,7 +997,7 @@
                             <div class="achievement-description">2건의 대규모 레거시 전환</div>
                         </div>
                     </div>
-                    
+
                     <div class="achievement">
                         <div class="achievement-icon">💰</div>
                         <div class="achievement-info">
@@ -864,12 +1005,20 @@
                             <div class="achievement-description">마이데이터/대출/보험/은행</div>
                         </div>
                     </div>
-                    
+
                     <div class="achievement">
                         <div class="achievement-icon">📈</div>
                         <div class="achievement-info">
                             <div class="achievement-title">성능 개선</div>
                             <div class="achievement-description">쿼리 최적화 40% 향상</div>
+                        </div>
+                    </div>
+
+                    <div class="achievement">
+                        <div class="achievement-icon">🤖</div>
+                        <div class="achievement-info">
+                            <div class="achievement-title">AI Agent</div>
+                            <div class="achievement-description">LLM/RAG/MCP 기반 개발 자동화</div>
                         </div>
                     </div>
                 </div>
@@ -888,4 +1037,8 @@
 
         <footer>
             <p>© 2025 전종호 (Jong-ho Jeon). Built with passion for clean code.</p>
-            <p style="margin-top: 8px;">Last updated: January 2025</p>
+            <p style="margin-top: 8px;">Last updated: May 2026</p>
+        </footer>
+    </div>
+</body>
+</html>
