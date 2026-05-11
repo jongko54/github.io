@@ -425,6 +425,19 @@
             white-space: nowrap;
         }
 
+        .work-project-description {
+            color: var(--text-secondary);
+            display: grid;
+            font-size: 12px;
+            gap: 6px;
+            line-height: 1.6;
+            padding: 12px 14px 0;
+        }
+
+        .work-project-description p {
+            margin: 0;
+        }
+
         .shot-grid {
             display: grid;
             gap: 12px;
@@ -1461,6 +1474,12 @@
                             <div class="work-project-name">QuirkyTrip-</div>
                             <div class="work-project-meta">Expo · Travel automation</div>
                         </div>
+                        <div class="work-project-description">
+                            <p>여행지와 항공권을 모바일에서 탐색하고, 원하는 노선을 저장해 가격 변화를 확인하는 여행 자동화 앱입니다.</p>
+                            <p>Expo 기반으로 홈, 검색, 저장 노선 화면을 구성하고 탭 이동 흐름에 맞춰 상태 구조를 정리했습니다.</p>
+                            <p>항공권 카드, 필터, 가격 알림 UI를 분리해 반복 조회와 관심 노선 관리가 자연스럽게 이어지도록 만들었습니다.</p>
+                            <p>향후 외부 항공권 API나 알림 자동화와 연결할 수 있도록 화면 단위와 데이터 흐름을 나누어 설계했습니다.</p>
+                        </div>
                         <div class="shot-grid mobile-shots">
                             <figure class="repo-shot mobile">
                                 <img src="assets/work-repos/quirkytrip-01-home.png" alt="QuirkyTrip home screen" loading="lazy">
@@ -1481,6 +1500,12 @@
                         <div class="work-project-header">
                             <div class="work-project-name">kei_coin_pg</div>
                             <div class="work-project-meta">Expo · Wallet / payment</div>
+                        </div>
+                        <div class="work-project-description">
+                            <p>코인 지갑, 결제, 수신 화면을 모바일 앱 형태로 구성한 월렛/페이먼트 프로토타입입니다.</p>
+                            <p>Expo 기반으로 생체 인증 진입, 잔액 조회, 마켓, 수신 화면까지 하나의 사용자 여정으로 설계했습니다.</p>
+                            <p>지갑 주소와 QR처럼 민감할 수 있는 정보는 포트폴리오 캡처 단계에서 보이지 않도록 마스킹했습니다.</p>
+                            <p>결제성 서비스에서 필요한 인증, 자산 현황, 입출금 화면 구성을 빠르게 검증하기 위한 작업입니다.</p>
                         </div>
                         <div class="shot-grid mobile-shots four">
                             <figure class="repo-shot mobile">
@@ -1506,6 +1531,12 @@
                         <div class="work-project-header">
                             <div class="work-project-name">callLLM</div>
                             <div class="work-project-meta">FastAPI · LLM benchmark tabs</div>
+                        </div>
+                        <div class="work-project-description">
+                            <p>로컬 LLM과 외부 LLM을 비교 실행하고 결과를 탭별로 확인하는 벤치마크형 AI 도구입니다.</p>
+                            <p>FastAPI 백엔드에서 프롬프트 실행, 응답 수집, 결과 조회 흐름을 분리하고 화면은 Browse/Workflow/Response/Results/Explain 탭으로 구성했습니다.</p>
+                            <p>LangChain과 RAG 실험을 연결해 모델별 응답 품질, 실행 과정, 설명 데이터를 비교할 수 있게 만들었습니다.</p>
+                            <p>Claude, Codex 같은 AI agent 활용 흐름을 개발 작업과 연결해보는 개인 자동화 실험으로 확장했습니다.</p>
                         </div>
                         <div class="shot-grid desktop-shots five">
                             <figure class="repo-shot desktop">
@@ -1535,6 +1566,12 @@
                         <div class="work-project-header">
                             <div class="work-project-name">n8n-project</div>
                             <div class="work-project-meta">n8n · video automation browser</div>
+                        </div>
+                        <div class="work-project-description">
+                            <p>n8n 자동화 흐름과 콘텐츠 피드를 웹에서 확인하는 영상/콘텐츠 자동화 실험 프로젝트입니다.</p>
+                            <p>워크플로우 탭에서 자동화 단계와 실행 결과를 확인하고, 생성된 결과물을 피드 형태로 검토할 수 있게 구성했습니다.</p>
+                            <p>반복 작업은 n8n 워크플로우로 분리하고, 웹 화면은 입력, 실행 결과, 콘텐츠 목록을 확인하는 역할로 나눴습니다.</p>
+                            <p>AI 도구와 자동화 파이프라인을 연결해 콘텐츠 수집, 처리, 결과 검토 시간을 줄이는 방향으로 구현했습니다.</p>
                         </div>
                         <div class="shot-grid desktop-shots">
                             <figure class="repo-shot desktop">
