@@ -119,6 +119,47 @@
             border-color: #2ea043;
         }
 
+        /* Portfolio Tabs */
+        .portfolio-tabs {
+            display: flex;
+            gap: 8px;
+            margin: -16px 0 32px 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .portfolio-tab {
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 14px;
+            transition: all 0.2s;
+        }
+
+        .portfolio-tab:hover {
+            border-color: var(--accent-blue);
+            color: var(--text-primary);
+        }
+
+        .portfolio-tab.is-active {
+            background-color: rgba(88, 166, 255, 0.15);
+            border-color: rgba(88, 166, 255, 0.55);
+            color: var(--accent-blue);
+        }
+
+        .portfolio-panel {
+            display: none;
+        }
+
+        .portfolio-panel.is-active {
+            display: block;
+        }
+
         /* Main Layout */
         .main-layout {
             display: grid;
@@ -267,6 +308,182 @@
 
         .ai-usage-card {
             margin-top: 16px;
+        }
+
+        /* Work Repository Gallery */
+        .work-panel {
+            margin-bottom: 40px;
+        }
+
+        .work-hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .work-hero h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .work-hero p {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .work-count {
+            color: var(--accent-green);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .work-board {
+            background:
+                linear-gradient(rgba(88, 166, 255, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(88, 166, 255, 0.06) 1px, transparent 1px),
+                #0b1020;
+            background-size: 28px 28px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .work-board-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 14px;
+            background-color: rgba(13, 17, 23, 0.92);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .toolbar-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .toolbar-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--border-color);
+        }
+
+        .toolbar-dots span:nth-child(1) { background-color: #ff7b72; }
+        .toolbar-dots span:nth-child(2) { background-color: #ffa657; }
+        .toolbar-dots span:nth-child(3) { background-color: #3fb950; }
+
+        .work-board-title {
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .work-board-grid {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 18px;
+            padding: 18px;
+        }
+
+        .work-project {
+            grid-column: span 6;
+            background-color: rgba(22, 27, 34, 0.92);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .work-project.is-wide {
+            grid-column: 1 / -1;
+        }
+
+        .work-project-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 14px 10px;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.8);
+        }
+
+        .work-project-name {
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .work-project-meta {
+            color: var(--text-secondary);
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .shot-grid {
+            display: grid;
+            gap: 12px;
+            padding: 14px;
+        }
+
+        .shot-grid.mobile-shots {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .shot-grid.mobile-shots.four {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .shot-grid.desktop-shots {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .shot-grid.desktop-shots.five {
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
+
+        .shot-grid.desktop-shots.five .repo-shot:nth-child(-n+3) {
+            grid-column: span 2;
+        }
+
+        .shot-grid.desktop-shots.five .repo-shot:nth-child(n+4) {
+            grid-column: span 3;
+        }
+
+        .repo-shot {
+            background-color: var(--bg-primary);
+            border: 1px solid rgba(139, 148, 158, 0.35);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .repo-shot img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .repo-shot.mobile {
+            aspect-ratio: 390 / 844;
+        }
+
+        .repo-shot.desktop {
+            aspect-ratio: 3 / 2;
+        }
+
+        .repo-shot figcaption {
+            border-top: 1px solid rgba(139, 148, 158, 0.24);
+            color: var(--text-secondary);
+            font-size: 11px;
+            padding: 7px 8px;
+            background-color: rgba(13, 17, 23, 0.94);
         }
 
         /* Experience Card */
@@ -524,6 +741,38 @@
             .ai-grid {
                 grid-template-columns: 1fr;
             }
+
+            .portfolio-tabs {
+                margin-top: -12px;
+                overflow-x: auto;
+            }
+
+            .work-hero {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .work-board-grid {
+                grid-template-columns: 1fr;
+                padding: 12px;
+            }
+
+            .work-project,
+            .work-project.is-wide {
+                grid-column: auto;
+            }
+
+            .shot-grid.mobile-shots,
+            .shot-grid.mobile-shots.four,
+            .shot-grid.desktop-shots,
+            .shot-grid.desktop-shots.five {
+                grid-template-columns: 1fr;
+            }
+
+            .shot-grid.desktop-shots.five .repo-shot:nth-child(-n+3),
+            .shot-grid.desktop-shots.five .repo-shot:nth-child(n+4) {
+                grid-column: auto;
+            }
         }
 
         /* Animations */
@@ -568,6 +817,16 @@
             </div>
         </header>
 
+        <nav class="portfolio-tabs" role="tablist" aria-label="Portfolio sections">
+            <button class="portfolio-tab is-active" type="button" role="tab" aria-selected="true" data-tab-target="overview-panel">
+                Overview
+            </button>
+            <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-tab-target="work-repos-panel">
+                Work Repos
+            </button>
+        </nav>
+
+        <div class="portfolio-panel is-active" id="overview-panel" role="tabpanel">
         <div class="main-layout">
             <!-- Main Content -->
             <main>
@@ -1051,11 +1310,164 @@
                 </div>
             </aside>
         </div>
+        </div>
+
+        <section class="portfolio-panel work-panel" id="work-repos-panel" role="tabpanel">
+            <div class="work-hero">
+                <div>
+                    <h2>Work Repos</h2>
+                    <p>workspace 프로젝트를 실제 웹 화면 기준으로 캡처한 작업 보드입니다.</p>
+                </div>
+                <div class="work-count">16 frames</div>
+            </div>
+
+            <div class="work-board">
+                <div class="work-board-toolbar">
+                    <div class="toolbar-dots" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="work-board-title">portfolio/workspace-captures.fig</div>
+                    <div class="work-count">Figma style</div>
+                </div>
+
+                <div class="work-board-grid">
+                    <article class="work-project">
+                        <div class="work-project-header">
+                            <div class="work-project-name">QuirkyTrip-</div>
+                            <div class="work-project-meta">Expo · Travel automation</div>
+                        </div>
+                        <div class="shot-grid mobile-shots">
+                            <figure class="repo-shot mobile">
+                                <img src="assets/work-repos/quirkytrip-01-home.png" alt="QuirkyTrip home screen" loading="lazy">
+                                <figcaption>Home</figcaption>
+                            </figure>
+                            <figure class="repo-shot mobile">
+                                <img src="assets/work-repos/quirkytrip-02-search.png" alt="QuirkyTrip search screen" loading="lazy">
+                                <figcaption>Search</figcaption>
+                            </figure>
+                            <figure class="repo-shot mobile">
+                                <img src="assets/work-repos/quirkytrip-04-saved.png" alt="QuirkyTrip saved fares screen" loading="lazy">
+                                <figcaption>Saved fares</figcaption>
+                            </figure>
+                        </div>
+                    </article>
+
+                    <article class="work-project">
+                        <div class="work-project-header">
+                            <div class="work-project-name">kei_coin_pg</div>
+                            <div class="work-project-meta">Expo · Wallet / payment</div>
+                        </div>
+                        <div class="shot-grid mobile-shots four">
+                            <figure class="repo-shot mobile">
+                                <img src="assets/work-repos/kei-coin-pg-01-home.png" alt="KEI Coin biometric auth screen" loading="lazy">
+                                <figcaption>Home</figcaption>
+                            </figure>
+                            <figure class="repo-shot mobile">
+                                <img src="assets/work-repos/kei-coin-pg-02-wallet.png" alt="KEI Coin wallet balance screen" loading="lazy">
+                                <figcaption>Wallet</figcaption>
+                            </figure>
+                            <figure class="repo-shot mobile">
+                                <img src="assets/work-repos/kei-coin-pg-03-market.png" alt="KEI Coin market screen" loading="lazy">
+                                <figcaption>Market</figcaption>
+                            </figure>
+                            <figure class="repo-shot mobile">
+                                <img src="assets/work-repos/kei-coin-pg-04-receive.png" alt="KEI Coin receive QR screen" loading="lazy">
+                                <figcaption>Receive</figcaption>
+                            </figure>
+                        </div>
+                    </article>
+
+                    <article class="work-project is-wide">
+                        <div class="work-project-header">
+                            <div class="work-project-name">callLLM</div>
+                            <div class="work-project-meta">FastAPI · LLM benchmark tabs</div>
+                        </div>
+                        <div class="shot-grid desktop-shots five">
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/callllm-01-browse.png" alt="callLLM Browse tab" loading="lazy">
+                                <figcaption>Browse</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/callllm-02-workflow.png" alt="callLLM Workflow tab" loading="lazy">
+                                <figcaption>Workflow</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/callllm-03-response.png" alt="callLLM Response tab" loading="lazy">
+                                <figcaption>Response</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/callllm-04-results.png" alt="callLLM Results tab" loading="lazy">
+                                <figcaption>Results</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/callllm-05-explain.png" alt="callLLM Explain tab" loading="lazy">
+                                <figcaption>Explain</figcaption>
+                            </figure>
+                        </div>
+                    </article>
+
+                    <article class="work-project is-wide">
+                        <div class="work-project-header">
+                            <div class="work-project-name">n8n-project</div>
+                            <div class="work-project-meta">n8n · video automation browser</div>
+                        </div>
+                        <div class="shot-grid desktop-shots">
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/n8n-project-01-feed.png" alt="n8n video browser feed" loading="lazy">
+                                <figcaption>Video feed</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/n8n-project-02-workflow.png" alt="n8n workflow tab" loading="lazy">
+                                <figcaption>Workflow tab</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/n8n-project-03-workflow-output.png" alt="n8n workflow output preview" loading="lazy">
+                                <figcaption>Rendered outputs</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/n8n-project-04-compact-feed.png" alt="n8n compact video feed" loading="lazy">
+                                <figcaption>Compact feed</figcaption>
+                            </figure>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
 
         <footer>
             <p>© 2025 전종호 (Jong-ho Jeon). Built with passion for clean code.</p>
             <p style="margin-top: 8px;">Last updated: May 2026</p>
         </footer>
     </div>
+    <script>
+        const portfolioTabs = document.querySelectorAll('.portfolio-tab');
+        const portfolioPanels = document.querySelectorAll('.portfolio-panel');
+
+        function activatePortfolioPanel(targetId, updateHash = true) {
+            portfolioTabs.forEach((tab) => {
+                const isActive = tab.dataset.tabTarget === targetId;
+                tab.classList.toggle('is-active', isActive);
+                tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+
+            portfolioPanels.forEach((panel) => {
+                panel.classList.toggle('is-active', panel.id === targetId);
+            });
+
+            if (updateHash) {
+                history.replaceState(null, '', targetId === 'work-repos-panel' ? '#work-repos' : location.pathname);
+            }
+        }
+
+        portfolioTabs.forEach((tab) => {
+            tab.addEventListener('click', () => activatePortfolioPanel(tab.dataset.tabTarget));
+        });
+
+        if (location.hash === '#work-repos') {
+            activatePortfolioPanel('work-repos-panel', false);
+        }
+    </script>
 </body>
 </html>
