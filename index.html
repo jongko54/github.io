@@ -1645,71 +1645,8 @@
         </footer>
     </div>
     <script>
-        const analyticsEndpoint = 'https://portfolio-visitor-tracker.vercel.app/api/visit';
-        const canCreateRandomId = window.crypto && typeof window.crypto.randomUUID === 'function';
-        const analyticsSessionId = canCreateRandomId ? window.crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
         const portfolioTabs = document.querySelectorAll('.portfolio-tab');
         const portfolioPanels = document.querySelectorAll('.portfolio-panel');
-        let lastTrackedPortfolioPath = '';
-
-        function getVisitorId() {
-            const storageKey = 'jonghoPortfolioVisitorId';
-            let visitorId = '';
-
-            try {
-                visitorId = localStorage.getItem(storageKey) || '';
-
-                if (!visitorId) {
-                    visitorId = canCreateRandomId ? window.crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-                    localStorage.setItem(storageKey, visitorId);
-                }
-            } catch (error) {
-                visitorId = analyticsSessionId;
-            }
-
-            return visitorId;
-        }
-
-        function getPortfolioPath() {
-            return `${location.pathname}${location.search}${location.hash}`;
-        }
-
-        function sendPortfolioVisit() {
-            const path = getPortfolioPath();
-
-            if (path === lastTrackedPortfolioPath) return;
-            lastTrackedPortfolioPath = path;
-
-            const payload = {
-                path,
-                title: document.title,
-                referrer: document.referrer,
-                visitorId: getVisitorId(),
-                sessionId: analyticsSessionId,
-                language: navigator.language,
-                screen: `${screen.width}x${screen.height}`,
-                viewport: `${window.innerWidth}x${window.innerHeight}`,
-                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-            };
-            const body = JSON.stringify(payload);
-
-            if (navigator.sendBeacon) {
-                const queued = navigator.sendBeacon(
-                    analyticsEndpoint,
-                    new Blob([body], { type: 'text/plain;charset=UTF-8' })
-                );
-
-                if (queued) return;
-            }
-
-            fetch(analyticsEndpoint, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body,
-                keepalive: true,
-                mode: 'cors',
-            }).catch(() => {});
-        }
 
         function activatePortfolioPanel(targetId, updateHash = true) {
             portfolioTabs.forEach((tab) => {
@@ -1724,12 +1661,7 @@
 
             if (updateHash) {
                 history.replaceState(null, '', targetId === 'work-repos-panel' ? '#work-repos' : location.pathname);
-                trackPortfolioView();
             }
-        }
-
-        function trackPortfolioView() {
-            sendPortfolioVisit();
         }
 
         portfolioTabs.forEach((tab) => {
@@ -1739,9 +1671,6 @@
         if (location.hash === '#work-repos') {
             activatePortfolioPanel('work-repos-panel', false);
         }
-
-        trackPortfolioView();
-        window.addEventListener('hashchange', trackPortfolioView);
 
         const galleryImages = Array.from(document.querySelectorAll('.repo-shot img'));
         const lightbox = document.createElement('div');
