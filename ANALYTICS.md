@@ -4,26 +4,31 @@ This portfolio is hosted on GitHub Pages, so page-level visitor logs need an ext
 
 ## Active tracking hook
 
-The site includes GoatCounter tracking code:
-
-```html
-https://jongko54.goatcounter.com/count
-```
-
-Create or claim the GoatCounter site code `jongko54`, then open:
+The site sends lightweight visit beacons to a Vercel endpoint:
 
 ```text
-https://jongko54.goatcounter.com/
+https://portfolio-visitor-tracker.vercel.app/api/visit
 ```
 
-GoatCounter can show:
+The tracker logs runtime events with the `PORTFOLIO_VISIT` marker. It captures:
 
-- visitor count
-- page views
-- popular paths, including `#work-repos`
-- referrers, when the previous site/browser sends referrer data
+- path, including hash fragments such as `#work-repos`
+- page title
+- referrer, when the browser sends it
+- browser language, screen size, viewport, and timezone
+- Vercel geo headers such as country/region/city when available
+- user agent for rough browser/bot/AI-client inference
 
-Browsers and services often hide the exact previous URL, so referrers may show only the domain such as `github.com`, `google.com`, or `jobkorea.co.kr`.
+It intentionally does not log raw IP addresses.
+
+Check recent events with:
+
+```text
+vercel logs portfolio-visitor-tracker.vercel.app
+```
+
+Browsers and services often hide the exact previous URL, so referrers may show
+only the domain such as `github.com`, `google.com`, or `jobkorea.co.kr`.
 
 ## GitHub repository traffic
 
