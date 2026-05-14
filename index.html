@@ -120,6 +120,14 @@
             border-color: #2ea043;
         }
 
+        .btn-static,
+        .btn-static:hover {
+            background-color: var(--accent-green);
+            border-color: var(--accent-green);
+            color: var(--bg-primary);
+            cursor: default;
+        }
+
         /* Portfolio Tabs */
         .portfolio-tabs {
             display: flex;
@@ -941,12 +949,9 @@
                     </div>
                 </div>
                 <div class="header-links">
-                    <a href="/cdn-cgi/l/email-protection#fe949190999591cbcabe909f889b8cd09d9193" class="btn btn-primary">
-                        📧 Contact
-                    </a>
-                    <a href="tel:010-8606-9454" class="btn">
-                        📱 010-8606-9454
-                    </a>
+                    <span class="btn btn-primary btn-static" aria-label="Email jongko54@naver.com">
+                        📧 jongko54@naver.com
+                    </span>
                     <a href="https://github.com/jongko54" class="btn" target="_blank">
                         💻 GitHub
                     </a>
