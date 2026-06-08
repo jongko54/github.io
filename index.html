@@ -982,7 +982,7 @@
                             보유하고 있습니다. 한진정보통신에서는 EDI 시스템, Kafka 기반 주문/배송 데이터 처리,
                             Elasticsearch 기반 화물추적 검색 흐름을 다뤘습니다. 최근에는 Claude/Codex 기반 개발 자동화,
                             로컬 LLM 설치와 LangChain/RAG benchmark, MCP/Playwright 도구 연동, designprom AI 디자인 프롬프트 사이트,
-                            한진정보통신 AI 설문 프로젝트까지 AI를 실제 개발 워크플로우에 적용하고 있습니다.
+                            한진정보통신 AI 설문 문서 생성 프로젝트까지 AI를 실제 업무 도구와 개발 워크플로우에 적용하고 있습니다.
                         </p>
                     </div>
                 </section>
@@ -1031,6 +1031,26 @@
                             <span><span class="language-dot java"></span> Java</span>
                             <span>⭐ Spring Boot</span>
                             <span>🔥 Kafka</span>
+                        </div>
+                    </div>
+
+                    <div class="pinned-card">
+                        <div class="pinned-header">
+                            <div>
+                                <div class="pinned-title">한진정보통신 AI 설문 문서 생성 서비스</div>
+                                <div style="font-size: 11px; color: var(--text-secondary);">사내 LLM 기반 설문 자동화</div>
+                            </div>
+                            <span style="font-size: 20px;">📝</span>
+                        </div>
+                        <p class="pinned-description">
+                            그룹사 임직원 대상 만족도, 불만, 개선 의견 조사를 위해 설문용 문서를 AI가 생성하는 프로젝트.
+                            회사 워크스테이션에 구축한 Qwen 계열 모델을 활용해 Google Forms처럼 설문 목적에 맞는 문항,
+                            선택지, 만족도 척도, 응답 흐름을 자동 구성할 수 있도록 설계했습니다.
+                        </p>
+                        <div class="pinned-footer">
+                            <span><span class="language-dot ai"></span> Qwen</span>
+                            <span>🤖 Local LLM</span>
+                            <span>🧾 Survey Docs</span>
                         </div>
                     </div>
 
@@ -1143,14 +1163,15 @@
                         <div class="ai-card">
                             <div class="ai-card-title">AI 설문 서비스 · Frontend / Backend</div>
                             <p class="ai-card-description">
-                                한진정보통신에서 사이드 프로젝트로 진행한 AI 설문 서비스입니다.
-                                설문 문항과 응답 흐름을 다루는 프론트엔드와 백엔드를 함께 구성하고, 본사 워크스테이션에 설치된 LLM 모델을 호출해 설문 작성, 응답 분석, 결과 요약으로 확장할 수 있는 로직을 구현했습니다.
+                                한진정보통신에서 그룹사 임직원 대상 설문 문서 생성을 위해 진행한 AI 설문 서비스입니다.
+                                회사 워크스테이션에 구축한 Qwen 계열 로컬 LLM을 호출해 직원 만족도, 불만, 개선 의견 등 조사 목적에 맞는 설문 문항과 선택지, 만족도 척도, 응답 흐름을 Google Forms처럼 구성할 수 있게 구현했습니다.
                             </p>
                             <div class="tags">
                                 <span class="tag">AI Survey</span>
+                                <span class="tag">Qwen</span>
+                                <span class="tag">Local LLM</span>
                                 <span class="tag">Frontend</span>
                                 <span class="tag">Backend</span>
-                                <span class="tag">LLM API</span>
                                 <span class="tag">Hanjin IT</span>
                             </div>
                         </div>
@@ -1170,16 +1191,48 @@
                         <div class="experience-dot"></div>
                         <div class="experience-header">
                             <div>
+                                <div class="company-name">Keiailab</div>
+                                <span class="position-badge">AI/Web 개발자</span>
+                            </div>
+                            <div class="period">2026.02 - 재직중</div>
+                        </div>
+                        <div class="project-title">AI 웹 솔루션 / LLM 서비스 / 자동화 프로젝트</div>
+                        <p class="experience-description">
+                            AI 웹 서비스와 자동화 프로젝트 담당. Qwen/Gemma 계열 로컬 LLM 벤치마크 도구(callLLM),
+                            LangChain/RAG 기반 실행 흐름, Next.js 기반 AI 디자인 프롬프트 사이트(designprom),
+                            MCP/Playwright 기반 webEmbedding 웹페이지 재구성 자동화, n8n/Gemini 기반 콘텐츠 자동화,
+                            Expo 기반 모바일 서비스 프로토타입을 구현했습니다.
+                        </p>
+                        <div class="tags">
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">Next.js</span>
+                            <span class="tag">Qwen</span>
+                            <span class="tag">Gemma</span>
+                            <span class="tag">LangChain</span>
+                            <span class="tag">RAG</span>
+                            <span class="tag">MCP</span>
+                            <span class="tag">Playwright</span>
+                            <span class="tag">n8n</span>
+                            <span class="tag">Expo</span>
+                        </div>
+                    </div>
+
+                    <div class="experience-card">
+                        <div class="experience-dot"></div>
+                        <div class="experience-header">
+                            <div>
                                 <div class="company-name">한진정보통신</div>
                                 <span class="position-badge">대리</span>
                             </div>
                             <div class="period">2025.02 - 2026.02</div>
                         </div>
-                        <div class="project-title">한진택배 EDI 시스템 유지보수 / 화물추적 검색 운영</div>
+                        <div class="project-title">한진택배 EDI 시스템 유지보수 / 화물추적 검색 운영 / AI 설문 문서 생성</div>
                         <p class="experience-description">
                             EDI(주문, 배송) 파트 유지보수. Kafka를 활용한 대용량 데이터 실시간 처리 및
                             AWS 클라우드 환경에서 k8S, Docker 기반 마이크로서비스 관리. Elasticsearch 기반 화물추적 검색 흐름과
                             Query Plan 기반 SQL 튜닝으로 조회 성능 개선 업무를 수행.
+                            사내 워크스테이션에 구축한 Qwen 계열 LLM을 활용해 그룹사 임직원 대상 만족도/불만 조사 설문 문서를
+                            Google Forms처럼 생성하는 AI 설문 프로젝트를 함께 진행.
                         </p>
                         <div class="tags">
                             <span class="tag">Java</span>
@@ -1187,6 +1240,8 @@
                             <span class="tag">Kafka</span>
                             <span class="tag">Elasticsearch</span>
                             <span class="tag">Query Plan</span>
+                            <span class="tag">Qwen</span>
+                            <span class="tag">Local LLM</span>
                             <span class="tag">Docker</span>
                             <span class="tag">AWS</span>
                         </div>
@@ -1334,7 +1389,7 @@
                     </div>
                     <div class="stat-item">
                         <span class="stat-label">프로젝트</span>
-                        <span class="stat-value">8+ 프로젝트</span>
+                        <span class="stat-value">9+ 프로젝트</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-label">도메인</span>
@@ -1405,6 +1460,7 @@
                             <span class="skill-item">Claude</span>
                             <span class="skill-item">Codex</span>
                             <span class="skill-item">Gemini</span>
+                            <span class="skill-item">Qwen</span>
                             <span class="skill-item">LangChain</span>
                             <span class="skill-item">Local LLM</span>
                             <span class="skill-item">MCP</span>
@@ -1445,7 +1501,7 @@
                         <div class="achievement-icon">🤖</div>
                         <div class="achievement-info">
                             <div class="achievement-title">AI Agent</div>
-                            <div class="achievement-description">LLM/RAG/MCP 기반 개발 자동화</div>
+                            <div class="achievement-description">Qwen/RAG/MCP 기반 업무 자동화</div>
                         </div>
                     </div>
                 </div>
