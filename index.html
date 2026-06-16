@@ -1176,6 +1176,56 @@
                             </div>
                         </div>
 
+                        <div class="ai-card" style="grid-column: 1 / -1;">
+                            <div class="ai-card-title">webtoon · AI 웹툰 자동화 파이프라인 (k8s ComfyUI 풀 + Ray Serve VLM)</div>
+                            <p class="ai-card-description">
+                                스토리보드 → 렌더 → 비전 critic → reroll/repair → 등록까지 각 단계를 JSON 산출물로 분리한 AI 웹툰 제작 파이프라인입니다.
+                                로컬 Mac은 오케스트레이터 역할만 하고, 모든 GPU 연산은 Keiailab 사내 Kubernetes 클러스터(<code>ml</code> 네임스페이스)로 fan-out합니다.
+                                seed/prompt/모델 버전을 기록해 재현성을 확보하고, 컷 계약과 캐릭터 identity를 추적해 일관성을 유지합니다.
+                            </p>
+                            <p class="ai-card-description">
+                                <strong>① GPU 호출 (렌더):</strong> ComfyUI를 풀 2종으로 운영합니다.
+                                <code>comfyui-sdxl</code> ×2(RTX 4070 12GB)는 SDXL(Illustrious / NoobAI / Animagine) + ControlNet(pose/depth/canny) 스테이지를,
+                                <code>comfyui-large</code> ×2(RTX 4060 Ti 16GB)는 Qwen-Image GGUF / Z-Image 등 VRAM이 큰 잡을 담당합니다.
+                                클라이언트는 <code>MURIM_COMFY_SDXL_ENDPOINTS</code> / <code>MURIM_COMFY_LARGE_ENDPOINTS</code>로 pod별 엔드포인트 풀을 잡아
+                                least-busy 선택 + 컷 단위 병렬로 호출합니다(단일 GPU 직렬 대비 wall-clock 약 1/4, 16GB 풀로 OOM 해소).
+                                실제 렌더 그래프는 Qwen-Image-Edit 2511 fp8 + Lightning LoRA 기반으로, 확산 모델 / CLIP / VAE 로드 → TextEncodeQwenImageEditPlus → KSampler → VAE 디코드로 구성됩니다.
+                            </p>
+                            <p class="ai-card-description">
+                                <strong>② LLM / VLM 호출:</strong> 같은 클러스터의 KubeRay + Ray Serve(OpenAI 호환, <code>:8000/v1</code>)에서 비전·텍스트 모델을 서빙합니다.
+                                <code>qwen3-vl-30b-a3b</code>(MoE)를 critic 주력 + 스토리보드 writer + reroll 프롬프트 수선에,
+                                <code>internvl3-5-8b</code>를 hero 컷 2차 교차검증에, <code>qwen3-4b</code>를 리포트/등록 payload에 사용합니다.
+                                <code>STORY_MODEL=k8s</code>로 라우팅하고 외부 codex CLI는 fallback으로 둡니다. critic은 에피소드 단위로 asyncio 동시 호출해 15컷 직렬 2–4min을 30s 미만으로 단축합니다.
+                            </p>
+                            <p class="ai-card-description">
+                                <strong>③ 서버 인프라 / GPU 스케줄링:</strong> NVIDIA GPU Operator + HAMi DRA driver로 ComfyUI/Ray 워커가
+                                총 16장 GPU 노드 풀(4060 Ti / 4070 / 4070 Ti)에서 GPU를 DRA claim 방식으로 공유하고, 유휴 워커는 scale-to-zero 됩니다.
+                                모델 자산은 공유 <code>/models/comfyui</code>(Ceph) 볼륨에 두고 <code>ml-model-download-*</code> Job으로 체크포인트·ControlNet·LoRA를 주입하며,
+                                클라이언트는 <code>MURIM_MODEL_PROFILE=k8s</code> 계약으로 동일 경로를 가정합니다.
+                                Mac↔클러스터는 VPN(utun100)으로 내부 API(<code>10.31.10.10:6443</code>)·ClusterIP(<code>10.43/16</code>)에 접속하고, 엣지는 Cilium Gateway가 담당합니다.
+                            </p>
+                            <p class="ai-card-description">
+                                <strong>④ 파이프라인 흐름:</strong> 시놉시스 → 스토리보드(VLM) → renderability gate(결정적) → ComfyUI 풀 fan-out 렌더 →
+                                VLM critic(병렬, hero는 교차검증) → action router(결정적) → reroll 표적 수선(실패 이미지 입력) → Qwen image-edit repair →
+                                자동 re-critic·등록·QA 리포트 → operator 최종 승인 → chocomics 플랫폼 발행.
+                                사람은 시놉시스 작성·repair 승인·최종 승인만 맡고, 픽셀 개선은 자동 루프가 먼저 수행합니다.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">Kubernetes</span>
+                                <span class="tag">ComfyUI</span>
+                                <span class="tag">Ray Serve</span>
+                                <span class="tag">KubeRay</span>
+                                <span class="tag">HAMi DRA</span>
+                                <span class="tag">NVIDIA GPU Operator</span>
+                                <span class="tag">SDXL</span>
+                                <span class="tag">Qwen-Image</span>
+                                <span class="tag">ControlNet</span>
+                                <span class="tag">qwen3-vl-30b-a3b</span>
+                                <span class="tag">Ceph</span>
+                                <span class="tag">VLM Critic</span>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="card ai-usage-card">
@@ -1202,8 +1252,7 @@
                             Qwen/Gemma 계열 로컬 LLM 벤치마크 도구(callLLM), LangChain/RAG 기반 실행 흐름,
                             Next.js 기반 AI 디자인 프롬프트 사이트(designprom), MCP/Playwright 기반 webEmbedding 웹페이지 재구성 자동화,
                             n8n/Gemini 기반 콘텐츠 자동화, Expo 기반 모바일 서비스 프로토타입을 구현했습니다.
-                            또한 k8s ComfyUI 풀 + Ray Serve VLM 기반 AI 웹툰 자동화 파이프라인(webtoon)과
-                            FastAPI/Rust/Next.js 기반 KR·US 퀀트 자동매매 앱(quant_trading_app)을 개발했습니다.
+                            또한 k8s ComfyUI 풀 + Ray Serve VLM 기반 AI 웹툰 자동화 파이프라인(webtoon)을 개발했습니다.
                         </p>
                         <div class="tags">
                             <span class="tag">FastAPI</span>
@@ -1219,8 +1268,6 @@
                             <span class="tag">Kubernetes</span>
                             <span class="tag">ComfyUI</span>
                             <span class="tag">Ray Serve</span>
-                            <span class="tag">Rust</span>
-                            <span class="tag">Quant</span>
                         </div>
                     </div>
 
@@ -1744,31 +1791,27 @@
                             <p>한국/미국 시장을 함께 다루는 하이브리드 퀀트 자동매매 앱입니다. 5영업일 리밸런스와 문서형 ML 레이어를 중심으로 전략을 운영합니다.</p>
                             <p>백엔드는 FastAPI + SQLite(SQLAlchemy)로 시세 수집·지표 계산·백테스트·포트폴리오/지갑 영속화·봇 실행·알림 평가를 담당하고, 체결 실행은 Rust execution engine, 메시징은 Redis Streams + DLQ 재처리로 구성했습니다.</p>
                             <p>실시간 봇이 시세를 받아 전략 신호를 생성하고, 운영 화면은 "자동매매 운영 문서"와 "매매 동향 문서" 형태로 동작 프로세스·설계 의도·시장별 운영 상태·체결 흐름·일별 수익률을 문서처럼 확인하도록 만들었습니다.</p>
-                            <p>아래 캡처는 백엔드 미기동 상태의 UI 셸로, 체결·포지션·수익률 영역은 실데이터 연동 시 채워집니다.</p>
-                        </div>
-                        <div class="shot-grid desktop-shots">
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/quant-01-dashboard.png" alt="quant trading operations document dashboard" loading="lazy">
-                                <figcaption>운영 문서</figcaption>
-                            </figure>
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/quant-02-trends.png" alt="quant trading trends and fills document" loading="lazy">
-                                <figcaption>매매 동향</figcaption>
-                            </figure>
                         </div>
                     </article>
 
                     <article class="work-project is-wide">
                         <div class="work-project-header">
                             <div class="work-project-name">webtoon</div>
-                            <div class="work-project-meta">AI 웹툰 자동화 파이프라인 · k8s ComfyUI 풀 + Ray Serve VLM</div>
+                            <div class="work-project-meta">AI 웹툰 자동화 파이프라인 · ComfyUI 렌더 워크플로우</div>
                         </div>
                         <div class="work-project-description">
-                            <p>스토리보드 → 렌더 → 비전 critic → reroll/repair → 등록까지 단계별 JSON 산출물로 분리한 AI 웹툰 제작 파이프라인입니다. 로컬 Mac은 오케스트레이터 역할만 하고, 모든 GPU 연산은 Keiailab 사내 Kubernetes 클러스터(<code>ml</code> 네임스페이스)로 fan-out합니다.</p>
-                            <p><strong>GPU 호출(렌더):</strong> ComfyUI를 풀 2종으로 운영합니다. <code>comfyui-sdxl</code> ×2(RTX 4070 12GB)는 SDXL(Illustrious / NoobAI / Animagine) + ControlNet(pose/depth/canny) 스테이지를, <code>comfyui-large</code> ×2(RTX 4060 Ti 16GB)는 Qwen-Image GGUF / Z-Image 등 VRAM이 큰 잡을 담당합니다. 클라이언트는 <code>MURIM_COMFY_SDXL_ENDPOINTS</code> / <code>MURIM_COMFY_LARGE_ENDPOINTS</code>로 pod별 엔드포인트 풀을 잡아 least-busy 선택 + 컷 단위 병렬로 호출합니다(단일 GPU 직렬 대비 wall-clock 약 1/4, 16GB 풀로 OOM 해소).</p>
-                            <p><strong>LLM / VLM 호출:</strong> 같은 클러스터의 KubeRay + Ray Serve(OpenAI 호환, <code>:8000/v1</code>)에서 비전·텍스트 모델을 서빙합니다. <code>qwen3-vl-30b-a3b</code>(MoE)를 critic 주력 + 스토리보드 writer + reroll 프롬프트 수선에, <code>internvl3-5-8b</code>를 hero 컷 2차 교차검증에, <code>qwen3-4b</code>를 리포트/등록 payload에 사용합니다. <code>STORY_MODEL=k8s</code>로 라우팅하고 외부 codex CLI는 fallback으로 둡니다.</p>
-                            <p><strong>서버 인프라:</strong> NVIDIA GPU Operator + HAMi DRA driver로 ComfyUI/Ray 워커가 총 16장 GPU 노드 풀(4060 Ti / 4070 / 4070 Ti)에서 GPU를 DRA claim 방식으로 공유하고, 유휴 워커는 scale-to-zero 됩니다. 모델 자산은 공유 <code>/models/comfyui</code>(Ceph) 볼륨에 두고 <code>ml-model-download-*</code> Job으로 체크포인트·ControlNet·LoRA를 주입하며, 클라이언트는 <code>MURIM_MODEL_PROFILE=k8s</code> 계약으로 동일 경로를 가정합니다. Mac↔클러스터는 VPN(utun100)으로 내부 API·ClusterIP(<code>10.43/16</code>)에 접속하고, 엣지는 Cilium Gateway가 담당합니다.</p>
-                            <p><strong>파이프라인:</strong> 시놉시스 → 스토리보드(VLM) → renderability gate(결정적) → ComfyUI 풀 fan-out 렌더 → VLM critic(병렬, hero는 교차검증) → action router(결정적) → reroll 표적 수선(실패 이미지 입력) → Qwen image-edit repair → 자동 re-critic·등록·QA 리포트 → operator 최종 승인 → chocomics 플랫폼 발행. 사람은 시놉시스·repair 승인·최종 승인만 맡고, seed/prompt/모델 버전을 기록해 재현성과 캐릭터 일관성을 유지합니다.</p>
+                            <p>Keiailab k8s 클러스터의 ComfyUI 풀에서 동작하는 웹툰 렌더 워크플로우입니다. Qwen-Image-Edit 2511 fp8 + Lightning LoRA 기반 그래프로, 확산 모델 / CLIP / VAE 로드 → TextEncodeQwenImageEditPlus → KSampler → VAE 디코드 단계를 구성합니다.</p>
+                            <p>아래는 클러스터 ComfyUI 파드(<code>comfyui-sdxl-0</code>, 8188)에 직접 접속해 실제 webtoon 워크플로우를 띄운 화면입니다. GPU 호출·서버 인프라 상세 구성은 위 AI Development 섹션에 정리했습니다.</p>
+                        </div>
+                        <div class="shot-grid desktop-shots">
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/webtoon-01-comfyui.png" alt="webtoon ComfyUI render workflow graph" loading="lazy">
+                                <figcaption>ComfyUI workflow</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/webtoon-02-comfyui-detail.png" alt="webtoon ComfyUI LoRA and text encode nodes" loading="lazy">
+                                <figcaption>LoRA · TextEncode</figcaption>
+                            </figure>
                         </div>
                     </article>
                 </div>
