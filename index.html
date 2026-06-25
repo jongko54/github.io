@@ -652,6 +652,21 @@
             background: #05080f;
         }
 
+        .webtoon-video {
+            background: #05080f;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .webtoon-video video {
+            background: #05080f;
+            display: block;
+            max-height: 760px;
+            object-fit: contain;
+            width: 100%;
+        }
+
         .repo-shot figcaption {
             border-top: 1px solid rgba(139, 148, 158, 0.24);
             color: var(--text-secondary);
@@ -1048,6 +1063,10 @@
             .webtoon-process,
             .webtoon-analysis-list {
                 grid-template-columns: 1fr;
+            }
+
+            .webtoon-video video {
+                max-height: 560px;
             }
 
             .shot-grid.mobile-shots,
@@ -2247,6 +2266,21 @@
                                 <img src="assets/webtoon/workflow-sdxl-controlnet.png" alt="SDXL ControlNet workflow node summary" loading="lazy">
                                 <figcaption>SDXL ControlNet baseline workflow</figcaption>
                             </figure>
+                        </div>
+                    </article>
+
+                    <article class="work-project is-wide">
+                        <div class="work-project-header">
+                            <div class="work-project-name">Cinema Studio 3.5 영상 후보</div>
+                            <div class="work-project-meta">image-to-video candidate · webtoon motion test</div>
+                        </div>
+                        <div class="work-project-description">
+                            <p>웹툰 컷을 영상화할 수 있는지 검토하기 위해 Cinema Studio 3.5로 생성한 짧은 영상 후보입니다. 정지 컷 기반 후보를 움직임, 분위기, 장면 지속성 관점에서 검수하고 이미지 생성 결과와 함께 비교했습니다.</p>
+                        </div>
+                        <div class="webtoon-video">
+                            <video controls preload="metadata" playsinline poster="assets/webtoon/cinema-studio-35-webtoon-video-poster.png">
+                                <source src="assets/webtoon/cinema-studio-35-webtoon-video-candidate.mp4" type="video/mp4">
+                            </video>
                         </div>
                     </article>
 
