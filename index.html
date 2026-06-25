@@ -1267,6 +1267,7 @@
                                 스토리보드 → 렌더 → 비전 critic → reroll/repair → 등록까지 각 단계를 JSON 산출물로 분리한 AI 웹툰 제작 파이프라인입니다.
                                 로컬 Mac은 오케스트레이터 역할만 하고, 모든 GPU 연산은 Keiailab 사내 Kubernetes 클러스터(<code>ml</code> 네임스페이스)로 fan-out합니다.
                                 seed/prompt/모델 버전을 기록해 재현성을 확보하고, 컷 계약과 캐릭터 identity를 추적해 일관성을 유지합니다.
+                                Higgs Field 기반 이미지·동영상 생성과 FLUX 계열 이미지 생성/수정 실험을 함께 사용해 컷 후보, 영상화 후보, 보정 후보를 자동 생성하는 흐름도 구성했습니다.
                             </p>
                             <p class="ai-card-description">
                                 <strong>① GPU 호출 (렌더):</strong> ComfyUI를 풀 2종으로 운영합니다.
@@ -1275,6 +1276,7 @@
                                 클라이언트는 <code>MURIM_COMFY_SDXL_ENDPOINTS</code> / <code>MURIM_COMFY_LARGE_ENDPOINTS</code>로 pod별 엔드포인트 풀을 잡아
                                 least-busy 선택 + 컷 단위 병렬로 호출합니다(단일 GPU 직렬 대비 wall-clock 약 1/4, 16GB 풀로 OOM 해소).
                                 실제 렌더 그래프는 Qwen-Image-Edit 2511 fp8 + Lightning LoRA 기반으로, 확산 모델 / CLIP / VAE 로드 → TextEncodeQwenImageEditPlus → KSampler → VAE 디코드로 구성됩니다.
+                                컷별 이미지 후보는 FLUX/ComfyUI 경로와 Higgs Field 생성 결과를 함께 비교하고, 영상 후보는 Higgs Field 기반 생성 결과를 검수 루프에 연결했습니다.
                             </p>
                             <p class="ai-card-description">
                                 <strong>② LLM / VLM 호출:</strong> 같은 클러스터의 KubeRay + Ray Serve(OpenAI 호환, <code>:8000/v1</code>)에서 비전·텍스트 모델을 서빙합니다.
@@ -1303,6 +1305,8 @@
                                 <span class="tag">HAMi DRA</span>
                                 <span class="tag">NVIDIA GPU Operator</span>
                                 <span class="tag">SDXL</span>
+                                <span class="tag">FLUX</span>
+                                <span class="tag">Higgs Field</span>
                                 <span class="tag">Qwen-Image</span>
                                 <span class="tag">ControlNet</span>
                                 <span class="tag">qwen3-vl-30b-a3b</span>
@@ -1338,6 +1342,7 @@
                             Next.js 기반 AI 디자인 프롬프트 사이트(designprom), MCP/Playwright 기반 webEmbedding 웹페이지 재구성 자동화,
                             n8n/Gemini 기반 콘텐츠 자동화, Expo 기반 모바일 서비스 프로토타입을 구현했습니다.
                             또한 k8s ComfyUI 풀 + Ray Serve VLM 기반 AI 웹툰 자동화 파이프라인(webtoon)을 개발했고,
+                            Higgs Field와 FLUX 계열 모델을 활용해 웹툰 컷 이미지·동영상 후보 생성 및 보정 실험을 자동화했습니다.
                             마케팅 앱 플랫폼의 웹/Android/iOS/서버 end-to-end 구축 및 앱 스토어 테스트 심사 단계까지 진행했습니다.
                             Kubernetes 인증 서버 영역에서는 Keycloak 기반 <code>sso.keiailab.com</code> 경로와
                             Apple <code>form_post</code> 로그인 bridge를 구성해 사내 서비스 SSO 연동 기반을 정리했습니다.
@@ -1355,6 +1360,8 @@
                             <span class="tag">Expo</span>
                             <span class="tag">Kubernetes</span>
                             <span class="tag">ComfyUI</span>
+                            <span class="tag">FLUX</span>
+                            <span class="tag">Higgs Field</span>
                             <span class="tag">Ray Serve</span>
                             <span class="tag">Supabase</span>
                             <span class="tag">Keycloak</span>
@@ -1925,6 +1932,7 @@
                         </div>
                         <div class="work-project-description">
                             <p>Keiailab k8s 클러스터의 ComfyUI 풀에서 동작하는 웹툰 렌더 워크플로우입니다. Qwen-Image-Edit 2511 fp8 + Lightning LoRA 기반 그래프로, 확산 모델 / CLIP / VAE 로드 → TextEncodeQwenImageEditPlus → KSampler → VAE 디코드 단계를 구성합니다.</p>
+                            <p>FLUX 계열 모델과 Higgs Field 이미지·동영상 생성 결과를 함께 사용해 컷 후보 생성, 장면 보정, 영상화 후보 생성까지 웹툰 자동생성 파이프라인 안에서 실험·검수할 수 있게 연결했습니다.</p>
                             <p>아래는 클러스터 ComfyUI 파드(<code>comfyui-sdxl-0</code>, 8188)에 직접 접속해 실제 webtoon 워크플로우를 띄운 화면입니다. GPU 호출·서버 인프라 상세 구성은 위 AI Development 섹션에 정리했습니다.</p>
                         </div>
                         <div class="shot-grid desktop-shots">
