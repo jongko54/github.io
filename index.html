@@ -456,6 +456,33 @@
             margin: 0;
         }
 
+        .work-stack-list {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            padding: 14px;
+        }
+
+        .work-stack-item {
+            background-color: rgba(13, 17, 23, 0.72);
+            border: 1px solid rgba(139, 148, 158, 0.28);
+            border-radius: 6px;
+            padding: 12px;
+        }
+
+        .work-stack-label {
+            color: var(--text-secondary);
+            font-size: 11px;
+            margin-bottom: 6px;
+        }
+
+        .work-stack-value {
+            color: var(--text-primary);
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.45;
+        }
+
         .shot-grid {
             display: grid;
             gap: 12px;
@@ -903,6 +930,10 @@
                 grid-column: auto;
             }
 
+            .work-stack-list {
+                grid-template-columns: 1fr;
+            }
+
             .shot-grid.mobile-shots,
             .shot-grid.mobile-shots.four,
             .shot-grid.desktop-shots,
@@ -991,7 +1022,8 @@
                             보유하고 있습니다. 한진정보통신에서는 EDI 시스템, Kafka 기반 주문/배송 데이터 처리,
                             Elasticsearch 기반 화물추적 검색 흐름을 다뤘습니다. 최근에는 Claude/Codex 기반 개발 자동화,
                             로컬 LLM 설치와 LangChain/RAG benchmark, MCP/Playwright 도구 연동, designprom AI 디자인 프롬프트 사이트,
-                            한진정보통신 AI 설문 문서 생성 프로젝트까지 AI를 실제 업무 도구와 개발 워크플로우에 적용하고 있습니다.
+                            한진정보통신 AI 설문 문서 생성 프로젝트, 마케팅 앱 플랫폼의 웹/Android/iOS/서버 end-to-end 구축까지
+                            AI와 제품 개발을 실제 업무 도구와 서비스 운영 흐름에 적용하고 있습니다.
                         </p>
                     </div>
                 </section>
@@ -1021,6 +1053,28 @@
                             <span>🧩 MCP</span>
                             <span>🎭 Playwright</span>
                             <span>🚀 Apps SDK</span>
+                        </div>
+                    </div>
+
+                    <div class="pinned-card">
+                        <div class="pinned-header">
+                            <div>
+                                <div class="pinned-title">Marketing App Platform</div>
+                                <div style="font-size: 11px; color: var(--text-secondary);">Web · Android · iOS · Server</div>
+                            </div>
+                            <span style="font-size: 20px;">📣</span>
+                        </div>
+                        <p class="pinned-description">
+                            광고주와 홍보 수행자를 연결하는 마케팅 앱 플랫폼을 초기 설계부터 웹, Android, iOS, 서버 구축까지
+                            end-to-end로 개발했습니다. Next.js 기반 웹, Expo/React Native 기반 모바일 앱, Supabase PostgreSQL/Auth/Storage,
+                            역할별 캠페인 신청/선정/콘텐츠 제출/검수/정산 흐름, 관리자 운영 화면과 배포 환경을 구성했으며,
+                            현재 앱 스토어 테스트 심사 단계로 진행 중입니다.
+                        </p>
+                        <div class="pinned-footer">
+                            <span><span class="language-dot react"></span> Next.js</span>
+                            <span>📱 Expo</span>
+                            <span>🧩 Supabase</span>
+                            <span>🛠 E2E Build</span>
                         </div>
                     </div>
 
@@ -1261,7 +1315,8 @@
                             Qwen/Gemma 계열 로컬 LLM 벤치마크 도구(callLLM), LangChain/RAG 기반 실행 흐름,
                             Next.js 기반 AI 디자인 프롬프트 사이트(designprom), MCP/Playwright 기반 webEmbedding 웹페이지 재구성 자동화,
                             n8n/Gemini 기반 콘텐츠 자동화, Expo 기반 모바일 서비스 프로토타입을 구현했습니다.
-                            또한 k8s ComfyUI 풀 + Ray Serve VLM 기반 AI 웹툰 자동화 파이프라인(webtoon)을 개발했습니다.
+                            또한 k8s ComfyUI 풀 + Ray Serve VLM 기반 AI 웹툰 자동화 파이프라인(webtoon)을 개발했고,
+                            마케팅 앱 플랫폼의 웹/Android/iOS/서버 end-to-end 구축 및 앱 스토어 테스트 심사 단계까지 진행했습니다.
                         </p>
                         <div class="tags">
                             <span class="tag">FastAPI</span>
@@ -1277,6 +1332,7 @@
                             <span class="tag">Kubernetes</span>
                             <span class="tag">ComfyUI</span>
                             <span class="tag">Ray Serve</span>
+                            <span class="tag">Supabase</span>
                         </div>
                     </div>
 
@@ -1603,6 +1659,38 @@
                 </div>
 
                 <div class="work-board-grid">
+                    <article class="work-project is-wide">
+                        <div class="work-project-header">
+                            <div class="work-project-name">Marketing App Platform</div>
+                            <div class="work-project-meta">Next.js · Expo · Supabase · Store review</div>
+                        </div>
+                        <div class="work-project-description">
+                            <p>광고주와 홍보 수행자를 연결하는 마케팅 앱을 처음부터 끝까지 구축한 end-to-end 프로젝트입니다.</p>
+                            <p>웹은 Next.js App Router와 Server Actions 기반으로 캠페인 탐색, 지원, 제출물 검수, 정산, 관리자 운영 화면을 구현했습니다.</p>
+                            <p>모바일은 Expo/React Native 기반으로 Android와 iOS 앱 구조를 구성하고, 인증/온보딩/캠페인/채팅/알림 흐름을 앱 사용성에 맞게 정리했습니다.</p>
+                            <p>서버와 데이터 계층은 Supabase Auth, PostgreSQL, RLS, Storage, Realtime, Cloudflare Workers/OpenNext 배포 흐름을 연결해 운영 가능한 형태로 구축했습니다.</p>
+                            <p>현재 앱 이름은 공개하지 않고 있으며, 앱 스토어 테스트 심사 단계까지 진행된 상태입니다.</p>
+                        </div>
+                        <div class="work-stack-list">
+                            <div class="work-stack-item">
+                                <div class="work-stack-label">Scope</div>
+                                <div class="work-stack-value">Web, Android, iOS, backend, database, deployment</div>
+                            </div>
+                            <div class="work-stack-item">
+                                <div class="work-stack-label">Core Flow</div>
+                                <div class="work-stack-value">Campaign apply, match, submit, review, settlement</div>
+                            </div>
+                            <div class="work-stack-item">
+                                <div class="work-stack-label">Infra</div>
+                                <div class="work-stack-value">Supabase PostgreSQL/RLS, Storage, Realtime, Cloudflare</div>
+                            </div>
+                            <div class="work-stack-item">
+                                <div class="work-stack-label">Status</div>
+                                <div class="work-stack-value">App Store test review stage</div>
+                            </div>
+                        </div>
+                    </article>
+
                     <article class="work-project">
                         <div class="work-project-header">
                             <div class="work-project-name">QuirkyTrip</div>
