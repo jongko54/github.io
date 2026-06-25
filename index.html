@@ -542,6 +542,84 @@
             aspect-ratio: 3 / 2;
         }
 
+        .repo-shot.webtoon-strip {
+            aspect-ratio: 9 / 16;
+        }
+
+        .repo-shot.webtoon-strip img,
+        .repo-shot.webtoon-sheet img {
+            object-fit: contain;
+            background: #05080f;
+        }
+
+        .webtoon-panel .work-hero h2 {
+            color: var(--accent-purple);
+        }
+
+        .webtoon-highlight-grid {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            padding: 14px;
+        }
+
+        .webtoon-highlight {
+            background: rgba(13, 17, 23, 0.72);
+            border: 1px solid rgba(188, 140, 255, 0.25);
+            border-radius: 8px;
+            padding: 13px;
+        }
+
+        .webtoon-highlight-label {
+            color: var(--accent-purple);
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 7px;
+            text-transform: uppercase;
+        }
+
+        .webtoon-highlight-value {
+            color: var(--text-primary);
+            font-size: 12px;
+            font-weight: 650;
+            line-height: 1.45;
+        }
+
+        .webtoon-process {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            padding: 14px;
+        }
+
+        .webtoon-step {
+            background-color: rgba(22, 27, 34, 0.92);
+            border: 1px solid rgba(139, 148, 158, 0.28);
+            border-radius: 8px;
+            min-height: 118px;
+            padding: 12px;
+        }
+
+        .webtoon-step-number {
+            color: var(--accent-green);
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .webtoon-step-title {
+            color: var(--text-primary);
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .webtoon-step-text {
+            color: var(--text-secondary);
+            font-size: 11px;
+            line-height: 1.45;
+        }
+
         .repo-shot figcaption {
             border-top: 1px solid rgba(139, 148, 158, 0.24);
             color: var(--text-secondary);
@@ -934,6 +1012,11 @@
                 grid-template-columns: 1fr;
             }
 
+            .webtoon-highlight-grid,
+            .webtoon-process {
+                grid-template-columns: 1fr;
+            }
+
             .shot-grid.mobile-shots,
             .shot-grid.mobile-shots.four,
             .shot-grid.desktop-shots,
@@ -1005,6 +1088,9 @@
             </button>
             <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-tab-target="work-repos-panel">
                 Work Repos
+            </button>
+            <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-tab-target="webtoon-panel">
+                Webtoon
             </button>
         </nav>
 
@@ -1950,6 +2036,135 @@
             </div>
         </section>
 
+        <section class="portfolio-panel work-panel webtoon-panel" id="webtoon-panel" role="tabpanel">
+            <div class="work-hero">
+                <div>
+                    <h2>Webtoon AI Production</h2>
+                    <p>키다리스튜디오 AI 콘텐츠 솔루션 빌더 포지션에 맞춰 정리한 웹툰/IP 기반 이미지·영상 제작 자동화 포트폴리오입니다.</p>
+                </div>
+                <div class="work-count">100% personal build</div>
+            </div>
+
+            <div class="work-board">
+                <div class="work-board-toolbar">
+                    <div class="toolbar-dots" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="work-board-title">webtoon/process-output-review.pipeline</div>
+                    <div class="work-count">ComfyUI · FLUX · Higgs Field</div>
+                </div>
+
+                <div class="work-board-grid">
+                    <article class="work-project is-wide">
+                        <div class="work-project-header">
+                            <div class="work-project-name">AI 웹툰 자동생성 파이프라인</div>
+                            <div class="work-project-meta">기획 → 생성 → 검수 → 보정 → 최종 strip</div>
+                        </div>
+                        <div class="work-project-description">
+                            <p>웹툰/IP를 기반으로 캐릭터 일관성, 장면 톤앤매너, 대사 배치, 플랫폼용 세로 strip까지 이어지는 제작 흐름을 직접 설계했습니다.</p>
+                            <p>본인 참여도는 100%입니다. 스토리보드 구조화, ComfyUI 워크플로우 설계, 모델/LoRA/레퍼런스 조합 실험, FLUX·Qwen-Image·Higgs Field 후보 생성, VLM critic 검수, 최종 후보 선별과 문서화를 직접 수행했습니다.</p>
+                            <p>단순히 이미지를 뽑는 데서 멈추지 않고, 실패 이미지의 원인을 언어화하고 다음 생성 조건에 반영하는 반복 루프를 만들었습니다. 컷 단위 결과, contact sheet, identity train pack, 최종 strip을 모두 남겨 팀 제작 자산으로 재사용할 수 있게 정리했습니다.</p>
+                        </div>
+                        <div class="webtoon-highlight-grid">
+                            <div class="webtoon-highlight">
+                                <div class="webtoon-highlight-label">Goal</div>
+                                <div class="webtoon-highlight-value">웹툰 컷을 실제 게시 가능한 세로 strip 후보로 조립</div>
+                            </div>
+                            <div class="webtoon-highlight">
+                                <div class="webtoon-highlight-label">Tools</div>
+                                <div class="webtoon-highlight-value">ComfyUI, FLUX, Qwen-Image, Higgs Field, Ray Serve VLM</div>
+                            </div>
+                            <div class="webtoon-highlight">
+                                <div class="webtoon-highlight-label">Review</div>
+                                <div class="webtoon-highlight-value">캐릭터성, 감정선, 손/소품, 말풍선, 장면 연속성 기준 검수</div>
+                            </div>
+                            <div class="webtoon-highlight">
+                                <div class="webtoon-highlight-label">Contribution</div>
+                                <div class="webtoon-highlight-value">기획·설계·구현·검수·개선·문서화 전 과정 직접 수행</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="work-project is-wide">
+                        <div class="work-project-header">
+                            <div class="work-project-name">제작 프로세스</div>
+                            <div class="work-project-meta">문제 정의 · 반복 가능한 제작 방식</div>
+                        </div>
+                        <div class="webtoon-process">
+                            <div class="webtoon-step">
+                                <div class="webtoon-step-number">01</div>
+                                <div class="webtoon-step-title">IP/장면 분석</div>
+                                <div class="webtoon-step-text">원본 컷의 인물, 대사, 분위기, 카메라 구도를 분리하고 컷 계약을 JSON으로 정리했습니다.</div>
+                            </div>
+                            <div class="webtoon-step">
+                                <div class="webtoon-step-number">02</div>
+                                <div class="webtoon-step-title">캐릭터 identity 구축</div>
+                                <div class="webtoon-step-text">Lee Jaha 얼굴/표정/의상 레퍼런스를 선별해 train pack과 contact sheet로 관리했습니다.</div>
+                            </div>
+                            <div class="webtoon-step">
+                                <div class="webtoon-step-number">03</div>
+                                <div class="webtoon-step-title">ComfyUI 렌더</div>
+                                <div class="webtoon-step-text">SDXL, Qwen-Image, ControlNet, LoRA, FLUX 후보를 k8s GPU 풀에 병렬 호출했습니다.</div>
+                            </div>
+                            <div class="webtoon-step">
+                                <div class="webtoon-step-number">04</div>
+                                <div class="webtoon-step-title">이미지·영상 후보</div>
+                                <div class="webtoon-step-text">Higgs Field로 이미지/동영상 후보를 생성하고 FLUX 결과와 함께 비교했습니다.</div>
+                            </div>
+                            <div class="webtoon-step">
+                                <div class="webtoon-step-number">05</div>
+                                <div class="webtoon-step-title">VLM critic</div>
+                                <div class="webtoon-step-text">qwen3-vl, InternVL 계열 critic으로 장면 오류와 보정 포인트를 재생성 조건에 반영했습니다.</div>
+                            </div>
+                            <div class="webtoon-step">
+                                <div class="webtoon-step-number">06</div>
+                                <div class="webtoon-step-title">최종 strip 구성</div>
+                                <div class="webtoon-step-text">선별 컷을 말풍선 포함 세로 strip으로 조립하고 contact sheet로 결과를 검수했습니다.</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="work-project is-wide">
+                        <div class="work-project-header">
+                            <div class="work-project-name">최종 결과물과 검수 산출물</div>
+                            <div class="work-project-meta">final strip · contact sheet · identity assets</div>
+                        </div>
+                        <div class="work-project-description">
+                            <p>아래 결과물은 결과만 보여주기보다, 키다리스튜디오 공고에서 요구한 “기획 의도 → 사용 툴 → 프롬프트/워크플로우 → 편집·보정 과정 → 최종 결과물” 흐름을 설명하기 위한 대표 산출물입니다.</p>
+                        </div>
+                        <div class="shot-grid desktop-shots">
+                            <figure class="repo-shot webtoon-strip">
+                                <img src="assets/webtoon/episode0195-flux-final-strip.jpg" alt="Episode 0195 FLUX final vertical webtoon strip" loading="lazy">
+                                <figcaption>Final vertical strip</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop webtoon-sheet">
+                                <img src="assets/webtoon/episode0195-flux-contact-sheet.jpg" alt="Episode 0195 FLUX contact sheet for five cuts" loading="lazy">
+                                <figcaption>Five-cut contact sheet</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop webtoon-sheet">
+                                <img src="assets/webtoon/lee-jaha-identity-train-pack.jpg" alt="Lee Jaha identity train pack contact sheet" loading="lazy">
+                                <figcaption>Character identity train pack</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop webtoon-sheet">
+                                <img src="assets/webtoon/lee-jaha-flux-train-pack.jpg" alt="Lee Jaha FLUX LoRA train pack contact sheet" loading="lazy">
+                                <figcaption>FLUX LoRA training pack</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/webtoon-01-comfyui.png" alt="ComfyUI webtoon workflow graph" loading="lazy">
+                                <figcaption>ComfyUI workflow graph</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/webtoon-02-comfyui-detail.png" alt="ComfyUI LoRA and TextEncode details" loading="lazy">
+                                <figcaption>LoRA and TextEncode details</figcaption>
+                            </figure>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <footer>
             <p>© 2025 전종호 (Jongho-Jeon). Built with passion for clean code.</p>
             <p style="margin-top: 8px;">Last updated: June 2026</p>
@@ -1971,7 +2186,12 @@
             });
 
             if (updateHash) {
-                history.replaceState(null, '', targetId === 'work-repos-panel' ? '#work-repos' : location.pathname);
+                const hashByPanel = {
+                    'overview-panel': location.pathname,
+                    'work-repos-panel': '#work-repos',
+                    'webtoon-panel': '#webtoon',
+                };
+                history.replaceState(null, '', hashByPanel[targetId] || location.pathname);
             }
         }
 
@@ -1981,6 +2201,8 @@
 
         if (location.hash === '#work-repos') {
             activatePortfolioPanel('work-repos-panel', false);
+        } else if (location.hash === '#webtoon') {
+            activatePortfolioPanel('webtoon-panel', false);
         }
 
         const galleryImages = Array.from(document.querySelectorAll('.repo-shot img'));
