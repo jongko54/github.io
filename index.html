@@ -2188,6 +2188,70 @@
 
                     <article class="work-project is-wide">
                         <div class="work-project-header">
+                            <div class="work-project-name">사용 모델 · LLM · GPU 구성</div>
+                            <div class="work-project-meta">model serving · gpu pool · workflow routing</div>
+                        </div>
+                        <div class="work-project-description">
+                            <p>로컬 Mac은 오케스트레이터로 두고, 이미지 생성·편집·검수는 Keiailab Kubernetes 클러스터의 ComfyUI/Ray Serve GPU 풀로 분산 호출했습니다. 컷별로 모델을 고정하지 않고, 장면 목적에 맞춰 Qwen-Image, FLUX, Z-Image, SDXL, Higgs Field 결과를 비교했습니다.</p>
+                        </div>
+                        <div class="webtoon-analysis-list">
+                            <div class="webtoon-analysis-item">
+                                <div class="webtoon-analysis-title">Image / Video Models</div>
+                                <div class="webtoon-analysis-text">Qwen-Image-Edit 2511 fp8mixed, Qwen-Image-Edit Lightning LoRA, FLUX/Kontext, Z_Image_bf16, z_image_turbo_bf16, SDXL/Illustrious-XL, Higgs Field 이미지·동영상 생성 흐름을 사용했습니다.</div>
+                            </div>
+                            <div class="webtoon-analysis-item">
+                                <div class="webtoon-analysis-title">LLM / VLM Critic</div>
+                                <div class="webtoon-analysis-text">qwen3-vl-30b-a3b를 주 critic·스토리보드·reroll 프롬프트 수선에 사용하고, InternVL3.5-8B를 hero 컷 교차검증, qwen3-4b를 리포트와 등록 payload 정리에 사용했습니다.</div>
+                            </div>
+                            <div class="webtoon-analysis-item">
+                                <div class="webtoon-analysis-title">ComfyUI GPU Pool</div>
+                                <div class="webtoon-analysis-text">comfyui-sdxl 풀은 RTX 4070/4070 Ti 12GB급 경량·SDXL 작업, comfyui-large 풀은 RTX 4060 Ti 16GB급 Qwen-Image·Z-Image 작업을 담당하게 분리했습니다. 단일 워크플로우 VRAM은 합산되지 않아 4090 24GB급 전용 pod도 별도 기준으로 잡았습니다.</div>
+                            </div>
+                            <div class="webtoon-analysis-item">
+                                <div class="webtoon-analysis-title">Scheduling / Infra</div>
+                                <div class="webtoon-analysis-text">NVIDIA GPU Operator, HAMi DRA, KubeRay/Ray Serve, Ceph-backed /models/comfyui, Cilium Gateway 기반으로 모델 파일과 GPU 워커를 운영했습니다. ComfyUI/Ray 워커는 GPU claim과 scale-to-zero를 분리해 확인했습니다.</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="work-project is-wide">
+                        <div class="work-project-header">
+                            <div class="work-project-name">ComfyUI 워크플로우 캡처</div>
+                            <div class="work-project-meta">actual ui capture · workflow evidence</div>
+                        </div>
+                        <div class="work-project-description">
+                            <p>아래는 실제 ComfyUI 화면 캡처와 workflow JSON evidence를 기반으로 정리한 대표 워크플로우입니다. Qwen crop-edit, FLUX multi-reference, Z-Image ControlNet, SDXL ControlNet을 나눠 실험했고, 각 흐름의 실패 조건을 다음 rerender 입력으로 되돌렸습니다.</p>
+                        </div>
+                        <div class="shot-grid desktop-shots">
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/webtoon-01-comfyui.png" alt="ComfyUI webtoon workflow graph full capture" loading="lazy">
+                                <figcaption>Actual ComfyUI full workflow capture</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/webtoon-02-comfyui-detail.png" alt="ComfyUI LoRA and Qwen TextEncode detail capture" loading="lazy">
+                                <figcaption>Actual ComfyUI LoRA / TextEncode capture</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop webtoon-failure">
+                                <img src="assets/webtoon/workflow-qwen-crop-edit.png" alt="Qwen Image Edit crop workflow node summary" loading="lazy">
+                                <figcaption>Qwen-Image crop edit workflow</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop webtoon-failure">
+                                <img src="assets/webtoon/workflow-flux-multiref.png" alt="FLUX Kontext multi reference workflow node summary" loading="lazy">
+                                <figcaption>FLUX Kontext multi-reference workflow</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop webtoon-failure">
+                                <img src="assets/webtoon/workflow-zimage-controlnet.png" alt="Z-Image ControlNet workflow node summary" loading="lazy">
+                                <figcaption>Z-Image ControlNet workflow</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop webtoon-failure">
+                                <img src="assets/webtoon/workflow-sdxl-controlnet.png" alt="SDXL ControlNet workflow node summary" loading="lazy">
+                                <figcaption>SDXL ControlNet baseline workflow</figcaption>
+                            </figure>
+                        </div>
+                    </article>
+
+                    <article class="work-project is-wide">
+                        <div class="work-project-header">
                             <div class="work-project-name">최종 결과물과 실패 검수 산출물</div>
                             <div class="work-project-meta">final strip · contact sheet · failure analysis</div>
                         </div>
@@ -2218,14 +2282,6 @@
                             <figure class="repo-shot desktop webtoon-failure">
                                 <img src="assets/webtoon/analysis-flux-mask-patch-compare.jpg" alt="FLUX denoise and mask patch comparison for five webtoon cuts" loading="lazy">
                                 <figcaption>FLUX mask patch comparison</figcaption>
-                            </figure>
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/webtoon-01-comfyui.png" alt="ComfyUI webtoon workflow graph" loading="lazy">
-                                <figcaption>ComfyUI workflow graph</figcaption>
-                            </figure>
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/webtoon-02-comfyui-detail.png" alt="ComfyUI LoRA and TextEncode details" loading="lazy">
-                                <figcaption>LoRA and TextEncode details</figcaption>
                             </figure>
                         </div>
                     </article>
