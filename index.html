@@ -620,6 +620,38 @@
             line-height: 1.45;
         }
 
+        .webtoon-analysis-list {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            padding: 14px;
+        }
+
+        .webtoon-analysis-item {
+            background-color: rgba(13, 17, 23, 0.72);
+            border: 1px solid rgba(139, 148, 158, 0.24);
+            border-radius: 8px;
+            padding: 13px;
+        }
+
+        .webtoon-analysis-title {
+            color: var(--accent-green);
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        .webtoon-analysis-text {
+            color: var(--text-secondary);
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .repo-shot.webtoon-failure img {
+            object-fit: contain;
+            background: #05080f;
+        }
+
         .repo-shot figcaption {
             border-top: 1px solid rgba(139, 148, 158, 0.24);
             color: var(--text-secondary);
@@ -1013,7 +1045,8 @@
             }
 
             .webtoon-highlight-grid,
-            .webtoon-process {
+            .webtoon-process,
+            .webtoon-analysis-list {
                 grid-template-columns: 1fr;
             }
 
@@ -2064,7 +2097,7 @@
                         <div class="work-project-description">
                             <p>웹툰/IP를 기반으로 캐릭터 일관성, 장면 톤앤매너, 대사 배치, 플랫폼용 세로 strip까지 이어지는 제작 흐름을 직접 설계했습니다.</p>
                             <p>본인 참여도는 100%입니다. 스토리보드 구조화, ComfyUI 워크플로우 설계, 모델/LoRA/레퍼런스 조합 실험, FLUX·Qwen-Image·Higgs Field 후보 생성, VLM critic 검수, 최종 후보 선별과 문서화를 직접 수행했습니다.</p>
-                            <p>단순히 이미지를 뽑는 데서 멈추지 않고, 실패 이미지의 원인을 언어화하고 다음 생성 조건에 반영하는 반복 루프를 만들었습니다. 컷 단위 결과, contact sheet, identity train pack, 최종 strip을 모두 남겨 팀 제작 자산으로 재사용할 수 있게 정리했습니다.</p>
+                            <p>단순히 이미지를 뽑는 데서 멈추지 않고, 실패 이미지의 원인을 언어화하고 다음 생성 조건에 반영하는 반복 루프를 만들었습니다. 컷 단위 결과, 실패 contact sheet, 비교 이미지, 최종 strip을 함께 남겨 제작 판단과 개선 근거가 이어지도록 정리했습니다.</p>
                         </div>
                         <div class="webtoon-highlight-grid">
                             <div class="webtoon-highlight">
@@ -2127,11 +2160,39 @@
 
                     <article class="work-project is-wide">
                         <div class="work-project-header">
-                            <div class="work-project-name">최종 결과물과 검수 산출물</div>
-                            <div class="work-project-meta">final strip · contact sheet · identity assets</div>
+                            <div class="work-project-name">실패 이미지 분석과 개선 기준</div>
+                            <div class="work-project-meta">failure log · critic notes · rerender decision</div>
                         </div>
                         <div class="work-project-description">
-                            <p>아래 결과물은 결과만 보여주기보다, 키다리스튜디오 공고에서 요구한 “기획 의도 → 사용 툴 → 프롬프트/워크플로우 → 편집·보정 과정 → 최종 결과물” 흐름을 설명하기 위한 대표 산출물입니다.</p>
+                            <p>웹툰 자동생성에서 가장 오래 잡고 있었던 부분은 “이미지가 나왔는가”가 아니라 “이 컷이 실제 에피소드에 들어갈 수 있는가”였습니다. 그래서 실패 이미지를 버리지 않고, 왜 실패했는지와 다음 실험에서 무엇을 바꿔야 하는지를 계속 기록했습니다.</p>
+                        </div>
+                        <div class="webtoon-analysis-list">
+                            <div class="webtoon-analysis-item">
+                                <div class="webtoon-analysis-title">LoRA 회귀 분석</div>
+                                <div class="webtoon-analysis-text">v005는 최신 학습본이었지만 얼굴 중심 샘플이 좁고 캡션 다양성이 부족해 v002보다 몸 비율, 의상, 표정 안정성이 떨어졌습니다. 이후에는 “학습 완료”와 “캐릭터 승인”을 분리하고, source-strict 비교 contact sheet로 승격 여부를 판단했습니다.</div>
+                            </div>
+                            <div class="webtoon-analysis-item">
+                                <div class="webtoon-analysis-title">부분 개선과 최종 승인 분리</div>
+                                <div class="webtoon-analysis-text">v024에서 v025로 일부 컷은 나아졌지만 표정, 시선, 컵/손 관계, 컷 간 감정선이 아직 약했습니다. 작은 개선을 최종 결과로 착각하지 않도록 strip 흐름과 컷별 실패 이유를 함께 비교했습니다.</div>
+                            </div>
+                            <div class="webtoon-analysis-item">
+                                <div class="webtoon-analysis-title">손·소품 오류 분해</div>
+                                <div class="webtoon-analysis-text">cut05는 손가락 위치, 컵 중심선, 원근감이 조금만 어긋나도 장면 의도가 깨졌습니다. 그래서 denoise 0.08/0.16/0.24, 손 삽입 위치, 컵 보존 여부를 나눠 매트릭스로 만들고 실패 조건을 눈으로 검수했습니다.</div>
+                            </div>
+                            <div class="webtoon-analysis-item">
+                                <div class="webtoon-analysis-title">마스크·레퍼런스 제어</div>
+                                <div class="webtoon-analysis-text">FLUX 결과는 전체 품질이 높아도 얼굴/머리카락/손 영역이 드리프트될 수 있었습니다. mask patch와 multi-reference를 비교해, 전체 재생성보다 실패 영역만 제한적으로 보정하는 쪽이 에피소드 연속성을 더 잘 지킨다는 결론을 얻었습니다.</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="work-project is-wide">
+                        <div class="work-project-header">
+                            <div class="work-project-name">최종 결과물과 실패 검수 산출물</div>
+                            <div class="work-project-meta">final strip · contact sheet · failure analysis</div>
+                        </div>
+                        <div class="work-project-description">
+                            <p>아래 이미지는 최종 후보뿐 아니라 실패·비교 산출물을 함께 보여주기 위한 대표 자료입니다. 실패한 이미지를 다음 프롬프트, 마스크, denoise 값, critic 기준으로 되돌리는 과정을 포트폴리오에 남겼습니다.</p>
                         </div>
                         <div class="shot-grid desktop-shots">
                             <figure class="repo-shot webtoon-strip">
@@ -2142,13 +2203,21 @@
                                 <img src="assets/webtoon/episode0195-flux-contact-sheet.jpg" alt="Episode 0195 FLUX contact sheet for five cuts" loading="lazy">
                                 <figcaption>Five-cut contact sheet</figcaption>
                             </figure>
-                            <figure class="repo-shot desktop webtoon-sheet">
-                                <img src="assets/webtoon/lee-jaha-identity-train-pack.jpg" alt="Lee Jaha identity train pack contact sheet" loading="lazy">
-                                <figcaption>Character identity train pack</figcaption>
+                            <figure class="repo-shot desktop webtoon-failure">
+                                <img src="assets/webtoon/failure-lora-v002-v005-compare.jpg" alt="LoRA v002 and v005 failure comparison contact sheet" loading="lazy">
+                                <figcaption>LoRA v002/v005 regression compare</figcaption>
                             </figure>
-                            <figure class="repo-shot desktop webtoon-sheet">
-                                <img src="assets/webtoon/lee-jaha-flux-train-pack.jpg" alt="Lee Jaha FLUX LoRA train pack contact sheet" loading="lazy">
-                                <figcaption>FLUX LoRA training pack</figcaption>
+                            <figure class="repo-shot desktop webtoon-failure">
+                                <img src="assets/webtoon/failure-first5-v024-v025-compare.jpg" alt="First five cut v024 and v025 comparison showing partial improvement and remaining failures" loading="lazy">
+                                <figcaption>v024/v025 partial improvement review</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop webtoon-failure">
+                                <img src="assets/webtoon/failure-cut05-finger-denoise-matrix.jpg" alt="Cut 05 finger and cup denoise matrix failure analysis" loading="lazy">
+                                <figcaption>cut05 hand/cup denoise matrix</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop webtoon-failure">
+                                <img src="assets/webtoon/analysis-flux-mask-patch-compare.jpg" alt="FLUX denoise and mask patch comparison for five webtoon cuts" loading="lazy">
+                                <figcaption>FLUX mask patch comparison</figcaption>
                             </figure>
                             <figure class="repo-shot desktop">
                                 <img src="assets/work-repos/webtoon-01-comfyui.png" alt="ComfyUI webtoon workflow graph" loading="lazy">
