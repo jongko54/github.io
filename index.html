@@ -1100,6 +1100,28 @@
                     <div class="pinned-card">
                         <div class="pinned-header">
                             <div>
+                                <div class="pinned-title">Keiailab SSO · Apple Login Bridge</div>
+                                <div style="font-size: 11px; color: var(--text-secondary);">Kubernetes · Keycloak · Apple IdP</div>
+                            </div>
+                            <span style="font-size: 20px;">🔐</span>
+                        </div>
+                        <p class="pinned-description">
+                            사내 Kubernetes 인증 경로에서 <code>sso.keiailab.com</code>을 Keycloak 기반 SSO로 운영하고,
+                            Apple 로그인 연동을 위해 <code>response_mode=form_post</code> broker callback을 처리하는 bridge를 추가했습니다.
+                            Cloudflared/Gateway 경로는 <code>nas-keycloak-proxy</code>로 수렴시키고, GitOps/Flux 배포 흐름에서
+                            Apple IdP, admin RBAC, callback routing을 함께 정리했습니다.
+                        </p>
+                        <div class="pinned-footer">
+                            <span><span class="language-dot ai"></span> Keycloak</span>
+                            <span>🍎 Apple IdP</span>
+                            <span>☸️ Kubernetes</span>
+                            <span>🔁 GitOps</span>
+                        </div>
+                    </div>
+
+                    <div class="pinned-card">
+                        <div class="pinned-header">
+                            <div>
                                 <div class="pinned-title">한진정보통신 AI 설문 문서 생성 서비스</div>
                                 <div style="font-size: 11px; color: var(--text-secondary);">사내 LLM 기반 설문 자동화</div>
                             </div>
@@ -1317,6 +1339,8 @@
                             n8n/Gemini 기반 콘텐츠 자동화, Expo 기반 모바일 서비스 프로토타입을 구현했습니다.
                             또한 k8s ComfyUI 풀 + Ray Serve VLM 기반 AI 웹툰 자동화 파이프라인(webtoon)을 개발했고,
                             마케팅 앱 플랫폼의 웹/Android/iOS/서버 end-to-end 구축 및 앱 스토어 테스트 심사 단계까지 진행했습니다.
+                            Kubernetes 인증 서버 영역에서는 Keycloak 기반 <code>sso.keiailab.com</code> 경로와
+                            Apple <code>form_post</code> 로그인 bridge를 구성해 사내 서비스 SSO 연동 기반을 정리했습니다.
                         </p>
                         <div class="tags">
                             <span class="tag">FastAPI</span>
@@ -1333,6 +1357,8 @@
                             <span class="tag">ComfyUI</span>
                             <span class="tag">Ray Serve</span>
                             <span class="tag">Supabase</span>
+                            <span class="tag">Keycloak</span>
+                            <span class="tag">Apple SSO</span>
                         </div>
                     </div>
 
@@ -1857,6 +1883,7 @@
                             <p>Keiailab 공식 웹사이트입니다. 일러스트 히어로 + light-ripple 캔버스 인터랙션 위에 메가메뉴(Open Source / Infra / Services / Company)를 얹은 원페이지 + 서브페이지 구조로 구현했습니다.</p>
                             <p>Open Source 메뉴에는 직접 개발·운영 중인 postgres-operator, valkey-operator, mongodb-operator와 webEmbedding(AI Design)을 정리해 제품 라인업을 한눈에 보여줍니다.</p>
                             <p>Infra 페이지(KeiInfra)는 운영 중인 프로덕션 k8s 클러스터를 kubectl에서 실측해 Ready 노드 수, Ceph Raw 용량, Pod 수와 Cilium Gateway · FluxCD · NVIDIA GPU Operator · HAMi DRA · KubeRay · ComfyUI 등 라이브 아키텍처 구성요소를 그대로 시각화합니다.</p>
+                            <p>인증 인프라는 Keycloak 기반 <code>sso.keiailab.com</code> 경로를 NAS Keycloak 프록시로 수렴시키고, Apple 로그인에서 필요한 <code>response_mode=form_post</code> callback을 Kubernetes bridge 서비스로 처리하도록 구성했습니다.</p>
                             <p>각 오퍼레이터 상세 페이지는 라이선스/언어/지원 버전 배지, README, 기능, 선언형 클러스터 정의까지 문서화해 오픈소스 쇼케이스와 세일즈 랜딩을 겸하도록 설계했습니다.</p>
                         </div>
                         <div class="shot-grid desktop-shots">
