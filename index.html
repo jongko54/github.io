@@ -1351,7 +1351,7 @@
                 WEB/APP <span class="tab-count">5</span>
             </button>
             <button class="portfolio-tab" id="portfolio-tab-ai-workflow" type="button" role="tab" aria-selected="false" data-tab-target="work-repos-panel" data-work-category-target="work-category-ai-workflow">
-                AI Workflow <span class="tab-count">1</span>
+                auto Video <span class="tab-count">1</span>
             </button>
             <button class="portfolio-tab" id="portfolio-tab-llm" type="button" role="tab" aria-selected="false" data-tab-target="work-repos-panel" data-work-category-target="work-category-llm">
                 LLM <span class="tab-count">1</span>
@@ -1381,7 +1381,7 @@
                 <a href="#overview-education" data-toc-target="overview-education" data-tab-target="overview-panel">Education</a>
                 <p>Public Preview</p>
                 <a href="#work-repos" data-toc-target="work-repos-panel" data-tab-target="work-repos-panel" data-work-category-target="work-category-web-app">WEB/APP</a>
-                <a href="#ai-workflow" data-toc-target="work-repos-panel" data-tab-target="work-repos-panel" data-work-category-target="work-category-ai-workflow">AI Workflow</a>
+                <a href="#auto-video" data-toc-target="work-repos-panel" data-tab-target="work-repos-panel" data-work-category-target="work-category-ai-workflow">auto Video</a>
                 <a href="#llm" data-toc-target="work-repos-panel" data-tab-target="work-repos-panel" data-work-category-target="work-category-llm">LLM</a>
                 <a href="#etc" data-toc-target="work-repos-panel" data-tab-target="work-repos-panel" data-work-category-target="work-category-etc">etc</a>
                 <a href="#webtoon-panel" data-toc-target="webtoon-panel" data-tab-target="webtoon-panel">Webtoon</a>
@@ -2056,7 +2056,7 @@
             <div class="work-hero">
                 <div>
                     <h2>Work Repos</h2>
-                    <p>workspace 프로젝트를 WEB/APP, AI Workflow, LLM, etc 기준으로 정리한 작업 보드입니다.</p>
+                    <p>workspace 프로젝트를 WEB/APP, auto Video, LLM, etc 기준으로 정리한 작업 보드입니다.</p>
                 </div>
                 <div class="work-count">24 frames</div>
             </div>
@@ -2677,7 +2677,7 @@
                 };
                 const hashByWorkCategory = {
                     'work-category-web-app': '#work-repos',
-                    'work-category-ai-workflow': '#ai-workflow',
+                    'work-category-ai-workflow': '#auto-video',
                     'work-category-llm': '#llm',
                     'work-category-etc': '#etc',
                 };
@@ -2715,6 +2715,7 @@
         const initialTocLink = Array.from(tocLinks).find((link) => link.dataset.tocTarget === initialHash);
         const workCategoryByHash = {
             'work-repos': 'work-category-web-app',
+            'auto-video': 'work-category-ai-workflow',
             'ai-workflow': 'work-category-ai-workflow',
             'llm': 'work-category-llm',
             'etc': 'work-category-etc',
