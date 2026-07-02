@@ -178,6 +178,83 @@
             display: block;
         }
 
+        .portfolio-shell {
+            display: grid;
+            grid-template-columns: 220px minmax(0, 1fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        .portfolio-content {
+            min-width: 0;
+        }
+
+        .toc-sidebar {
+            position: sticky;
+            top: 16px;
+            align-self: start;
+            max-height: calc(100vh - 32px);
+            overflow: auto;
+            padding-right: 4px;
+        }
+
+        .toc-link-original {
+            display: block;
+            margin-bottom: 18px;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            text-align: center;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .toc-link-original:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .toc-nav {
+            display: grid;
+            gap: 4px;
+        }
+
+        .toc-nav p {
+            margin: 18px 0 6px;
+            padding-bottom: 7px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        .toc-nav a {
+            display: block;
+            border-left: 2px solid transparent;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            line-height: 1.35;
+            padding: 7px 10px;
+        }
+
+        .toc-nav a:hover {
+            color: var(--text-primary);
+            background-color: rgba(88, 166, 255, 0.08);
+        }
+
+        .toc-nav a.is-active {
+            border-left-color: var(--accent-blue);
+            background-color: rgba(88, 166, 255, 0.14);
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
         /* Main Layout */
         .main-layout {
             display: grid;
@@ -1081,6 +1158,25 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .portfolio-shell {
+                display: block;
+            }
+
+            .toc-sidebar {
+                position: static;
+                max-height: none;
+                margin-bottom: 24px;
+                padding-right: 0;
+            }
+
+            .toc-nav {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .toc-nav p {
+                grid-column: 1 / -1;
+            }
+
             .main-layout {
                 grid-template-columns: 1fr;
             }
@@ -1225,12 +1321,35 @@
             </button>
         </nav>
 
+        <div class="portfolio-shell">
+        <aside class="toc-sidebar" aria-label="포트폴리오 목차">
+            <a class="toc-link-original" href="https://jongko54.github.io/github.io/" target="_blank" rel="noreferrer">Original Portfolio</a>
+            <nav class="toc-nav">
+                <p>Home</p>
+                <a class="is-active" href="#overview-panel" data-toc-target="overview-panel" data-tab-target="overview-panel">Overview</a>
+                <p>Overview</p>
+                <a href="#overview-about" data-toc-target="overview-about" data-tab-target="overview-panel">About</a>
+                <a href="#overview-projects" data-toc-target="overview-projects" data-tab-target="overview-panel">Pinned Projects</a>
+                <a href="#overview-ai" data-toc-target="overview-ai" data-tab-target="overview-panel">AI Development</a>
+                <a href="#overview-experience" data-toc-target="overview-experience" data-tab-target="overview-panel">Experience</a>
+                <p>Sidebar</p>
+                <a href="#overview-stats" data-toc-target="overview-stats" data-tab-target="overview-panel">Stats</a>
+                <a href="#overview-stack" data-toc-target="overview-stack" data-tab-target="overview-panel">Tech Stack</a>
+                <a href="#overview-highlights" data-toc-target="overview-highlights" data-tab-target="overview-panel">Highlights</a>
+                <a href="#overview-education" data-toc-target="overview-education" data-tab-target="overview-panel">Education</a>
+                <p>Public Preview</p>
+                <a href="#work-repos-panel" data-toc-target="work-repos-panel" data-tab-target="work-repos-panel">Work Repos</a>
+                <a href="#webtoon-panel" data-toc-target="webtoon-panel" data-tab-target="webtoon-panel">Webtoon</a>
+            </nav>
+        </aside>
+
+        <div class="portfolio-content">
         <div class="portfolio-panel is-active" id="overview-panel" role="tabpanel">
         <div class="main-layout">
             <!-- Main Content -->
             <main>
                 <!-- About -->
-                <section>
+                <section id="overview-about">
                     <div class="card">
                         <h2 class="section-title">👨‍💻 About</h2>
                         <p style="color: var(--text-secondary); line-height: 1.7;">
@@ -1246,7 +1365,7 @@
                 </section>
 
                 <!-- Pinned Projects -->
-                <section>
+                <section id="overview-projects">
                     <h2 class="section-title">📌 Pinned Projects</h2>
 
                     <div class="pinned-card">
@@ -1415,7 +1534,7 @@
                 </section>
 
                 <!-- AI Development -->
-                <section>
+                <section id="overview-ai">
                     <h2 class="section-title">🤖 AI Development</h2>
                     <div class="ai-grid">
                         <div class="ai-card">
@@ -1540,7 +1659,7 @@
                 </section>
 
                 <!-- Experience -->
-                <section>
+                <section id="overview-experience">
                     <h2 class="section-title">💼 Experience</h2>
 
                     <div class="experience-card">
@@ -1750,7 +1869,7 @@
             <!-- Sidebar -->
             <aside class="sidebar">
                 <!-- Stats -->
-                <div class="sidebar-section">
+                <div class="sidebar-section" id="overview-stats">
                     <h3>📊 Stats</h3>
                     <div class="stat-item">
                         <span class="stat-label">총 경력</span>
@@ -1767,7 +1886,7 @@
                 </div>
 
                 <!-- Skills -->
-                <div class="sidebar-section">
+                <div class="sidebar-section" id="overview-stack">
                     <h3>🛠 Tech Stack</h3>
 
                     <div class="skill-category">
@@ -1839,7 +1958,7 @@
                 </div>
 
                 <!-- Achievements -->
-                <div class="sidebar-section">
+                <div class="sidebar-section" id="overview-highlights">
                     <h3>🏆 Highlights</h3>
 
                     <div class="achievement">
@@ -1876,7 +1995,7 @@
                 </div>
 
                 <!-- Education -->
-                <div class="sidebar-section">
+                <div class="sidebar-section" id="overview-education">
                     <h3>🎓 Education</h3>
                     <div style="margin-bottom: 12px;">
                         <div style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">단국대학교(천안)</div>
@@ -2446,6 +2565,8 @@
                 </div>
             </div>
         </section>
+        </div>
+        </div>
 
         <footer>
             <p>© 2025 전종호 (Jongho-Jeon). Built with passion for clean code.</p>
@@ -2455,6 +2576,13 @@
     <script>
         const portfolioTabs = document.querySelectorAll('.portfolio-tab');
         const portfolioPanels = document.querySelectorAll('.portfolio-panel');
+        const tocLinks = document.querySelectorAll('.toc-nav a[data-toc-target]');
+
+        function setActiveToc(targetId) {
+            tocLinks.forEach((link) => {
+                link.classList.toggle('is-active', link.dataset.tocTarget === targetId);
+            });
+        }
 
         function activatePortfolioPanel(targetId, updateHash = true) {
             portfolioTabs.forEach((tab) => {
@@ -2466,6 +2594,8 @@
             portfolioPanels.forEach((panel) => {
                 panel.classList.toggle('is-active', panel.id === targetId);
             });
+
+            setActiveToc(targetId);
 
             if (updateHash) {
                 const hashByPanel = {
@@ -2481,7 +2611,33 @@
             tab.addEventListener('click', () => activatePortfolioPanel(tab.dataset.tabTarget));
         });
 
-        if (location.hash === '#work-repos') {
+        tocLinks.forEach((link) => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                const tabTarget = link.dataset.tabTarget || 'overview-panel';
+                const tocTarget = link.dataset.tocTarget;
+                activatePortfolioPanel(tabTarget, false);
+                setActiveToc(tocTarget);
+
+                requestAnimationFrame(() => {
+                    const targetElement = document.getElementById(tocTarget);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ block: 'start' });
+                        history.replaceState(null, '', `#${tocTarget}`);
+                    }
+                });
+            });
+        });
+
+        const initialHash = location.hash.replace('#', '');
+        const initialTocLink = Array.from(tocLinks).find((link) => link.dataset.tocTarget === initialHash);
+
+        if (initialTocLink) {
+            activatePortfolioPanel(initialTocLink.dataset.tabTarget || 'overview-panel', false);
+            setActiveToc(initialTocLink.dataset.tocTarget);
+            requestAnimationFrame(() => document.getElementById(initialTocLink.dataset.tocTarget)?.scrollIntoView({ block: 'start' }));
+        } else if (location.hash === '#work-repos') {
             activatePortfolioPanel('work-repos-panel', false);
         } else if (location.hash === '#webtoon') {
             activatePortfolioPanel('webtoon-panel', false);
