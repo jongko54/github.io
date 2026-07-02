@@ -2285,6 +2285,8 @@
                             <p>BIOS에서 RAM 사용 제한을 적용한 상태로 운영했고, Kubernetes GPU Operator와 NVIDIA device plugin/container toolkit을 설치해 GPU 워크로드를 실행했습니다.</p>
                             <p>FastAPI 백엔드에서 프롬프트 실행, 응답 수집, 결과 조회 흐름을 분리하고 LangChain/RAG 프로필을 연결해 모델별 실행 과정을 비교했습니다.</p>
                             <p>화면은 Browse/Workflow/Response/Results/Explain 탭으로 구성해 모델 등록, 실행 흐름, 응답 결과, 비교 이력을 한 번에 확인할 수 있게 만들었습니다.</p>
+                            <p>직접 운영하면서 얻은 결론은 로컬 LLM은 모델 설치, CUDA/드라이버, 컨테이너 런타임, GPU 할당, 메모리 한계, 모델별 실행 옵션까지 준비 작업이 많고 인프라 자원도 예상보다 크게 필요하다는 점입니다.</p>
+                            <p>qwen/gemma 계열 int4 모델은 로컬에서 구동 가능했지만, 같은 비용과 운영 부담 대비 응답 품질, 한국어/도메인 추론 안정성, 지연 시간, RAG 결과 일관성이 기대보다 낮았습니다. 그래서 실서비스 핵심 LLM으로 쓰기보다는 보안이 필요한 내부 실험, 벤치마크, 작은 자동화 후보를 검증하는 용도로 보는 것이 현실적이라고 판단했습니다.</p>
                         </div>
                         <div class="shot-grid desktop-shots five">
                             <figure class="repo-shot desktop">
@@ -2319,12 +2321,33 @@
                     <article class="work-project is-wide">
                         <div class="work-project-header">
                             <div class="work-project-name">quant_trading_app</div>
-                            <div class="work-project-meta">FastAPI · Rust · Next.js · KR/US 자동매매</div>
+                            <div class="work-project-meta">FastAPI · Rust · Redis Streams · KIS/Binance paper trading</div>
                         </div>
                         <div class="work-project-description">
-                            <p>한국/미국 시장을 함께 다루는 하이브리드 퀀트 자동매매 앱입니다. 5영업일 리밸런스와 문서형 ML 레이어를 중심으로 전략을 운영합니다.</p>
-                            <p>백엔드는 FastAPI + SQLite(SQLAlchemy)로 시세 수집·지표 계산·백테스트·포트폴리오/지갑 영속화·봇 실행·알림 평가를 담당하고, 체결 실행은 Rust execution engine, 메시징은 Redis Streams + DLQ 재처리로 구성했습니다.</p>
-                            <p>실시간 봇이 시세를 받아 전략 신호를 생성하고, 운영 화면은 "자동매매 운영 문서"와 "매매 동향 문서" 형태로 동작 프로세스·설계 의도·시장별 운영 상태·체결 흐름·일별 수익률을 문서처럼 확인하도록 만들었습니다.</p>
+                            <p>한국/미국 주식을 함께 다루는 장전 선별 + 일중 리밸런스 자동매매 시스템입니다. FastAPI 백엔드가 시세 수집, 지표 계산, 랭킹, 백테스트, 운영 상태 API를 맡고, Redis Streams를 통해 주문 신호를 Rust execution engine으로 넘기는 구조로 만들었습니다.</p>
+                            <p><code>backend/main.py</code>에는 <code>/data/ranking</code>, <code>/data/ranking/backtest</code>, <code>/data/ranking/walk-forward</code>, <code>/ops/overview</code>, <code>/ops/portfolio/{market}</code>, <code>/ops/execution/*</code> 같은 분석·운영 API가 있고, 랭킹은 momentum, breakout, trend, liquidity, forecast, live news, fundamentals, regime, event-risk를 조합합니다.</p>
+                            <p>KR/US 자동매매 루프는 <code>backend/kr_paper_trader.py</code>와 <code>backend/us_paper_trader.py</code>로 분리했습니다. 각 루프는 시장 개장 여부, kill switch, 데이터 신선도, active order, 보유 포지션, 장전 분석 상태를 확인한 뒤 목표 비중과 현재 수량 차이만큼 BUY/SELL 신호를 생성합니다.</p>
+                            <p>주문 신호는 <code>kind=order_signal</code>, <code>symbol</code>, <code>side</code>, <code>qty</code>, <code>price</code>, <code>strategy_id</code>, <code>idempotency_key</code>, <code>reason</code>을 담아 Redis Stream(<code>trading:signals</code>)에 <code>XADD</code>로 발행합니다. Rust engine은 consumer group으로 읽고, 중복 idempotency key를 막고, 주문 상태를 <code>NEW/PARTIAL/FILLED/CANCELED/REJECTED</code>로 관리합니다.</p>
+                            <p>체결 계층은 <code>backend/execution_engine</code>의 Rust 코드로 구현했습니다. validate-only, Binance testnet/live, KIS paper/live 모드를 분리했고, 실제 주문 제출 전 readiness evidence, 주문 금액 한도, 종목별 active order 제한, position cap, live trading ACK를 확인하도록 fail-closed 가드를 넣었습니다.</p>
+                            <p>운영 안정성은 Redis AOF, DLQ 재처리, broker audit/mismatch stream, active order cancel/replace signal, stale order reconciliation, paper track record evidence, alert route canary, production readiness check로 보강했습니다. 실제 돈이 들어가는 live 모드는 전략 우위, 가격 데이터 품질, 6개월 paper record, broker canary, alert runbook 증거가 모두 통과해야 열리도록 설계했습니다.</p>
+                        </div>
+                        <div class="work-stack-list">
+                            <div class="work-stack-item">
+                                <div class="work-stack-label">Backend</div>
+                                <div class="work-stack-value">FastAPI, SQLite/SQLAlchemy, Pandas/Polars, yfinance, APScheduler</div>
+                            </div>
+                            <div class="work-stack-item">
+                                <div class="work-stack-label">Strategy</div>
+                                <div class="work-stack-value">Cross-sectional ranking, regime/event-risk filter, target weights, walk-forward/backtest</div>
+                            </div>
+                            <div class="work-stack-item">
+                                <div class="work-stack-label">Execution</div>
+                                <div class="work-stack-value">Redis Streams, Rust consumer group, KIS/Binance broker adapter, DLQ replay</div>
+                            </div>
+                            <div class="work-stack-item">
+                                <div class="work-stack-label">Ops Guard</div>
+                                <div class="work-stack-value">Kill switch, readiness evidence, broker canary, audit/mismatch stream, paper reconciliation</div>
+                            </div>
                         </div>
                     </article>
                     </div>
