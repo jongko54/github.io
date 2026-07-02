@@ -144,17 +144,36 @@
             margin: -16px 0 32px 0;
             padding-bottom: 12px;
             border-bottom: 1px solid var(--border-color);
+            scrollbar-color: rgba(139, 148, 158, 0.45) transparent;
+            scrollbar-width: thin;
+        }
+
+        .portfolio-tabs::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .portfolio-tabs::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .portfolio-tabs::-webkit-scrollbar-thumb {
+            background-color: rgba(139, 148, 158, 0.45);
+            border-radius: 999px;
         }
 
         .portfolio-tab {
+            align-items: center;
             border: 1px solid var(--border-color);
             border-radius: 6px;
             background-color: var(--bg-secondary);
             color: var(--text-secondary);
             cursor: pointer;
+            display: inline-flex;
+            flex: 0 0 auto;
             font: inherit;
             font-size: 14px;
             font-weight: 600;
+            gap: 8px;
             padding: 8px 14px;
             transition: all 0.2s;
         }
@@ -167,6 +186,22 @@
         .portfolio-tab.is-active {
             background-color: rgba(88, 166, 255, 0.15);
             border-color: rgba(88, 166, 255, 0.55);
+            color: var(--accent-blue);
+        }
+
+        .portfolio-tab .tab-count {
+            background-color: rgba(139, 148, 158, 0.16);
+            border: 1px solid rgba(139, 148, 158, 0.22);
+            border-radius: 999px;
+            color: var(--text-secondary);
+            font-size: 11px;
+            line-height: 1;
+            padding: 4px 6px;
+        }
+
+        .portfolio-tab.is-active .tab-count {
+            background-color: rgba(88, 166, 255, 0.18);
+            border-color: rgba(88, 166, 255, 0.32);
             color: var(--accent-blue);
         }
 
@@ -461,58 +496,6 @@
             color: var(--text-secondary);
             font-size: 12px;
             font-weight: 600;
-        }
-
-        .work-category-tabs {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding: 14px 18px 0;
-        }
-
-        .work-category-tab {
-            align-items: center;
-            background-color: rgba(13, 17, 23, 0.68);
-            border: 1px solid rgba(139, 148, 158, 0.28);
-            border-radius: 6px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            display: inline-flex;
-            flex: 0 0 auto;
-            font: inherit;
-            font-size: 12px;
-            font-weight: 800;
-            gap: 8px;
-            padding: 8px 10px;
-            text-transform: uppercase;
-            transition: all 0.2s ease;
-        }
-
-        .work-category-tab:hover {
-            border-color: rgba(88, 166, 255, 0.55);
-            color: var(--text-primary);
-        }
-
-        .work-category-tab.is-active {
-            background-color: rgba(88, 166, 255, 0.14);
-            border-color: rgba(88, 166, 255, 0.62);
-            color: var(--accent-blue);
-        }
-
-        .work-category-tab span {
-            background-color: rgba(139, 148, 158, 0.16);
-            border: 1px solid rgba(139, 148, 158, 0.22);
-            border-radius: 999px;
-            color: var(--text-secondary);
-            font-size: 11px;
-            line-height: 1;
-            padding: 4px 6px;
-        }
-
-        .work-category-tab.is-active span {
-            background-color: rgba(88, 166, 255, 0.18);
-            border-color: rgba(88, 166, 255, 0.32);
-            color: var(--accent-blue);
         }
 
         .work-category-panel {
@@ -1260,10 +1243,6 @@
                 white-space: normal;
             }
 
-            .work-category-tabs {
-                padding: 12px 12px 0;
-            }
-
             .work-board-grid {
                 grid-template-columns: 1fr;
                 padding: 12px;
@@ -1368,8 +1347,17 @@
             <button class="portfolio-tab is-active" type="button" role="tab" aria-selected="true" data-tab-target="overview-panel">
                 Overview
             </button>
-            <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-tab-target="work-repos-panel">
-                Work Repos
+            <button class="portfolio-tab" id="portfolio-tab-web-app" type="button" role="tab" aria-selected="false" data-tab-target="work-repos-panel" data-work-category-target="work-category-web-app">
+                WEB/APP <span class="tab-count">5</span>
+            </button>
+            <button class="portfolio-tab" id="portfolio-tab-ai-workflow" type="button" role="tab" aria-selected="false" data-tab-target="work-repos-panel" data-work-category-target="work-category-ai-workflow">
+                AI Workflow <span class="tab-count">1</span>
+            </button>
+            <button class="portfolio-tab" id="portfolio-tab-llm" type="button" role="tab" aria-selected="false" data-tab-target="work-repos-panel" data-work-category-target="work-category-llm">
+                LLM <span class="tab-count">1</span>
+            </button>
+            <button class="portfolio-tab" id="portfolio-tab-etc" type="button" role="tab" aria-selected="false" data-tab-target="work-repos-panel" data-work-category-target="work-category-etc">
+                etc <span class="tab-count">1</span>
             </button>
             <button class="portfolio-tab" type="button" role="tab" aria-selected="false" data-tab-target="webtoon-panel">
                 Webtoon
@@ -1392,7 +1380,10 @@
                 <a href="#overview-highlights" data-toc-target="overview-highlights" data-tab-target="overview-panel">Highlights</a>
                 <a href="#overview-education" data-toc-target="overview-education" data-tab-target="overview-panel">Education</a>
                 <p>Public Preview</p>
-                <a href="#work-repos-panel" data-toc-target="work-repos-panel" data-tab-target="work-repos-panel">Work Repos</a>
+                <a href="#work-repos" data-toc-target="work-repos-panel" data-tab-target="work-repos-panel" data-work-category-target="work-category-web-app">WEB/APP</a>
+                <a href="#ai-workflow" data-toc-target="work-repos-panel" data-tab-target="work-repos-panel" data-work-category-target="work-category-ai-workflow">AI Workflow</a>
+                <a href="#llm" data-toc-target="work-repos-panel" data-tab-target="work-repos-panel" data-work-category-target="work-category-llm">LLM</a>
+                <a href="#etc" data-toc-target="work-repos-panel" data-tab-target="work-repos-panel" data-work-category-target="work-category-etc">etc</a>
                 <a href="#webtoon-panel" data-toc-target="webtoon-panel" data-tab-target="webtoon-panel">Webtoon</a>
             </nav>
         </aside>
@@ -2081,22 +2072,7 @@
                     <div class="work-count">Figma style</div>
                 </div>
 
-                <div class="work-category-tabs" role="tablist" aria-label="Work Repos categories">
-                    <button class="work-category-tab is-active" id="work-tab-web-app" type="button" role="tab" aria-selected="true" aria-controls="work-category-web-app" data-work-category-target="work-category-web-app">
-                        WEB/APP <span>5</span>
-                    </button>
-                    <button class="work-category-tab" id="work-tab-ai-workflow" type="button" role="tab" aria-selected="false" aria-controls="work-category-ai-workflow" data-work-category-target="work-category-ai-workflow">
-                        AI Workflow <span>1</span>
-                    </button>
-                    <button class="work-category-tab" id="work-tab-llm" type="button" role="tab" aria-selected="false" aria-controls="work-category-llm" data-work-category-target="work-category-llm">
-                        LLM <span>1</span>
-                    </button>
-                    <button class="work-category-tab" id="work-tab-etc" type="button" role="tab" aria-selected="false" aria-controls="work-category-etc" data-work-category-target="work-category-etc">
-                        etc <span>1</span>
-                    </button>
-                </div>
-
-                <div class="work-category-panel is-active" id="work-category-web-app" role="tabpanel" aria-labelledby="work-tab-web-app">
+                <div class="work-category-panel is-active" id="work-category-web-app" role="tabpanel" aria-labelledby="portfolio-tab-web-app">
                     <div class="work-board-grid">
 
                     <article class="work-project is-wide">
@@ -2257,7 +2233,7 @@
                     </div>
                 </div>
 
-                <div class="work-category-panel" id="work-category-ai-workflow" role="tabpanel" aria-labelledby="work-tab-ai-workflow" hidden>
+                <div class="work-category-panel" id="work-category-ai-workflow" role="tabpanel" aria-labelledby="portfolio-tab-ai-workflow" hidden>
                     <div class="work-board-grid">
 
                     <article class="work-project is-wide">
@@ -2295,7 +2271,7 @@
                     </div>
                 </div>
 
-                <div class="work-category-panel" id="work-category-llm" role="tabpanel" aria-labelledby="work-tab-llm" hidden>
+                <div class="work-category-panel" id="work-category-llm" role="tabpanel" aria-labelledby="portfolio-tab-llm" hidden>
                     <div class="work-board-grid">
 
                     <article class="work-project is-wide">
@@ -2337,7 +2313,7 @@
                     </div>
                 </div>
 
-                <div class="work-category-panel" id="work-category-etc" role="tabpanel" aria-labelledby="work-tab-etc" hidden>
+                <div class="work-category-panel" id="work-category-etc" role="tabpanel" aria-labelledby="portfolio-tab-etc" hidden>
                     <div class="work-board-grid">
 
                     <article class="work-project is-wide">
@@ -2647,22 +2623,19 @@
         const portfolioTabs = document.querySelectorAll('.portfolio-tab');
         const portfolioPanels = document.querySelectorAll('.portfolio-panel');
         const tocLinks = document.querySelectorAll('.toc-nav a[data-toc-target]');
-        const workCategoryTabs = document.querySelectorAll('.work-category-tab');
         const workCategoryPanels = document.querySelectorAll('.work-category-panel');
+        const defaultWorkCategory = 'work-category-web-app';
 
-        function setActiveToc(targetId) {
+        function setActiveToc(targetId, workCategoryTarget = null) {
             tocLinks.forEach((link) => {
-                link.classList.toggle('is-active', link.dataset.tocTarget === targetId);
+                const linkCategoryTarget = link.dataset.workCategoryTarget || null;
+                const isActive = link.dataset.tocTarget === targetId
+                    && (targetId !== 'work-repos-panel' || linkCategoryTarget === (workCategoryTarget || defaultWorkCategory));
+                link.classList.toggle('is-active', isActive);
             });
         }
 
         function activateWorkCategory(targetId) {
-            workCategoryTabs.forEach((tab) => {
-                const isActive = tab.dataset.workCategoryTarget === targetId;
-                tab.classList.toggle('is-active', isActive);
-                tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-            });
-
             workCategoryPanels.forEach((panel) => {
                 const isActive = panel.id === targetId;
                 panel.classList.toggle('is-active', isActive);
@@ -2670,35 +2643,52 @@
             });
         }
 
-        function activatePortfolioPanel(targetId, updateHash = true) {
+        function activatePortfolioPanel(targetId, updateHash = true, workCategoryTarget = null) {
+            const activeWorkCategory = targetId === 'work-repos-panel'
+                ? (workCategoryTarget || defaultWorkCategory)
+                : null;
+            let activePortfolioTab = null;
+
             portfolioTabs.forEach((tab) => {
-                const isActive = tab.dataset.tabTarget === targetId;
+                const tabWorkCategory = tab.dataset.workCategoryTarget || null;
+                const isActive = tab.dataset.tabTarget === targetId
+                    && (targetId !== 'work-repos-panel' || tabWorkCategory === activeWorkCategory);
                 tab.classList.toggle('is-active', isActive);
                 tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                if (isActive) {
+                    activePortfolioTab = tab;
+                }
             });
 
             portfolioPanels.forEach((panel) => {
                 panel.classList.toggle('is-active', panel.id === targetId);
             });
 
-            setActiveToc(targetId);
+            if (activeWorkCategory) {
+                activateWorkCategory(activeWorkCategory);
+            }
+
+            setActiveToc(targetId, activeWorkCategory);
 
             if (updateHash) {
                 const hashByPanel = {
                     'overview-panel': location.pathname,
-                    'work-repos-panel': '#work-repos',
                     'webtoon-panel': '#webtoon',
                 };
-                history.replaceState(null, '', hashByPanel[targetId] || location.pathname);
+                const hashByWorkCategory = {
+                    'work-category-web-app': '#work-repos',
+                    'work-category-ai-workflow': '#ai-workflow',
+                    'work-category-llm': '#llm',
+                    'work-category-etc': '#etc',
+                };
+                history.replaceState(null, '', activeWorkCategory ? hashByWorkCategory[activeWorkCategory] : (hashByPanel[targetId] || location.pathname));
             }
+
+            activePortfolioTab?.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
         }
 
         portfolioTabs.forEach((tab) => {
-            tab.addEventListener('click', () => activatePortfolioPanel(tab.dataset.tabTarget));
-        });
-
-        workCategoryTabs.forEach((tab) => {
-            tab.addEventListener('click', () => activateWorkCategory(tab.dataset.workCategoryTarget));
+            tab.addEventListener('click', () => activatePortfolioPanel(tab.dataset.tabTarget, true, tab.dataset.workCategoryTarget));
         });
 
         tocLinks.forEach((link) => {
@@ -2707,14 +2697,15 @@
 
                 const tabTarget = link.dataset.tabTarget || 'overview-panel';
                 const tocTarget = link.dataset.tocTarget;
-                activatePortfolioPanel(tabTarget, false);
-                setActiveToc(tocTarget);
+                const workCategoryTarget = link.dataset.workCategoryTarget || null;
+                activatePortfolioPanel(tabTarget, false, workCategoryTarget);
+                setActiveToc(tocTarget, workCategoryTarget);
 
                 requestAnimationFrame(() => {
                     const targetElement = document.getElementById(tocTarget);
                     if (targetElement) {
                         targetElement.scrollIntoView({ block: 'start' });
-                        history.replaceState(null, '', `#${tocTarget}`);
+                        history.replaceState(null, '', link.getAttribute('href') || `#${tocTarget}`);
                     }
                 });
             });
@@ -2722,13 +2713,20 @@
 
         const initialHash = location.hash.replace('#', '');
         const initialTocLink = Array.from(tocLinks).find((link) => link.dataset.tocTarget === initialHash);
+        const workCategoryByHash = {
+            'work-repos': 'work-category-web-app',
+            'ai-workflow': 'work-category-ai-workflow',
+            'llm': 'work-category-llm',
+            'etc': 'work-category-etc',
+        };
 
         if (initialTocLink) {
-            activatePortfolioPanel(initialTocLink.dataset.tabTarget || 'overview-panel', false);
-            setActiveToc(initialTocLink.dataset.tocTarget);
+            activatePortfolioPanel(initialTocLink.dataset.tabTarget || 'overview-panel', false, initialTocLink.dataset.workCategoryTarget);
+            setActiveToc(initialTocLink.dataset.tocTarget, initialTocLink.dataset.workCategoryTarget);
             requestAnimationFrame(() => document.getElementById(initialTocLink.dataset.tocTarget)?.scrollIntoView({ block: 'start' }));
-        } else if (location.hash === '#work-repos') {
-            activatePortfolioPanel('work-repos-panel', false);
+        } else if (workCategoryByHash[initialHash]) {
+            activatePortfolioPanel('work-repos-panel', false, workCategoryByHash[initialHash]);
+            requestAnimationFrame(() => document.getElementById('work-repos-panel')?.scrollIntoView({ block: 'start' }));
         } else if (location.hash === '#webtoon') {
             activatePortfolioPanel('webtoon-panel', false);
         }
