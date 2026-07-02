@@ -1354,7 +1354,7 @@
                 auto Video <span class="tab-count">1</span>
             </button>
             <button class="portfolio-tab" id="portfolio-tab-llm" type="button" role="tab" aria-selected="false" data-tab-target="work-repos-panel" data-work-category-target="work-category-llm">
-                LLM <span class="tab-count">1</span>
+                LLM <span class="tab-count">2</span>
             </button>
             <button class="portfolio-tab" id="portfolio-tab-etc" type="button" role="tab" aria-selected="false" data-tab-target="work-repos-panel" data-work-category-target="work-category-etc">
                 etc <span class="tab-count">1</span>
@@ -2058,7 +2058,7 @@
                     <h2>Work Repos</h2>
                     <p>workspace 프로젝트를 WEB/APP, auto Video, LLM, etc 기준으로 정리한 작업 보드입니다.</p>
                 </div>
-                <div class="work-count">24 frames</div>
+                <div class="work-count">29 frames</div>
             </div>
 
             <div class="work-board">
@@ -2273,6 +2273,59 @@
 
                 <div class="work-category-panel" id="work-category-llm" role="tabpanel" aria-labelledby="portfolio-tab-llm" hidden>
                     <div class="work-board-grid">
+
+                    <article class="work-project is-wide">
+                        <div class="work-project-header">
+                            <div class="work-project-name">HuriLLM</div>
+                            <div class="work-project-meta">React · Express · MongoDB · OpenAI-compatible gateway</div>
+                        </div>
+                        <div class="work-project-description">
+                            <p>Groq, NVIDIA NIM, Google AI Studio, Cerebras, OpenRouter, Alibaba Model Studio처럼 무료 티어 또는 무료 크레딧을 제공하는 LLM API key를 한 곳에 등록하고, HuriLLM key 하나로 다시 호출할 수 있게 만든 통합 게이트웨이입니다.</p>
+                            <p>제공사 key는 서버에 보관하고 사용자는 본인만의 HuriLLM API key를 발급·재발급해 사용합니다. 로컬 앱이나 내부 서비스에서는 base_url과 api_key만 HuriLLM 기준으로 바꿔 여러 제공사 모델을 같은 호출 흐름으로 사용할 수 있게 구성했습니다.</p>
+                            <p>모델 카탈로그는 <code>server/hosted-models.ts</code>의 curated catalog와 제공사 <code>/models</code> 동기화 흐름을 합쳐 provider, builder, model id, context, parameter, category, recommended 여부를 보여줍니다. NVIDIA, Groq, Cerebras, OpenRouter, Alibaba, Google 모델을 한 화면에서 비교하고 사용 가능한 provider를 바로 확인할 수 있습니다.</p>
+                            <p>API 키 화면은 HuriLLM key rotation과 제공사 key 등록·검증·삭제를 맡고, Playground는 등록된 provider key 기준으로 실제 모델 스트리밍 호출 또는 demo fallback을 수행합니다. Guide 화면에는 무료 키 발급 링크와 Python/cURL/Node.js OpenAI SDK 사용 예시를 함께 정리했습니다.</p>
+                        </div>
+                        <div class="work-stack-list">
+                            <div class="work-stack-item">
+                                <div class="work-stack-label">Providers</div>
+                                <div class="work-stack-value">Groq, NVIDIA, Google, Cerebras, OpenRouter, Alibaba</div>
+                            </div>
+                            <div class="work-stack-item">
+                                <div class="work-stack-label">Gateway</div>
+                                <div class="work-stack-value">One HuriLLM key, provider key vault, OpenAI SDK style</div>
+                            </div>
+                            <div class="work-stack-item">
+                                <div class="work-stack-label">Catalog</div>
+                                <div class="work-stack-value">Hosted model list, live sync, capability/category tags</div>
+                            </div>
+                            <div class="work-stack-item">
+                                <div class="work-stack-label">Runtime</div>
+                                <div class="work-stack-value">React/Vite, Express API, MongoDB, streaming playground</div>
+                            </div>
+                        </div>
+                        <div class="shot-grid desktop-shots five">
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/hurillm-01-home.png" alt="HuriLLM gateway landing screen" loading="lazy">
+                                <figcaption>Gateway home</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/hurillm-02-catalog.png" alt="HuriLLM model catalog with provider filters" loading="lazy">
+                                <figcaption>Model catalog</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/hurillm-03-keys.png" alt="HuriLLM API key management screen" loading="lazy">
+                                <figcaption>API keys</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/hurillm-04-playground.png" alt="HuriLLM playground screen" loading="lazy">
+                                <figcaption>Playground</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/hurillm-05-guide.png" alt="HuriLLM free provider guide screen" loading="lazy">
+                                <figcaption>Free provider guide</figcaption>
+                            </figure>
+                        </div>
+                    </article>
 
                     <article class="work-project is-wide">
                         <div class="work-project-header">
