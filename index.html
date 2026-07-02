@@ -198,24 +198,6 @@
             padding-right: 4px;
         }
 
-        .toc-link-original {
-            display: block;
-            margin-bottom: 18px;
-            padding: 10px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            background-color: var(--bg-secondary);
-            color: var(--text-primary);
-            text-align: center;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .toc-link-original:hover {
-            border-color: var(--accent-blue);
-        }
-
         .toc-nav {
             display: grid;
             gap: 4px;
@@ -486,6 +468,17 @@
             grid-template-columns: repeat(12, minmax(0, 1fr));
             gap: 18px;
             padding: 18px;
+        }
+
+        .work-category-title {
+            grid-column: 1 / -1;
+            border-bottom: 1px solid rgba(139, 148, 158, 0.32);
+            color: var(--accent-blue);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            padding: 4px 0 8px;
+            text-transform: uppercase;
         }
 
         .work-project {
@@ -1209,13 +1202,23 @@
                 flex-direction: column;
             }
 
+            .work-board-toolbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .work-count {
+                white-space: normal;
+            }
+
             .work-board-grid {
                 grid-template-columns: 1fr;
                 padding: 12px;
             }
 
             .work-project,
-            .work-project.is-wide {
+            .work-project.is-wide,
+            .work-category-title {
                 grid-column: auto;
             }
 
@@ -1323,7 +1326,6 @@
 
         <div class="portfolio-shell">
         <aside class="toc-sidebar" aria-label="포트폴리오 목차">
-            <a class="toc-link-original" href="https://jongko54.github.io/github.io/" target="_blank" rel="noreferrer">Original Portfolio</a>
             <nav class="toc-nav">
                 <p>Home</p>
                 <a class="is-active" href="#overview-panel" data-toc-target="overview-panel" data-tab-target="overview-panel">Overview</a>
@@ -2011,9 +2013,9 @@
             <div class="work-hero">
                 <div>
                     <h2>Work Repos</h2>
-                    <p>workspace 프로젝트를 실제 웹 화면 기준으로 캡처한 작업 보드입니다.</p>
+                    <p>workspace 프로젝트를 WEB/APP, AI Workflow, LLM, etc 기준으로 정리한 작업 보드입니다.</p>
                 </div>
-                <div class="work-count">26 frames</div>
+                <div class="work-count">24 frames</div>
             </div>
 
             <div class="work-board">
@@ -2028,6 +2030,8 @@
                 </div>
 
                 <div class="work-board-grid">
+                    <div class="work-category-title">WEB/APP</div>
+
                     <article class="work-project is-wide">
                         <div class="work-project-header">
                             <div class="work-project-name">Marketing App Platform</div>
@@ -2120,43 +2124,9 @@
 
                     <article class="work-project is-wide">
                         <div class="work-project-header">
-                            <div class="work-project-name">callLLM</div>
-                            <div class="work-project-meta">FastAPI · LLM benchmark tabs</div>
-                        </div>
-                        <div class="work-project-description">
-                            <p>서버 PC 사양에 맞춰 qwen3-8b-int4와 gemma-4-e4b 모델을 설치하고, 동일 프롬프트 기준 응답 품질과 속도를 비교 테스트한 LLM 벤치마크 도구입니다.</p>
-                            <p>테스트 환경은 AMD Ryzen 5 5600G, 12 threads, RAM 31Gi, NVIDIA GeForce RTX 4060 Ti 16GB, NVIDIA Driver 580.126.09 기준으로 구성했습니다.</p>
-                            <p>BIOS에서 RAM 사용 제한을 적용한 상태로 운영했고, Kubernetes GPU Operator와 NVIDIA device plugin/container toolkit을 설치해 GPU 워크로드를 실행했습니다.</p>
-                            <p>FastAPI 백엔드에서 프롬프트 실행, 응답 수집, 결과 조회 흐름을 분리하고 LangChain/RAG 프로필을 연결해 모델별 실행 과정을 비교했습니다.</p>
-                            <p>화면은 Browse/Workflow/Response/Results/Explain 탭으로 구성해 모델 등록, 실행 흐름, 응답 결과, 비교 이력을 한 번에 확인할 수 있게 만들었습니다.</p>
-                        </div>
-                        <div class="shot-grid desktop-shots five">
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/callllm-01-browse.png" alt="callLLM Browse tab" loading="lazy">
-                                <figcaption>Browse</figcaption>
-                            </figure>
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/callllm-02-workflow.png" alt="callLLM Workflow tab" loading="lazy">
-                                <figcaption>Workflow</figcaption>
-                            </figure>
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/callllm-03-response.png" alt="callLLM Response tab" loading="lazy">
-                                <figcaption>Response</figcaption>
-                            </figure>
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/callllm-04-results.png" alt="callLLM Results tab" loading="lazy">
-                                <figcaption>Results</figcaption>
-                            </figure>
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/callllm-05-explain.png" alt="callLLM Explain tab" loading="lazy">
-                                <figcaption>Explain</figcaption>
-                            </figure>
-                        </div>
-                    </article>
-
-                    <article class="work-project is-wide">
-                        <div class="work-project-header">
-                            <div class="work-project-name">designprom</div>
+                            <div class="work-project-name">
+                                <a href="https://designprom.vercel.app/" target="_blank" rel="noreferrer" style="color: inherit; text-decoration: none;">designprom · designprom.vercel.app</a>
+                            </div>
                             <div class="work-project-meta">Next.js · AI design prompt library</div>
                         </div>
                         <div class="work-project-description">
@@ -2181,38 +2151,6 @@
                             <figure class="repo-shot desktop">
                                 <img src="assets/work-repos/designprom-04-styles.png?v=live-20260511" alt="designprom style library screen" loading="lazy">
                                 <figcaption>Styles</figcaption>
-                            </figure>
-                        </div>
-                    </article>
-
-                    <article class="work-project is-wide">
-                        <div class="work-project-header">
-                            <div class="work-project-name">n8n-project</div>
-                            <div class="work-project-meta">n8n · video automation browser</div>
-                        </div>
-                        <div class="work-project-description">
-                            <p>n8n 자동화 흐름과 콘텐츠 피드를 웹에서 확인하는 영상/콘텐츠 자동화 프로젝트입니다.</p>
-                            <p>워크플로우 탭에서 자동화 단계와 실행 결과를 확인하고, 생성된 결과물을 피드 형태로 검토할 수 있게 구성했습니다.</p>
-                            <p>반복 작업은 n8n 워크플로우로 분리하고, 웹 화면은 입력, 실행 결과, 콘텐츠 목록을 확인하는 역할로 나눴습니다.</p>
-                            <p>자동화 파이프라인으로 생성한 영상은 실제 유튜브 채널에 쇼츠 약 20개, 롱폼 3개 수준으로 업로드해 결과를 검증했습니다.</p>
-                            <p>AI 도구와 자동화 파이프라인을 연결해 콘텐츠 수집, 처리, 결과 검토, 업로드까지 이어지는 시간을 줄이는 방향으로 구현했습니다.</p>
-                        </div>
-                        <div class="shot-grid desktop-shots">
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/n8n-project-01-feed.png" alt="n8n video browser feed" loading="lazy">
-                                <figcaption>Video feed</figcaption>
-                            </figure>
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/n8n-project-02-workflow.png" alt="n8n workflow tab" loading="lazy">
-                                <figcaption>Workflow tab</figcaption>
-                            </figure>
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/n8n-project-03-workflow-output.png" alt="n8n workflow output preview" loading="lazy">
-                                <figcaption>Rendered outputs</figcaption>
-                            </figure>
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/n8n-project-04-compact-feed.png" alt="n8n compact video feed" loading="lazy">
-                                <figcaption>Compact feed</figcaption>
                             </figure>
                         </div>
                     </article>
@@ -2249,6 +2187,80 @@
                         </div>
                     </article>
 
+                    <div class="work-category-title">AI Workflow</div>
+
+                    <article class="work-project is-wide">
+                        <div class="work-project-header">
+                            <div class="work-project-name">n8n-project</div>
+                            <div class="work-project-meta">n8n · video automation browser</div>
+                        </div>
+                        <div class="work-project-description">
+                            <p>n8n 자동화 흐름과 콘텐츠 피드를 웹에서 확인하는 영상/콘텐츠 자동화 프로젝트입니다.</p>
+                            <p>워크플로우 탭에서 자동화 단계와 실행 결과를 확인하고, 생성된 결과물을 피드 형태로 검토할 수 있게 구성했습니다.</p>
+                            <p>반복 작업은 n8n 워크플로우로 분리하고, 웹 화면은 입력, 실행 결과, 콘텐츠 목록을 확인하는 역할로 나눴습니다.</p>
+                            <p>자동화 파이프라인으로 생성한 영상은 실제 유튜브 채널에 쇼츠 약 20개, 롱폼 3개 수준으로 업로드해 결과를 검증했습니다.</p>
+                            <p>AI 도구와 자동화 파이프라인을 연결해 콘텐츠 수집, 처리, 결과 검토, 업로드까지 이어지는 시간을 줄이는 방향으로 구현했습니다.</p>
+                        </div>
+                        <div class="shot-grid desktop-shots">
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/n8n-project-01-feed.png" alt="n8n video browser feed" loading="lazy">
+                                <figcaption>Video feed</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/n8n-project-02-workflow.png" alt="n8n workflow tab" loading="lazy">
+                                <figcaption>Workflow tab</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/n8n-project-03-workflow-output.png" alt="n8n workflow output preview" loading="lazy">
+                                <figcaption>Rendered outputs</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/n8n-project-04-compact-feed.png" alt="n8n compact video feed" loading="lazy">
+                                <figcaption>Compact feed</figcaption>
+                            </figure>
+                        </div>
+                    </article>
+
+                    <div class="work-category-title">LLM</div>
+
+                    <article class="work-project is-wide">
+                        <div class="work-project-header">
+                            <div class="work-project-name">callLLM</div>
+                            <div class="work-project-meta">FastAPI · LLM benchmark tabs</div>
+                        </div>
+                        <div class="work-project-description">
+                            <p>서버 PC 사양에 맞춰 qwen3-8b-int4와 gemma-4-e4b 모델을 설치하고, 동일 프롬프트 기준 응답 품질과 속도를 비교 테스트한 LLM 벤치마크 도구입니다.</p>
+                            <p>테스트 환경은 AMD Ryzen 5 5600G, 12 threads, RAM 31Gi, NVIDIA GeForce RTX 4060 Ti 16GB, NVIDIA Driver 580.126.09 기준으로 구성했습니다.</p>
+                            <p>BIOS에서 RAM 사용 제한을 적용한 상태로 운영했고, Kubernetes GPU Operator와 NVIDIA device plugin/container toolkit을 설치해 GPU 워크로드를 실행했습니다.</p>
+                            <p>FastAPI 백엔드에서 프롬프트 실행, 응답 수집, 결과 조회 흐름을 분리하고 LangChain/RAG 프로필을 연결해 모델별 실행 과정을 비교했습니다.</p>
+                            <p>화면은 Browse/Workflow/Response/Results/Explain 탭으로 구성해 모델 등록, 실행 흐름, 응답 결과, 비교 이력을 한 번에 확인할 수 있게 만들었습니다.</p>
+                        </div>
+                        <div class="shot-grid desktop-shots five">
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/callllm-01-browse.png" alt="callLLM Browse tab" loading="lazy">
+                                <figcaption>Browse</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/callllm-02-workflow.png" alt="callLLM Workflow tab" loading="lazy">
+                                <figcaption>Workflow</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/callllm-03-response.png" alt="callLLM Response tab" loading="lazy">
+                                <figcaption>Response</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/callllm-04-results.png" alt="callLLM Results tab" loading="lazy">
+                                <figcaption>Results</figcaption>
+                            </figure>
+                            <figure class="repo-shot desktop">
+                                <img src="assets/work-repos/callllm-05-explain.png" alt="callLLM Explain tab" loading="lazy">
+                                <figcaption>Explain</figcaption>
+                            </figure>
+                        </div>
+                    </article>
+
+                    <div class="work-category-title">etc</div>
+
                     <article class="work-project is-wide">
                         <div class="work-project-header">
                             <div class="work-project-name">quant_trading_app</div>
@@ -2258,28 +2270,6 @@
                             <p>한국/미국 시장을 함께 다루는 하이브리드 퀀트 자동매매 앱입니다. 5영업일 리밸런스와 문서형 ML 레이어를 중심으로 전략을 운영합니다.</p>
                             <p>백엔드는 FastAPI + SQLite(SQLAlchemy)로 시세 수집·지표 계산·백테스트·포트폴리오/지갑 영속화·봇 실행·알림 평가를 담당하고, 체결 실행은 Rust execution engine, 메시징은 Redis Streams + DLQ 재처리로 구성했습니다.</p>
                             <p>실시간 봇이 시세를 받아 전략 신호를 생성하고, 운영 화면은 "자동매매 운영 문서"와 "매매 동향 문서" 형태로 동작 프로세스·설계 의도·시장별 운영 상태·체결 흐름·일별 수익률을 문서처럼 확인하도록 만들었습니다.</p>
-                        </div>
-                    </article>
-
-                    <article class="work-project is-wide">
-                        <div class="work-project-header">
-                            <div class="work-project-name">webtoon</div>
-                            <div class="work-project-meta">AI 웹툰 자동화 파이프라인 · ComfyUI 렌더 워크플로우</div>
-                        </div>
-                        <div class="work-project-description">
-                            <p>Keiailab k8s 클러스터의 ComfyUI 풀에서 동작하는 웹툰 렌더 워크플로우입니다. Qwen-Image-Edit 2511 fp8 + Lightning LoRA 기반 그래프로, 확산 모델 / CLIP / VAE 로드 → TextEncodeQwenImageEditPlus → KSampler → VAE 디코드 단계를 구성합니다.</p>
-                            <p>FLUX 계열 모델과 Higgs Field 이미지·동영상 생성 결과를 함께 사용해 컷 후보 생성, 장면 보정, 영상화 후보 생성까지 웹툰 자동생성 파이프라인 안에서 실험·검수할 수 있게 연결했습니다.</p>
-                            <p>아래는 클러스터 ComfyUI 파드(<code>comfyui-sdxl-0</code>, 8188)에 직접 접속해 실제 webtoon 워크플로우를 띄운 화면입니다. GPU 호출·서버 인프라 상세 구성은 위 AI Development 섹션에 정리했습니다.</p>
-                        </div>
-                        <div class="shot-grid desktop-shots">
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/webtoon-01-comfyui.png" alt="webtoon ComfyUI render workflow graph" loading="lazy">
-                                <figcaption>ComfyUI workflow</figcaption>
-                            </figure>
-                            <figure class="repo-shot desktop">
-                                <img src="assets/work-repos/webtoon-02-comfyui-detail.png" alt="webtoon ComfyUI LoRA and text encode nodes" loading="lazy">
-                                <figcaption>LoRA · TextEncode</figcaption>
-                            </figure>
                         </div>
                     </article>
                 </div>
