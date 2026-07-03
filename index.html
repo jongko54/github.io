@@ -30,12 +30,41 @@
             line-height: 1.6;
             color: var(--text-primary);
             background-color: var(--bg-primary);
+            overflow-x: hidden;
         }
 
         .container {
+            width: 100%;
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 16px;
+        }
+
+        main,
+        aside,
+        section,
+        .main-layout,
+        .card,
+        .pinned-card,
+        .ai-card,
+        .experience-card,
+        .sidebar-section,
+        .paar-card,
+        .work-project {
+            min-width: 0;
+        }
+
+        p,
+        code,
+        .paar-value,
+        .pinned-description,
+        .ai-card-description,
+        .work-project-description,
+        .achievement-description,
+        .skill-item,
+        .tag {
+            overflow-wrap: anywhere;
+            word-break: break-word;
         }
 
         /* Header */
@@ -590,6 +619,91 @@
 
         .ai-usage-card {
             margin-top: 16px;
+        }
+
+        /* PAAR Resume Blocks */
+        .paar-intro {
+            display: grid;
+            gap: 16px;
+        }
+
+        .paar-note {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .paar-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .paar-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 16px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .paar-card:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 1px rgba(63, 185, 80, 0.26);
+        }
+
+        .paar-card-title {
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .paar-row {
+            display: grid;
+            gap: 6px;
+            grid-template-columns: 84px 1fr;
+            margin-bottom: 9px;
+        }
+
+        .paar-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .paar-label {
+            align-self: start;
+            background-color: rgba(88, 166, 255, 0.12);
+            border: 1px solid rgba(88, 166, 255, 0.28);
+            border-radius: 999px;
+            color: var(--accent-blue);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            padding: 3px 7px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .paar-value {
+            color: var(--text-secondary);
+            font-size: 12px;
+            line-height: 1.55;
+        }
+
+        .paar-value strong {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .paar-mini {
+            display: grid;
+            gap: 8px;
+            margin: 10px 0 12px;
+        }
+
+        .paar-mini .paar-row {
+            grid-template-columns: 78px 1fr;
+            margin-bottom: 0;
         }
 
         /* Work Repository Gallery */
@@ -1404,6 +1518,19 @@
                 grid-template-columns: 1fr;
             }
 
+            .paar-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .paar-row,
+            .paar-mini .paar-row {
+                grid-template-columns: 1fr;
+            }
+
+            .paar-label {
+                justify-self: flex-start;
+            }
+
             .portfolio-tabs {
                 margin-top: -12px;
                 overflow-x: auto;
@@ -1509,7 +1636,7 @@
                     <div class="avatar"><img src="assets/avatar.png" alt="전종호 avatar"></div>
                     <div class="profile-info">
                         <h1>전종호 (Jongho-Jeon)</h1>
-                        <p class="subtitle">Backend Developer · 6+ years experience</p>
+                        <p class="subtitle">Backend / AI Web Developer · PAAR-based resume</p>
                     </div>
                 </div>
                 <div class="header-links">
@@ -1578,14 +1705,104 @@
                     <div class="card">
                         <h2 class="section-title"><span class="pixel-icon pixel-about" aria-hidden="true"></span>About</h2>
                         <p style="color: var(--text-secondary); line-height: 1.7;">
-                            총 경력 6년+의 백엔드 개발자입니다. 금융, 제조, 물류 도메인에서 Java/Spring 기반
-                            업무 시스템을 개발하고 운영했으며, 레거시 시스템 차세대 전환과 대용량 데이터 처리 경험을
-                            보유하고 있습니다. 한진정보통신에서는 EDI 시스템, Kafka 기반 주문/배송 데이터 처리,
-                            Elasticsearch 기반 화물추적 검색 흐름을 다뤘습니다. 최근에는 Claude/Codex 기반 개발 자동화,
-                            로컬 LLM 설치와 LangChain/RAG benchmark, MCP/Playwright 도구 연동, designprom AI 디자인 프롬프트 사이트,
-                            한진정보통신 AI 설문 문서 생성 프로젝트, 마케팅 앱 플랫폼의 웹/Android/iOS/서버 end-to-end 구축까지
-                            AI와 제품 개발을 실제 업무 도구와 서비스 운영 흐름에 적용하고 있습니다.
+                            총 경력 6년+의 백엔드/AI 웹 개발자입니다. 금융, 제조, 물류 도메인에서 Java/Spring 기반
+                            업무 시스템을 개발하고 운영했습니다. 도전을 좋아하고 새로운 기술을 배우고 실제로 사용해 보는 것을
+                            좋아해서 AI 웹툰 파이프라인, LLM/RAG, 앱/웹 서비스, 인프라 구성, SSO, 자동화 도구까지 다양한 분야를
+                            직접 경험하고 공부하고 있습니다. 단순 구현보다 왜 이 기술을 선택했는지, 어떤 대안을 비교했는지,
+                            실제 사용 가능한 결과로 어떻게 연결했는지를 남기는 개발자를 지향합니다.
                         </p>
+                    </div>
+                </section>
+
+                <!-- PAAR Highlights -->
+                <section class="paar-intro">
+                    <div>
+                        <h2 class="section-title">🧭 PAAR Impact Stories</h2>
+                        <p class="paar-note">
+                            Problem, Analysis, Action, Result 순서로 정리해 기술 키워드보다 문제 해결의 이유와 판단 근거가 먼저 보이도록 재구성했습니다.
+                        </p>
+                    </div>
+
+                    <div class="paar-grid">
+                        <article class="paar-card">
+                            <div class="paar-card-title">AI 웹툰 자동화 파이프라인</div>
+                            <div class="paar-row">
+                                <span class="paar-label">Problem</span>
+                                <span class="paar-value">컷 생성, 검수, 보정이 수작업으로 이어져 품질 판단과 재현성이 흔들리는 문제가 있었습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Analysis</span>
+                                <span class="paar-value">로컬 실행, 단일 ComfyUI, GPU 풀, VLM critic을 비교하고 VRAM과 병렬 처리 병목을 분리했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Action</span>
+                                <span class="paar-value">ComfyUI 풀, Ray Serve VLM, seed/prompt/model version 기록, JSON stage 산출물 기반 검수 루프를 구성했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Result</span>
+                                <span class="paar-value"><strong>15컷 VLM 검수 2-4분 직렬 흐름을 30초 미만</strong>으로 줄이고, GPU fan-out으로 렌더 wall-clock을 약 1/4 수준으로 낮췄습니다.</span>
+                            </div>
+                        </article>
+
+                        <article class="paar-card">
+                            <div class="paar-card-title">webEmbedding · source-first 웹 재구성</div>
+                            <div class="paar-row">
+                                <span class="paar-label">Problem</span>
+                                <span class="paar-value">AI로 좋은 웹사이트 디자인의 스타일과 구조를 참고해 새 화면에 가져오고 싶었지만, 실제 페이지는 구조와 스타일을 그대로 재사용하기 어려웠습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Analysis</span>
+                                <span class="paar-value">단순 스크래핑이나 screenshot만으로는 레이아웃, CSS, asset, interaction 맥락이 부족해 원하는 수준의 재구성이 나오지 않는다고 판단했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Action</span>
+                                <span class="paar-value">직접 만들어 보기로 하고 Playwright 기반 DOM/CSS/asset/screenshot/network evidence 수집기와 bounded rebuild 흐름을 구현했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Result</span>
+                                <span class="paar-value">웹 디자인 참고와 재구성을 자동화하는 webEmbedding을 npm package, Codex/Claude plugin, MCP 서버 형태로 정리했습니다.</span>
+                            </div>
+                        </article>
+
+                        <article class="paar-card">
+                            <div class="paar-card-title">한진택배 EDI · SFTP 주문/배송 운영</div>
+                            <div class="paar-row">
+                                <span class="paar-label">Problem</span>
+                                <span class="paar-value">택배 주문과 배송 데이터는 고객사별 파일 형식과 전송 주기가 달라 SFTP 기반 수집/처리 흐름을 안정적으로 운영해야 했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Analysis</span>
+                                <span class="paar-value">주문 접수, 배송 상태, 파일 송수신, 배치 처리, 오류 재처리 지점을 나눠 데이터 누락과 지연 가능 구간을 확인했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Action</span>
+                                <span class="paar-value">SFTP 주문/배송 EDI 담당으로 파일 연계, 데이터 처리, 운영 이슈 확인, Elasticsearch 화물추적 검색 흐름을 함께 다뤘습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Result</span>
+                                <span class="paar-value">고객사 주문/배송 데이터가 운영 시스템으로 이어지는 EDI 흐름을 유지하고, 물류 도메인의 실무 데이터 처리 경험을 쌓았습니다.</span>
+                            </div>
+                        </article>
+
+                        <article class="paar-card">
+                            <div class="paar-card-title">마케팅 앱 플랫폼 end-to-end 구축</div>
+                            <div class="paar-row">
+                                <span class="paar-label">Problem</span>
+                                <span class="paar-value">광고주, 홍보 수행자, 관리자가 각각 다른 화면과 권한으로 캠페인 전체 흐름을 처리해야 했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Analysis</span>
+                                <span class="paar-value">웹, Android, iOS, DB, 인증, 파일, 실시간 상태, 심사 대응을 하나의 release surface로 묶어야 했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Action</span>
+                                <span class="paar-value">Next.js, Expo, Supabase Auth/PostgreSQL/RLS/Storage, 관리자 화면, 배포 흐름을 직접 연결했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Result</span>
+                                <span class="paar-value">캠페인 신청, 선정, 콘텐츠 제출, 검수, 정산 흐름을 갖춘 앱을 구축하고 스토어 테스트 심사 단계까지 진행했습니다.</span>
+                            </div>
+                        </article>
                     </div>
                 </section>
 
@@ -1683,7 +1900,7 @@
                     <div class="pinned-card">
                         <div class="pinned-header">
                             <div>
-                                <div class="pinned-title">한진정보통신 AI 설문 문서 생성 서비스</div>
+                                <div class="pinned-title">AI 설문 문서 생성 서비스</div>
                                 <div style="font-size: 11px; color: var(--text-secondary);">사내 LLM 기반 설문 자동화</div>
                             </div>
                             <span class="pixel-badge pixel-doc" aria-hidden="true"></span>
@@ -1709,13 +1926,14 @@
                             <span class="pixel-badge pixel-factory" aria-hidden="true"></span>
                         </div>
                         <p class="pinned-description">
-                            C# 기반 레거시 MES 시스템을 Java Spring Boot로 전환.
-                            3,000개 이상의 Stored Procedure를 Java 로직으로 재구현. 글로벌 시스템 통합.
+                            넥센타이어 MES 글로벌 차세대 프로젝트에서 UI Exbuilder6를 사용해 차세대 UI 화면을 구축하고,
+                            Oracle 기반 데이터 처리를 함께 수행했습니다. 정련/압출 공정 쪽 프로세스 개발을 담당했습니다.
                         </p>
                         <div class="pinned-footer">
                             <span><span class="language-dot java"></span> Java</span>
                             <span><span class="mini-dot mini-green" aria-hidden="true"></span> Spring Boot</span>
                             <span><span class="mini-dot mini-orange" aria-hidden="true"></span> Oracle</span>
+                            <span><span class="mini-dot mini-purple" aria-hidden="true"></span> Exbuilder6</span>
                         </div>
                     </div>
 
@@ -1728,13 +1946,15 @@
                             <span class="pixel-badge pixel-money" aria-hidden="true"></span>
                         </div>
                         <p class="pinned-description">
-                            서비스 기획부터 앱 런칭까지 전 과정 참여. 금융권 마이데이터 React.js + Spring boot 백엔드 API 개발. QueryDSL을 활용한 쿼리 최적화로
-                            조회 성능 개선. 신한은행 일본 UI BANK 3.0 고도화 프로젝트(2023.11~2024.02)에서 EKYC 로직 검증 및 QA 담당.
+                            마이데이터 서비스 기획부터 앱 런칭까지 전 과정에 참여했고, 인증 및 외부 기관 연동 API를 개발했습니다.
+                            네이버/코스콤 금융 클라우드 기반 서버 관리와 구축을 진행했으며, 신한은행과 일본 키라보시 은행 합작
+                            UI BANK 3.0 프로젝트에서는 EKYC 로직 검증과 Open API 테스트를 수행했습니다.
                         </p>
                         <div class="pinned-footer">
                             <span><span class="language-dot java"></span> Java</span>
                             <span><span class="mini-dot mini-green" aria-hidden="true"></span> JPA</span>
-                            <span><span class="mini-dot mini-blue" aria-hidden="true"></span> NCP</span>
+                            <span><span class="mini-dot mini-blue" aria-hidden="true"></span> 금융 클라우드</span>
+                            <span><span class="mini-dot mini-purple" aria-hidden="true"></span> Auth/API</span>
                         </div>
                     </div>
 
@@ -1792,11 +2012,11 @@
 
                         <div class="ai-card">
                             <div class="ai-card-title">
-                                <a href="https://github.com/jongko54/designprom" target="_blank" style="color: inherit; text-decoration: none;">designprom · AI 디자인 프롬프트 예시 사이트</a>
+                                <a href="https://designprom.vercel.app" target="_blank" style="color: inherit; text-decoration: none;">designprom · designprom.vercel.app</a>
                             </div>
                             <p class="ai-card-description">
-                                AI 디자인 작업에 필요한 프롬프트 예시를 목적, 브랜드 DNA, 스타일 카테고리, 레이아웃 조건으로 구조화한 사이트입니다.
-                                Next.js 기반으로 프롬프트 레시피와 Stitch export 예시를 정리하고, 디자인 결과물을 재사용하기 쉬운 형태로 탐색할 수 있게 구성했습니다.
+                                사람들이 AI를 활용해 웹 디자인을 만들 때 프롬프트 작성과 결과 예측을 어려워하는 모습을 보고 만든 사이트입니다.
+                                웹 디자인 프롬프트를 어떻게 작성하면 좋은지, 실제로 그 프롬프트를 썼을 때 어떤 화면 예시가 나오는지 함께 보여주도록 구성했습니다.
                             </p>
                             <div class="tags">
                                 <span class="tag">Prompt Engineering</span>
@@ -1809,7 +2029,7 @@
                         <div class="ai-card">
                             <div class="ai-card-title">AI 설문 서비스 · Frontend / Backend</div>
                             <p class="ai-card-description">
-                                한진정보통신에서 그룹사 임직원 대상 설문 문서 생성을 위해 진행한 AI 설문 서비스입니다.
+                                그룹사 임직원 대상 설문 문서 생성을 위해 진행한 AI 설문 서비스입니다.
                                 회사 워크스테이션에 구축한 Qwen 계열 로컬 LLM을 호출해 직원 만족도, 불만, 개선 의견 등 조사 목적에 맞는 설문 문항과 선택지, 만족도 척도, 응답 흐름을 Google Forms처럼 구성할 수 있게 구현했습니다.
                             </p>
                             <div class="tags">
@@ -1818,7 +2038,6 @@
                                 <span class="tag">Local LLM</span>
                                 <span class="tag">Frontend</span>
                                 <span class="tag">Backend</span>
-                                <span class="tag">Hanjin IT</span>
                             </div>
                         </div>
 
@@ -1891,23 +2110,69 @@
                         <div class="experience-dot"></div>
                         <div class="experience-header">
                             <div>
+                                <div class="company-name">한진정보통신</div>
+                                <span class="position-badge">대리</span>
+                            </div>
+                            <div class="period">2025.02 - 2026.02</div>
+                        </div>
+                        <div class="project-title">한진택배 EDI 시스템 · SFTP 주문/배송 담당</div>
+                        <div class="paar-mini">
+                            <div class="paar-row">
+                                <span class="paar-label">Problem</span>
+                                <span class="paar-value">택배 주문/배송 데이터가 고객사 SFTP 연계와 내부 운영 시스템 사이에서 안정적으로 처리되어야 했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Analysis</span>
+                                <span class="paar-value">파일 송수신, 주문 접수, 배송 데이터 처리, 오류 확인 지점을 나눠 운영 리스크를 파악했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Action</span>
+                                <span class="paar-value">SFTP 주문/배송 EDI 유지보수, Elasticsearch 화물추적 검색 흐름, Query Plan 기반 SQL 튜닝 업무를 수행했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Result</span>
+                                <span class="paar-value">물류 도메인의 주문/배송 데이터 처리와 운영 시스템 유지보수 경험을 쌓았습니다.</span>
+                            </div>
+                        </div>
+                        <div class="tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">Spring Boot</span>
+                            <span class="tag">SFTP</span>
+                            <span class="tag">EDI</span>
+                            <span class="tag">Elasticsearch</span>
+                            <span class="tag">Query Plan</span>
+                            <span class="tag">AWS</span>
+                        </div>
+                    </div>
+
+                    <div class="experience-card">
+                        <div class="experience-dot"></div>
+                        <div class="experience-header">
+                            <div>
                                 <div class="company-name">Keiailab</div>
                                 <span class="position-badge">AI/Web 개발자</span>
                             </div>
                             <div class="period">2026.02 - 재직중</div>
                         </div>
                         <div class="project-title">AI 웹 솔루션 / LLM 서비스 / 자동화 프로젝트</div>
-                        <p class="experience-description">
-                            AI 웹 서비스와 자동화 프로젝트 담당. 회사 공식 사이트 keiailab.com(Next.js, 라이브 k8s 클러스터 쇼케이스),
-                            Qwen/Gemma 계열 로컬 LLM 벤치마크 도구(callLLM), LangChain/RAG 기반 실행 흐름,
-                            Next.js 기반 AI 디자인 프롬프트 사이트(designprom), MCP/Playwright 기반 webEmbedding 웹페이지 재구성 자동화,
-                            n8n/Gemini 기반 콘텐츠 자동화, Expo 기반 모바일 서비스 프로토타입을 구현했습니다.
-                            또한 k8s ComfyUI 풀 + Ray Serve VLM 기반 AI 웹툰 자동화 파이프라인(webtoon)을 개발했고,
-                            Higgs Field와 FLUX 계열 모델을 활용해 웹툰 컷 이미지·동영상 후보 생성 및 보정 실험을 자동화했습니다.
-                            마케팅 앱 플랫폼의 웹/Android/iOS/서버 end-to-end 구축 및 앱 스토어 테스트 심사 단계까지 진행했습니다.
-                            Kubernetes 인증 서버 영역에서는 Keycloak 기반 <code>sso.keiailab.com</code> 경로와
-                            Apple <code>form_post</code> 로그인 bridge를 구성해 사내 서비스 SSO 연동 기반을 정리했습니다.
-                        </p>
+                        <div class="paar-mini">
+                            <div class="paar-row">
+                                <span class="paar-label">Problem</span>
+                                <span class="paar-value">새로운 AI 기술을 데모에만 두지 않고 웹툰, LLM, 앱/웹, 인프라, 인증 흐름에 직접 적용해 보고 싶었습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Analysis</span>
+                                <span class="paar-value">제품 화면, LLM 실행, GPU 렌더링, 브라우저 자동화, SSO를 각각 다른 학습/구현 영역으로 보고 실험 범위를 나눴습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Action</span>
+                                <span class="paar-value">AI 웹툰 파이프라인, callLLM, designprom, webEmbedding, n8n/Gemini 자동화, 마케팅 앱 플랫폼, Apple SSO bridge를 구현했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Result</span>
+                                <span class="paar-value">새 기술을 직접 사용해 보며 AI 제품, 내부 운영 도구, 인프라 구성 경험을 넓히고 있습니다.</span>
+                            </div>
+                        </div>
                         <div class="tags">
                             <span class="tag">FastAPI</span>
                             <span class="tag">Next.js</span>
@@ -1934,50 +2199,36 @@
                         <div class="experience-dot"></div>
                         <div class="experience-header">
                             <div>
-                                <div class="company-name">한진정보통신</div>
-                                <span class="position-badge">대리</span>
-                            </div>
-                            <div class="period">2025.02 - 2026.02</div>
-                        </div>
-                        <div class="project-title">한진택배 EDI 시스템 유지보수 / 화물추적 검색 운영 / AI 설문 문서 생성</div>
-                        <p class="experience-description">
-                            EDI(주문, 배송) 파트 유지보수. Kafka를 활용한 대용량 데이터 실시간 처리 및
-                            AWS 클라우드 환경에서 k8S, Docker 기반 마이크로서비스 관리. Elasticsearch 기반 화물추적 검색 흐름과
-                            Query Plan 기반 SQL 튜닝으로 조회 성능 개선 업무를 수행.
-                            사내 워크스테이션에 구축한 Qwen 계열 LLM을 활용해 그룹사 임직원 대상 만족도/불만 조사 설문 문서를
-                            Google Forms처럼 생성하는 AI 설문 프로젝트를 함께 진행.
-                        </p>
-                        <div class="tags">
-                            <span class="tag">Java</span>
-                            <span class="tag">Spring Boot</span>
-                            <span class="tag">Kafka</span>
-                            <span class="tag">Elasticsearch</span>
-                            <span class="tag">Query Plan</span>
-                            <span class="tag">Qwen</span>
-                            <span class="tag">Local LLM</span>
-                            <span class="tag">Docker</span>
-                            <span class="tag">AWS</span>
-                        </div>
-                    </div>
-
-                    <div class="experience-card">
-                        <div class="experience-dot"></div>
-                        <div class="experience-header">
-                            <div>
                                 <div class="company-name">하이텍앤솔</div>
                                 <span class="position-badge">선임</span>
                             </div>
                             <div class="period">2024.08 - 2025.02</div>
                         </div>
                         <div class="project-title">넥센타이어 MES 글로벌 차세대 프로젝트</div>
-                        <p class="experience-description">
-                            C# 기반 MES를 Java Spring Boot로 전환. 경남 양산, 중국 칭다오 글로벌 시스템 구축.
-                        </p>
+                        <div class="paar-mini">
+                            <div class="paar-row">
+                                <span class="paar-label">Problem</span>
+                                <span class="paar-value">넥센타이어 MES 글로벌 차세대 프로젝트에서 공정 업무를 새로운 UI와 서버 구조로 옮겨야 했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Analysis</span>
+                                <span class="paar-value">정련/압출 공정 프로세스를 업무 흐름 단위로 나누고, UI Exbuilder6 화면과 Java/Spring Boot, Oracle 연동 경계를 정리했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Action</span>
+                                <span class="paar-value">UI Exbuilder6 기반 차세대 UI 화면 구축, Oracle 데이터 처리, 정련/압출 공정 프로세스 개발을 수행했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Result</span>
+                                <span class="paar-value">제조 현장의 MES 공정 업무를 차세대 UI와 서버 구조로 옮기는 프로젝트에 기여했습니다.</span>
+                            </div>
+                        </div>
                         <div class="tags">
                             <span class="tag">Java</span>
                             <span class="tag">Spring Boot</span>
                             <span class="tag">Oracle</span>
-                            <span class="tag">Exbuilder</span>
+                            <span class="tag">Exbuilder6</span>
+                            <span class="tag">정련/압출 공정</span>
                         </div>
                     </div>
 
@@ -1991,15 +2242,32 @@
                             <div class="period">2023.06 - 2024.04</div>
                         </div>
                         <div class="project-title">마이데이터 서비스 / 신한은행 UI BANK 3.0</div>
-                        <p class="experience-description">
-                            마이데이터 프론트 + 백엔드 API 개발. QueryDSL 쿼리 최적화 (성능 개선). NCP 클라우드 환경 구축.
-                            신한은행 일본 UI BANK 3.0 고도화 프로젝트(2023.11~2024.02) 참여: EKYC 로직 검증, Open API 테스트 및 문서화.
-                        </p>
+                        <div class="paar-mini">
+                            <div class="paar-row">
+                                <span class="paar-label">Problem</span>
+                                <span class="paar-value">마이데이터 서비스는 기획부터 앱 런칭까지 이어지는 흐름에서 인증, 외부 기관 연동, 클라우드 운영을 함께 맞춰야 했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Analysis</span>
+                                <span class="paar-value">서비스 기능은 인증/외부 API/조회 성능으로, 인프라는 네이버/코스콤 금융 클라우드 서버 관리와 구축 범위로 나눠 진행했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Action</span>
+                                <span class="paar-value">마이데이터 서비스 기획부터 앱 런칭까지 참여했고, 인증 API와 외부 기관 연동 API 개발, 금융 클라우드 서버 관리/구축을 수행했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Result</span>
+                                <span class="paar-value">신한은행과 일본 키라보시 은행 합작 UI BANK 3.0 프로젝트에서는 EKYC 로직 검증과 Open API 테스트까지 경험했습니다.</span>
+                            </div>
+                        </div>
                         <div class="tags">
                             <span class="tag">Spring Boot</span>
                             <span class="tag">JPA</span>
                             <span class="tag">QueryDSL</span>
-                            <span class="tag">NCP</span>
+                            <span class="tag">금융 클라우드</span>
+                            <span class="tag">Auth API</span>
+                            <span class="tag">External API</span>
+                            <span class="tag">UI BANK 3.0</span>
                         </div>
                     </div>
 
@@ -2013,9 +2281,24 @@
                             <div class="period">2023.02 - 2023.07</div>
                         </div>
                         <div class="project-title">보험 GA 손해보험 간편가입시스템</div>
-                        <p class="experience-description">
-                            주소 기반 화재보험 및 법인/소상공인 보험 간편가입 시스템 유지보수. 약 2만명 회원 정보 관리.
-                        </p>
+                        <div class="paar-mini">
+                            <div class="paar-row">
+                                <span class="paar-label">Problem</span>
+                                <span class="paar-value">주소 기반 화재보험과 법인/소상공인 가입 흐름은 입력 정확도와 회원 데이터 안정성이 중요했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Analysis</span>
+                                <span class="paar-value">가입 단계별 데이터 검증, MySQL 조회 흐름, Spring 유지보수 범위를 나눠 장애 가능 구간을 확인했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Action</span>
+                                <span class="paar-value">보험 간편가입 시스템 유지보수와 약 <strong>2만명</strong> 회원 정보 관리 업무를 수행했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Result</span>
+                                <span class="paar-value">보험 가입과 회원 관리 운영 흐름을 안정적으로 유지했습니다.</span>
+                            </div>
+                        </div>
                         <div class="tags">
                             <span class="tag">Java</span>
                             <span class="tag">Spring</span>
@@ -2033,9 +2316,24 @@
                             <div class="period">2021.12 - 2023.01</div>
                         </div>
                         <div class="project-title">신용대출 중개 플랫폼</div>
-                        <p class="experience-description">
-                            React + Node.js 풀스택 개발. 금융사 API 연동 및 앱 런칭 전 과정 참여.
-                        </p>
+                        <div class="paar-mini">
+                            <div class="paar-row">
+                                <span class="paar-label">Problem</span>
+                                <span class="paar-value">대출 중개 서비스는 사용자 신청 흐름, 금융사 API 연동, 앱 출시 준비가 동시에 맞물리는 구조였습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Analysis</span>
+                                <span class="paar-value">프론트 화면, Node.js 처리, Spring Boot API, 금융사 연동을 각각 책임 경계로 나눠 개발 범위를 정리했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Action</span>
+                                <span class="paar-value">React.js, Node.js, Spring Boot 기반 풀스택 개발과 금융사 API 연동 업무를 수행했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Result</span>
+                                <span class="paar-value">서비스 기획부터 앱 런칭까지 전 과정에 참여하며 사용자 대출 신청 흐름을 구현했습니다.</span>
+                            </div>
+                        </div>
                         <div class="tags">
                             <span class="tag">React.js</span>
                             <span class="tag">Node.js</span>
@@ -2054,9 +2352,24 @@
                             <div class="period">2021.02 - 2021.11</div>
                         </div>
                         <div class="project-title">실시간 채팅 시스템</div>
-                        <p class="experience-description">
-                            WebSocket 기반 실시간 메시징 기능과 관리자 페이지 개발.
-                        </p>
+                        <div class="paar-mini">
+                            <div class="paar-row">
+                                <span class="paar-label">Problem</span>
+                                <span class="paar-value">사용자와 관리자가 즉시 메시지를 주고받고 운영 상태를 확인할 수 있는 실시간 기능이 필요했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Analysis</span>
+                                <span class="paar-value">일반 HTTP 요청보다 WebSocket 기반 연결 유지가 메시지 지연과 상태 동기화에 적합하다고 판단했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Action</span>
+                                <span class="paar-value">Java, WebSocket, React.js, Node.js를 활용해 실시간 메시징 기능과 관리자 페이지를 개발했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Result</span>
+                                <span class="paar-value">운영자가 실시간 대화와 관리 흐름을 한 화면에서 처리할 수 있는 기반을 만들었습니다.</span>
+                            </div>
+                        </div>
                         <div class="tags">
                             <span class="tag">Java</span>
                             <span class="tag">WebSocket</span>
@@ -2075,10 +2388,24 @@
                             <div class="period">2019.11 - 2021.01</div>
                         </div>
                         <div class="project-title">행정안전부 지방교부세 개발 / 식약처 수입식품시스템 고도화</div>
-                        <p class="experience-description">
-                            [행안부 지방교부세] 엑셀 기반 업무를 웹 시스템으로 전환. 엑셀 함수를 jQuery로 구현.
-                            [식약처 시스템] Vaadin 프레임워크를 전자정부프레임워크로 전환. Websquare UI 활용, MyBatis SQL 최적화.
-                        </p>
+                        <div class="paar-mini">
+                            <div class="paar-row">
+                                <span class="paar-label">Problem</span>
+                                <span class="paar-value">공공기관 업무에서 엑셀 기반 계산과 레거시 프레임워크는 유지보수성과 사용자 업무 효율을 떨어뜨렸습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Analysis</span>
+                                <span class="paar-value">엑셀 함수 계산은 브라우저 UI 로직으로, Vaadin 기반 화면은 전자정부프레임워크/Websquare 구조로 옮기는 방향을 잡았습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Action</span>
+                                <span class="paar-value">지방교부세 엑셀 함수 jQuery 구현, 수입식품시스템 Websquare UI 전환, MyBatis SQL 최적화를 수행했습니다.</span>
+                            </div>
+                            <div class="paar-row">
+                                <span class="paar-label">Result</span>
+                                <span class="paar-value">엑셀 중심 업무를 웹 시스템으로 전환하고 공공 시스템 고도화 경험을 쌓았습니다.</span>
+                            </div>
+                        </div>
                         <div class="tags">
                             <span class="tag">전자정부프레임워크</span>
                             <span class="tag">Websquare</span>
@@ -2182,39 +2509,39 @@
                     </div>
                 </div>
 
-                <!-- Achievements -->
+                <!-- PAAR Signals -->
                 <div class="sidebar-section" id="overview-highlights">
-                    <h3><span class="pixel-icon pixel-highlights" aria-hidden="true"></span>Highlights</h3>
+                    <h3><span class="pixel-icon pixel-highlights" aria-hidden="true"></span>PAAR Signals</h3>
 
                     <div class="achievement">
                         <div class="achievement-icon pixel-rocket" aria-hidden="true"></div>
                         <div class="achievement-info">
-                            <div class="achievement-title">차세대 전환</div>
-                            <div class="achievement-description">2건의 대규모 레거시 전환</div>
+                            <div class="achievement-title">Problem</div>
+                            <div class="achievement-description">운영 병목과 제품 목적을 먼저 정의</div>
                         </div>
                     </div>
 
                     <div class="achievement">
                         <div class="achievement-icon pixel-money" aria-hidden="true"></div>
                         <div class="achievement-info">
-                            <div class="achievement-title">핀테크, 금융</div>
-                            <div class="achievement-description">마이데이터/대출/보험/은행</div>
+                            <div class="achievement-title">Analysis</div>
+                            <div class="achievement-description">대안, 병목, 책임 경계 비교</div>
                         </div>
                     </div>
 
                     <div class="achievement">
                         <div class="achievement-icon pixel-performance" aria-hidden="true"></div>
                         <div class="achievement-info">
-                            <div class="achievement-title">성능 개선</div>
-                            <div class="achievement-description">쿼리 최적화 40% 향상</div>
+                            <div class="achievement-title">Action</div>
+                            <div class="achievement-description">웹, 서버, 인프라, AI 실행 범위 명시</div>
                         </div>
                     </div>
 
                     <div class="achievement">
                         <div class="achievement-icon pixel-ai" aria-hidden="true"></div>
                         <div class="achievement-info">
-                            <div class="achievement-title">AI Agent</div>
-                            <div class="achievement-description">Qwen/RAG/MCP 기반 업무 자동화</div>
+                            <div class="achievement-title">Result</div>
+                            <div class="achievement-description">15컷 검수 30초 미만, 앱 심사 단계</div>
                         </div>
                     </div>
                 </div>
@@ -2317,13 +2644,13 @@
                     <article class="work-project">
                         <div class="work-project-header">
                             <div class="work-project-name">kei_coin_pg</div>
-                            <div class="work-project-meta">Android · iOS · Web wallet</div>
+                            <div class="work-project-meta">AI-assisted · Native wallet app</div>
                         </div>
                         <div class="work-project-description">
-                            <p>코인 지갑, 결제, 수신 화면을 Android, iOS, Web 버전으로 모두 구현한 월렛/페이먼트 앱입니다.</p>
-                            <p>Expo 기반으로 생체 인증 진입, 잔액 조회, 마켓, 수신 화면까지 실제 사용 흐름이 동작하도록 구성했습니다.</p>
+                            <p>AI를 활용해서 처음 만들어본 코인 지갑 앱입니다. Native 기반 앱 개발 경험도 없고 코인 지갑 구조도 잘 모르는 상태에서 시작했습니다.</p>
+                            <p>AI에게 화면 구조, 지갑 플로우, 인증/잔액/수신 화면 구성 방향을 계속 물어보며 Android, iOS, Web에서 볼 수 있는 월렛 화면을 만들어 갔습니다.</p>
+                            <p>생체 인증 진입, 잔액 조회, 마켓, 수신 QR 화면을 구현하면서 AI가 낯선 기술과 도메인을 빠르게 따라가게 해 주는 성능을 실감한 프로젝트입니다.</p>
                             <p>지갑 주소와 QR처럼 민감할 수 있는 정보는 포트폴리오 캡처 단계에서 보이지 않도록 마스킹했습니다.</p>
-                            <p>결제성 서비스에서 필요한 인증, 자산 현황, 입출금 화면 구성을 앱과 웹에서 일관되게 사용할 수 있게 만들었습니다.</p>
                         </div>
                         <div class="shot-grid mobile-shots four">
                             <figure class="repo-shot mobile">
@@ -2350,13 +2677,13 @@
                             <div class="work-project-name">
                                 <a href="https://designprom.vercel.app/" target="_blank" rel="noreferrer" style="color: inherit; text-decoration: none;">designprom · designprom.vercel.app</a>
                             </div>
-                            <div class="work-project-meta">Next.js · AI design prompt library</div>
+                            <div class="work-project-meta">designprom.vercel.app · AI web design prompt examples</div>
                         </div>
                         <div class="work-project-description">
-                            <p>AI 디자인 작업에서 바로 참고할 수 있는 프롬프트 예시와 브랜드 DNA, 스타일 카테고리, 레이아웃 기준을 정리한 웹 사이트입니다.</p>
-                            <p>Next.js 기반으로 Home, Builder, Archive, Styles 화면을 구성하고 프롬프트 레시피를 탐색하고 조합할 수 있게 만들었습니다.</p>
-                            <p>Stitch export 결과와 샘플 프롬프트를 함께 관리해 AI 디자인 산출물을 재사용하고 비교하기 쉬운 구조로 정리했습니다.</p>
-                            <p>디자인 방향성, 상호작용 효과, 레퍼런스 분석 내용을 화면 단위로 나누어 프롬프트 작성과 결과 검토 흐름이 이어지도록 구현했습니다.</p>
+                            <p>사람들이 AI를 활용해 웹 디자인을 만들 때 프롬프트 작성 요령과 결과 예측을 어려워하는 모습을 보고 만든 사이트입니다.</p>
+                            <p>웹 디자인 프롬프트를 어떤 구조로 쓰면 좋은지, 그리고 그 프롬프트를 사용했을 때 어떤 화면 예시가 나오는지 함께 보여주고 싶었습니다.</p>
+                            <p>Next.js 기반으로 Home, Builder, Archive, Styles 화면을 구성하고 브랜드 DNA, 스타일 카테고리, 레이아웃 기준을 탐색할 수 있게 만들었습니다.</p>
+                            <p>샘플 프롬프트와 결과 예시를 함께 관리해 AI 디자인 작업을 시작하는 사람이 바로 참고하고 응용할 수 있는 구조로 정리했습니다.</p>
                         </div>
                         <div class="shot-grid desktop-shots">
                             <figure class="repo-shot desktop">
@@ -2419,14 +2746,14 @@
                     <article class="work-project is-wide">
                         <div class="work-project-header">
                             <div class="work-project-name">n8n-project</div>
-                            <div class="work-project-meta">n8n · video automation browser</div>
+                            <div class="work-project-meta">n8n · Google Cloud TTS · Gemini video API · YouTube automation</div>
                         </div>
                         <div class="work-project-description">
-                            <p>n8n 자동화 흐름과 콘텐츠 피드를 웹에서 확인하는 영상/콘텐츠 자동화 프로젝트입니다.</p>
-                            <p>워크플로우 탭에서 자동화 단계와 실행 결과를 확인하고, 생성된 결과물을 피드 형태로 검토할 수 있게 구성했습니다.</p>
-                            <p>반복 작업은 n8n 워크플로우로 분리하고, 웹 화면은 입력, 실행 결과, 콘텐츠 목록을 확인하는 역할로 나눴습니다.</p>
-                            <p>자동화 파이프라인으로 생성한 영상은 실제 유튜브 채널에 쇼츠 약 20개, 롱폼 3개 수준으로 업로드해 결과를 검증했습니다.</p>
-                            <p>AI 도구와 자동화 파이프라인을 연결해 콘텐츠 수집, 처리, 결과 검토, 업로드까지 이어지는 시간을 줄이는 방향으로 구현했습니다.</p>
+                            <p>Google Cloud의 TTS 모델과 Gemini 영상 제작 기능을 API로 호출해 자동 영상 제작 흐름을 만들어 본 프로젝트입니다.</p>
+                            <p>네이버, Reddit 등에서 시간대별로 콘텐츠를 스크래핑하고, 찾고 있던 주제나 키워드가 발견되면 그 내용을 영상 소재로 변환하도록 구성했습니다.</p>
+                            <p>n8n 워크플로우에서 수집, 요약, 대본 생성, TTS 음성 생성, 영상 제작 API 호출, 결과 검토 단계를 연결했습니다.</p>
+                            <p>생성된 영상은 YouTube 업로드 단계까지 자동으로 이어지도록 구성했고, 실제 채널에 쇼츠 약 20개, 롱폼 3개 수준으로 업로드해 결과를 검증했습니다.</p>
+                            <p>반복적인 콘텐츠 탐색과 영상 제작, 업로드까지의 과정을 자동화하면서 AI API와 워크플로우 도구를 실제 운영 흐름에 연결해 본 작업입니다.</p>
                         </div>
                         <div class="shot-grid desktop-shots">
                             <figure class="repo-shot desktop">
@@ -2593,6 +2920,7 @@
             <div class="work-hero">
                 <div>
                     <h2>Webtoon AI Production</h2>
+                    <p>만화/웹툰 제작 과정의 부담을 줄이고, 스토리를 가진 사람이 AI로 웹툰화할 수 있는 완전 자동 생성 R&D 프로젝트입니다.</p>
                 </div>
                 <div class="work-count">100% personal build</div>
             </div>
@@ -2615,14 +2943,15 @@
                             <div class="work-project-meta">기획 → 생성 → 검수 → 보정 → 최종 strip</div>
                         </div>
                         <div class="work-project-description">
-                            <p>웹툰/IP를 기반으로 캐릭터 일관성, 장면 톤앤매너, 대사 배치, 플랫폼용 세로 strip까지 이어지는 제작 흐름을 직접 설계했습니다.</p>
+                            <p>만화/웹툰 작가들의 제작 고충을 덜어주고, 만화나 웹툰을 그리고 싶거나 자신이 가진 스토리를 웹툰화하고 싶은 사람들을 위해 연구 중인 프로젝트입니다.</p>
+                            <p>스토리 입력부터 캐릭터 일관성, 장면 톤앤매너, 대사 배치, 플랫폼용 세로 strip까지 AI로 완전 자동 생성하는 흐름을 목표로 R&D를 진행하고 있습니다.</p>
                             <p>본인 참여도는 100%입니다. 스토리보드 구조화, ComfyUI 워크플로우 설계, 모델/LoRA/레퍼런스 조합 실험, FLUX·Qwen-Image·Higgs Field 후보 생성, VLM critic 검수, 최종 후보 선별과 문서화를 직접 수행했습니다.</p>
                             <p>단순히 이미지를 뽑는 데서 멈추지 않고, 실패 이미지의 원인을 언어화하고 다음 생성 조건에 반영하는 반복 루프를 만들었습니다. 컷 단위 결과, 실패 contact sheet, 비교 이미지, 최종 strip을 함께 남겨 제작 판단과 개선 근거가 이어지도록 정리했습니다.</p>
                         </div>
                         <div class="webtoon-highlight-grid">
                             <div class="webtoon-highlight">
                                 <div class="webtoon-highlight-label">Goal</div>
-                                <div class="webtoon-highlight-value">웹툰 컷을 실제 게시 가능한 세로 strip 후보로 조립</div>
+                                <div class="webtoon-highlight-value">스토리 입력부터 게시 가능한 웹툰 strip까지 AI 완전 자동 생성</div>
                             </div>
                             <div class="webtoon-highlight">
                                 <div class="webtoon-highlight-label">Tools</div>
