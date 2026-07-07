@@ -12,6 +12,28 @@
         gtag('js', new Date());
         gtag('config', 'G-73LRLXSQM6');
     </script>
+    <script>
+        (function () {
+            var endpoint = 'https://portfolio-visitor-tracker.jongko54.workers.dev/track';
+            var body = JSON.stringify({
+                path: window.location.pathname + window.location.search,
+                referrer: document.referrer || ''
+            });
+
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon(endpoint, new Blob([body], { type: 'text/plain;charset=UTF-8' }));
+                return;
+            }
+
+            fetch(endpoint, {
+                method: 'POST',
+                mode: 'cors',
+                keepalive: true,
+                headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+                body: body
+            }).catch(function () {});
+        }());
+    </script>
     <style>
         * {
             margin: 0;
