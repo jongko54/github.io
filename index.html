@@ -10,21 +10,7 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){window.dataLayer.push(arguments);}
         gtag('js', new Date());
-
-        (function () {
-            const portfolioParams = new URLSearchParams(window.location.search);
-            const portfolioSource = portfolioParams.get('from');
-
-            gtag('config', 'G-73LRLXSQM6', {
-                page_path: window.location.pathname + window.location.search
-            });
-
-            if (portfolioSource) {
-                gtag('event', 'portfolio_source_visit', {
-                    source_label: portfolioSource
-                });
-            }
-        })();
+        gtag('config', 'G-73LRLXSQM6');
     </script>
     <style>
         * {
