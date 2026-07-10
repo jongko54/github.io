@@ -1113,21 +1113,6 @@
             background: #05080f;
         }
 
-        .webtoon-video {
-            background: #05080f;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .webtoon-video video {
-            background: #05080f;
-            display: block;
-            max-height: 760px;
-            object-fit: contain;
-            width: 100%;
-        }
-
         .repo-shot figcaption {
             border-top: 1px solid rgba(139, 148, 158, 0.24);
             color: var(--text-secondary);
@@ -1588,10 +1573,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .webtoon-video video {
-                max-height: 560px;
-            }
-
             .shot-grid.mobile-shots,
             .shot-grid.mobile-shots.four,
             .shot-grid.desktop-shots,
@@ -2011,7 +1992,7 @@
                                 스토리보드 → 렌더 → 비전 critic → reroll/repair → 등록까지 각 단계를 JSON 산출물로 분리한 AI 웹툰 제작 파이프라인입니다.
                                 로컬 Mac은 오케스트레이터 역할만 하고, 모든 GPU 연산은 Keiailab 사내 Kubernetes 클러스터(<code>ml</code> 네임스페이스)로 fan-out합니다.
                                 seed/prompt/모델 버전을 기록해 재현성을 확보하고, 컷 계약과 캐릭터 identity를 추적해 일관성을 유지합니다.
-                                Higgs Field 기반 이미지·동영상 생성과 FLUX 계열 이미지 생성/수정 실험을 함께 사용해 컷 후보, 영상화 후보, 보정 후보를 자동 생성하는 흐름도 구성했습니다.
+                                Higgs Field 기반 이미지 생성과 FLUX 계열 이미지 생성/수정 실험을 함께 사용해 컷 후보와 보정 후보를 자동 생성하는 흐름도 구성했습니다.
                             </p>
                             <p class="ai-card-description">
                                 <strong>① GPU 호출 (렌더):</strong> ComfyUI를 풀 2종으로 운영합니다.
@@ -2020,7 +2001,7 @@
                                 클라이언트는 <code>MURIM_COMFY_SDXL_ENDPOINTS</code> / <code>MURIM_COMFY_LARGE_ENDPOINTS</code>로 pod별 엔드포인트 풀을 잡아
                                 least-busy 선택 + 컷 단위 병렬로 호출합니다(단일 GPU 직렬 대비 wall-clock 약 1/4, 16GB 풀로 OOM 해소).
                                 실제 렌더 그래프는 Qwen-Image-Edit 2511 fp8 + Lightning LoRA 기반으로, 확산 모델 / CLIP / VAE 로드 → TextEncodeQwenImageEditPlus → KSampler → VAE 디코드로 구성됩니다.
-                                컷별 이미지 후보는 FLUX/ComfyUI 경로와 Higgs Field 생성 결과를 함께 비교하고, 영상 후보는 Higgs Field 기반 생성 결과를 검수 루프에 연결했습니다.
+                                컷별 이미지 후보는 FLUX/ComfyUI 경로와 Higgs Field 생성 결과를 함께 비교했습니다.
                             </p>
                             <p class="ai-card-description">
                                 <strong>② LLM / VLM 호출:</strong> 같은 클러스터의 KubeRay + Ray Serve(OpenAI 호환, <code>:8000/v1</code>)에서 비전·텍스트 모델을 서빙합니다.
@@ -2848,8 +2829,8 @@
                             </div>
                             <div class="webtoon-step">
                                 <div class="webtoon-step-number">04</div>
-                                <div class="webtoon-step-title">이미지·영상 후보</div>
-                                <div class="webtoon-step-text">Higgs Field로 이미지/동영상 후보를 생성하고 FLUX 결과와 함께 비교했습니다.</div>
+                                <div class="webtoon-step-title">이미지 후보</div>
+                                <div class="webtoon-step-text">Higgs Field로 이미지 후보를 생성하고 FLUX 결과와 함께 비교했습니다.</div>
                             </div>
                             <div class="webtoon-step">
                                 <div class="webtoon-step-number">05</div>
@@ -2951,8 +2932,8 @@
                         </div>
                         <div class="webtoon-analysis-list">
                             <div class="webtoon-analysis-item">
-                                <div class="webtoon-analysis-title">Image / Video Models</div>
-                                <div class="webtoon-analysis-text">Qwen-Image-Edit 2511 fp8mixed, Qwen-Image-Edit Lightning LoRA, FLUX/Kontext, Z_Image_bf16, z_image_turbo_bf16, SDXL/Illustrious-XL, Higgs Field 이미지·동영상 생성 흐름을 사용했습니다.</div>
+                                <div class="webtoon-analysis-title">Image Models</div>
+                                <div class="webtoon-analysis-text">Qwen-Image-Edit 2511 fp8mixed, Qwen-Image-Edit Lightning LoRA, FLUX/Kontext, Z_Image_bf16, z_image_turbo_bf16, SDXL/Illustrious-XL, Higgs Field 이미지 생성 흐름을 사용했습니다.</div>
                             </div>
                             <div class="webtoon-analysis-item">
                                 <div class="webtoon-analysis-title">LLM / VLM Critic</div>
@@ -3002,21 +2983,6 @@
                                 <img src="assets/webtoon/workflow-sdxl-controlnet.png" alt="SDXL ControlNet workflow node summary" loading="lazy">
                                 <figcaption>SDXL ControlNet baseline workflow</figcaption>
                             </figure>
-                        </div>
-                    </article>
-
-                    <article class="work-project is-wide">
-                        <div class="work-project-header">
-                            <div class="work-project-name">Cinema Studio 3.5 영상 후보</div>
-                            <div class="work-project-meta">image-to-video candidate · webtoon motion test</div>
-                        </div>
-                        <div class="work-project-description">
-                            <p>웹툰 컷을 영상화할 수 있는지 검토하기 위해 Cinema Studio 3.5로 생성한 짧은 영상 후보입니다. 정지 컷 기반 후보를 움직임, 분위기, 장면 지속성 관점에서 검수하고 이미지 생성 결과와 함께 비교했습니다.</p>
-                        </div>
-                        <div class="webtoon-video">
-                            <video controls preload="metadata" playsinline poster="assets/webtoon/cinema-studio-35-webtoon-video-poster.png">
-                                <source src="assets/webtoon/cinema-studio-35-webtoon-video-candidate.mp4" type="video/mp4">
-                            </video>
                         </div>
                     </article>
 
