@@ -67,14 +67,34 @@ class ChoComicsPortfolioTest(unittest.TestCase):
 
         for filename in SCREENSHOTS:
             alt, caption = expected[filename]
-            self.assertIn(f'src="assets/work-repos/{filename}"', self.card)
-            self.assertIn(f'alt="{alt}"', self.card)
-            self.assertIn(f"<figcaption>{caption}</figcaption>", self.card)
+            figures = re.findall(
+                r'<figure class="repo-shot desktop chocomics-shot">.*?</figure>',
+                self.card,
+                re.DOTALL,
+            )
+            matching_figures = [
+                figure
+                for figure in figures
+                if f'src="assets/work-repos/{filename}"' in figure
+            ]
+            self.assertEqual(
+                len(matching_figures),
+                1,
+                f"expected exactly one figure for screenshot: {filename}",
+            )
+            figure = matching_figures[0] if matching_figures else ""
+            self.assertIn(f'alt="{alt}"', figure)
+            self.assertIn(f"<figcaption>{caption}</figcaption>", figure)
+            self.assertEqual(figure.count("data-live-preview"), 1)
 
             path = ROOT / "assets" / "work-repos" / filename
-            self.assertTrue(path.is_file(), f"missing screenshot: {filename}")
-            header = path.read_bytes()[:24]
+            if not path.is_file():
+                self.fail(f"missing screenshot: {filename}")
+            header = path.read_bytes()
+            self.assertGreaterEqual(len(header), 24)
             self.assertEqual(header[:8], b"\x89PNG\r\n\x1a\n")
+            self.assertEqual(struct.unpack(">I", header[8:12])[0], 13)
+            self.assertEqual(header[12:16], b"IHDR")
             width, height = struct.unpack(">II", header[16:24])
             self.assertGreaterEqual(width, 1200)
             self.assertGreaterEqual(height, 650)
