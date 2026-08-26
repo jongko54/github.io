@@ -947,7 +947,25 @@
 
         .repo-shot.chocomics-shot img {
             aspect-ratio: 16 / 9;
+            cursor: pointer;
             height: auto;
+        }
+
+        .chocomics-inline-link {
+            color: var(--accent-blue);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .chocomics-inline-link:visited {
+            color: var(--accent-blue);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .chocomics-inline-link:focus-visible {
+            outline: 2px solid var(--accent-blue);
+            outline-offset: 2px;
         }
 
         .repo-shot.webtoon-strip {
@@ -2444,7 +2462,7 @@
                             <div class="work-project-meta">React · TypeScript · Webtoon platform</div>
                         </div>
                         <div class="work-project-description">
-                            <p><a href="https://chocomics.keiailab.com/" target="_blank" rel="noreferrer">ChoComics</a>는 오래된 꿈을 펼쳐보는 웹툰 독자를 위한 웹 플랫폼입니다.</p>
+                            <p><a class="chocomics-inline-link" href="https://chocomics.keiailab.com/" target="_blank" rel="noreferrer">ChoComics</a>는 오래된 꿈을 펼쳐보는 웹툰 독자를 위한 웹 플랫폼입니다.</p>
                             <p>오늘의 웹툰과 실시간 랭킹, 이달의 신작, 요일 연재 탐색을 하나의 홈 흐름으로 구성하고 작품 상세와 서재 진입을 연결했습니다.</p>
                         </div>
                         <div class="shot-grid desktop-shots">
