@@ -935,6 +935,21 @@
             aspect-ratio: 3 / 2;
         }
 
+        .repo-shot.chocomics-shot {
+            aspect-ratio: auto;
+        }
+
+        .repo-shot.chocomics-shot a {
+            color: inherit;
+            display: block;
+            text-decoration: none;
+        }
+
+        .repo-shot.chocomics-shot img {
+            aspect-ratio: 16 / 9;
+            height: auto;
+        }
+
         .repo-shot.webtoon-strip {
             aspect-ratio: 9 / 16;
         }
@@ -1642,7 +1657,7 @@
                 Overview
             </button>
             <button class="portfolio-tab" id="portfolio-tab-web-app" type="button" role="tab" aria-selected="false" data-tab-target="work-repos-panel" data-work-category-target="work-category-web-app">
-                WEB/APP <span class="tab-count">5</span>
+                WEB/APP <span class="tab-count">6</span>
             </button>
             <button class="portfolio-tab" id="portfolio-tab-ai-workflow" type="button" role="tab" aria-selected="false" data-tab-target="work-repos-panel" data-work-category-target="work-category-ai-workflow">
                 auto Video <span class="tab-count">1</span>
@@ -2421,6 +2436,33 @@
                 <div class="work-category-panel is-active" id="work-category-web-app" role="tabpanel" aria-labelledby="portfolio-tab-web-app">
                     <div class="work-board-grid">
 
+                    <article class="work-project is-wide" data-project="chocomics">
+                        <div class="work-project-header">
+                            <div class="work-project-name">
+                                <a href="https://chocomics.keiailab.com/" target="_blank" rel="noreferrer" style="color: inherit; text-decoration: none;">ChoComics · AI 웹툰 플랫폼</a>
+                            </div>
+                            <div class="work-project-meta">React · TypeScript · Webtoon platform</div>
+                        </div>
+                        <div class="work-project-description">
+                            <p><a href="https://chocomics.keiailab.com/" target="_blank" rel="noreferrer">ChoComics</a>는 오래된 꿈을 펼쳐보는 웹툰 독자를 위한 웹 플랫폼입니다.</p>
+                            <p>오늘의 웹툰과 실시간 랭킹, 이달의 신작, 요일 연재 탐색을 하나의 홈 흐름으로 구성하고 작품 상세와 서재 진입을 연결했습니다.</p>
+                        </div>
+                        <div class="shot-grid desktop-shots">
+                            <figure class="repo-shot desktop chocomics-shot">
+                                <a href="https://chocomics.keiailab.com/" target="_blank" rel="noreferrer" aria-label="Open ChoComics featured and ranking view">
+                                    <img data-live-preview src="assets/work-repos/chocomics-01-featured-ranking.png" alt="ChoComics featured webtoon and real-time ranking" loading="lazy">
+                                    <figcaption>Featured &amp; Ranking</figcaption>
+                                </a>
+                            </figure>
+                            <figure class="repo-shot desktop chocomics-shot">
+                                <a href="https://chocomics.keiailab.com/" target="_blank" rel="noreferrer" aria-label="Open ChoComics new and weekday view">
+                                    <img data-live-preview src="assets/work-repos/chocomics-02-new-weekday.png" alt="ChoComics monthly releases and weekday serialization" loading="lazy">
+                                    <figcaption>New &amp; Weekday</figcaption>
+                                </a>
+                            </figure>
+                        </div>
+                    </article>
+
                     <article class="work-project is-wide">
                         <div class="work-project-header">
                             <div class="work-project-name">Marketing App Platform</div>
@@ -3142,7 +3184,7 @@
             activatePortfolioPanel('webtoon-panel', false);
         }
 
-        const galleryImages = Array.from(document.querySelectorAll('.repo-shot img'));
+        const galleryImages = Array.from(document.querySelectorAll('.repo-shot img:not([data-live-preview])'));
         const lightbox = document.createElement('div');
         lightbox.className = 'image-lightbox';
         lightbox.setAttribute('role', 'dialog');
